@@ -1,0 +1,134 @@
+/* ==========================================================================
+   ORBITAR — Dual-World & Core Design System (NEXUS-Sprint)
+   1) CORE PALETTE (Brand Rule + Tree-to-Space Alchemical Transition):
+      - #339136 (Brand Green — Tree Canopy)
+      - #321401 (Brand Dark Brown — Deep Tree Roots)
+      - #F48138 (Brand Orange — Root Embers & Connector Glow)
+      - #B95D0E (Brand Dark Orange — Bark & Earth Transition)
+      - #02050E (Deep Cosmic Night Sky at Top Summit)
+   2) MUNDO WICHÍ (El Impenetrable, Chaco — Manual de Identidad):
+      - Tonos crudos del chaguar: #EFE6D5, #DFD0B8
+      - Grises de monte: #7C776E, #504C45
+      - Ocres y resinas naturales: #C87D28, #B95D0E, #9E501B
+      - Negros de tintes naturales y vetas de palo santo: #1B1612, #281F18
+      - Tipografía: 'Sansita' (títulos moderno-regionales) + 'Plus Jakarta Sans'
+   3) MUNDO ESPACIAL (NASA International Space Apps Challenge):
+      - Electric Space Blue: #1B2B85, #0B3D91, #2E96F5
+      - Deep Space Navy: #07173F, #151622
+      - Space Apps Neon Yellow (Acento): #E7F434
+      - NASA Red: #FC3D21
+      - Tipografía: 'Space Grotesk' (títulos tecnológicos) + 'JetBrains Mono'
+   ========================================================================== */
+
+:root {
+  /* Mandatory Core Brand Palette */
+  --brand-green: #339136;
+  --brand-dark-brown: #321401;
+  --brand-orange: #F48138;
+  --brand-dark-orange: #B95D0E;
+
+  /* Core Tree-to-Space Spectrum */
+  --core-space-void: #02050E;
+  --core-space-deep: #060D20;
+  --core-twilight-blend: #0E221D;
+  --core-canopy-green: #1A3A1E;
+  --core-trunk-amber: #2D1805;
+  --core-roots-brown: #321401;
+
+  /* ------------------------------------------------------------------------
+     MUNDO 1: IDENTIDAD VISUAL WICHÍ (El Impenetrable, Chaco)
+     ------------------------------------------------------------------------ */
+  --wichi-chaguar-light: #F3EBDD;
+  --wichi-chaguar-raw: #E2D3BA;
+  --wichi-monte-grey: #857F74;
+  --wichi-monte-dark: #49443C;
+  --wichi-ocre: #C97A2B;
+  --wichi-algarrobo: #B95D0E;
+  --wichi-tinte-negro: #1A1512;
+  --wichi-palo-santo: #2A2019;
+  --wichi-hoja-monte: #339136;
+  --font-wichi-title: 'Sansita', system-ui, -apple-system, sans-serif;
+
+  /* ------------------------------------------------------------------------
+     MUNDO 2: IDENTIDAD VISUAL ESPACIAL (NASA Space Apps Challenge)
+     ------------------------------------------------------------------------ */
+  --space-electric-blue: #1B2B85;
+  --space-nasa-blue: #0B3D91;
+  --space-cyan-glow: #2E96F5;
+  --space-deep-navy: #07173F;
+  --space-structural-dark: #151622;
+  --space-neon-yellow: #E7F434;
+  --space-nasa-red: #FC3D21;
+  --font-space-title: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+
+  /* Shared Typography & UI Tokens */
+  --font-display: 'Cinzel', 'Georgia', serif;
+  --font-sans: 'Plus Jakarta Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Consolas', monospace;
+
+  --text-light: #FFF8F2;
+  --text-warm: #EAD3C0;
+  --text-muted: #B8967C;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Layout Metrics */
+  --climber-bar-height: 114px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --climber-bar-height: 100px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--core-space-void);
+  color: var(--text-light);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  scroll-behavior: auto;
+}
+
+body {
+  background-color: var(--core-space-void);
+  color: var(--text-light);
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--space-neon-yellow);
+  outline-offset: 3px;
+}

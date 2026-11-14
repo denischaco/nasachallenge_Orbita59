@@ -1,0 +1,1897 @@
+/* ==========================================================================
+   ORBITAR — Main Experience Styles (Dual-World Identity + Tree-to-Space Core)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. LOADING SCREEN: "ORBITAR" EMERGING SLOWLY FROM DARKNESS
+   -------------------------------------------------------------------------- */
+.orbitar-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: radial-gradient(circle at 50% 50%,
+      #180900 0%,
+      #050204 68%,
+      #000000 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  transition: opacity 0.95s var(--ease-out-expo), visibility 0.95s var(--ease-out-expo);
+}
+
+.orbitar-loader.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-ambient-halo {
+  position: absolute;
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+      rgba(244, 129, 56, 0.14) 0%,
+      rgba(27, 43, 133, 0.12) 45%,
+      transparent 72%);
+  filter: blur(36px);
+  opacity: 0;
+  animation: haloEmerge 4.2s ease-out forwards;
+  pointer-events: none;
+}
+
+.loader-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 680px;
+}
+
+.loader-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--brand-orange);
+  opacity: 0;
+  animation: subtitleEmerge 3.6s ease-out 0.8s forwards;
+  margin-bottom: var(--space-4);
+}
+
+.loader-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 9vw, 6.4rem);
+  font-weight: 700;
+  letter-spacing: 0.38em;
+  padding-left: 0.38em;
+  color: var(--text-light);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px) scale(0.94);
+  filter: blur(10px);
+  text-shadow:
+    0 0 24px rgba(244, 129, 56, 0.45),
+    0 0 64px rgba(185, 93, 14, 0.3),
+    0 0 100px rgba(51, 145, 54, 0.2);
+  animation: orbitarFromDarkness 3.6s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s forwards;
+}
+
+.loader-subtitle {
+  margin-top: var(--space-4);
+  font-size: clamp(0.92rem, 2.2vw, 1.1rem);
+  color: var(--text-warm);
+  opacity: 0;
+  animation: subtitleEmerge 3.2s ease-out 1.4s forwards;
+}
+
+.loader-progress-wrap {
+  margin: var(--space-8) auto 0;
+  width: min(280px, 78vw);
+  opacity: 0;
+  animation: subtitleEmerge 2.8s ease-out 1.1s forwards;
+}
+
+.loader-progress-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 248, 242, 0.12);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  position: relative;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--brand-dark-orange), var(--brand-orange), var(--brand-green), var(--space-neon-yellow));
+  box-shadow: 0 0 12px var(--brand-orange);
+  transition: width 0.28s ease-out;
+}
+
+.loader-status-text {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+}
+
+.loader-enter-btn {
+  margin-top: var(--space-6);
+  padding: 0.78rem 1.85rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgba(244, 129, 56, 0.55);
+  background: rgba(50, 20, 1, 0.82);
+  color: var(--text-light);
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  opacity: 0;
+  animation: subtitleEmerge 2s ease-out 1.4s forwards;
+}
+
+.loader-enter-btn.is-ready {
+  border-color: var(--space-neon-yellow);
+  background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-dark-orange) 100%);
+  color: var(--brand-dark-brown);
+  box-shadow:
+    0 0 28px rgba(244, 129, 56, 0.75),
+    0 0 14px rgba(231, 244, 52, 0.45);
+  animation: readyBtnPulse 2s ease-in-out infinite;
+}
+
+.loader-enter-btn:hover {
+  background: var(--space-neon-yellow);
+  border-color: #FFFFFF;
+  color: var(--space-deep-navy);
+  transform: translateY(-2px) scale(1.03);
+}
+
+@keyframes readyBtnPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 22px rgba(244, 129, 56, 0.65);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 38px rgba(231, 244, 52, 0.85), 0 0 18px rgba(244, 129, 56, 0.85);
+  }
+}
+
+@keyframes orbitarFromDarkness {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(14px) scale(0.92);
+    letter-spacing: 0.22em;
+    padding-left: 0.22em;
+  }
+
+  45% {
+    opacity: 0.45;
+    filter: blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+    letter-spacing: 0.38em;
+    padding-left: 0.38em;
+  }
+}
+
+@keyframes haloEmerge {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes subtitleEmerge {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  100% {
+    opacity: 0.92;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. CORE DEL SITIO: CONTINUOUS TREE-TO-SPACE ALCHEMICAL BACKGROUND
+   "debe ser un tono entre arbol y negro espacial con estrellas. Empezando
+   abajo en raices full tono arbol y al llegar arriba ya puede verse full
+   cielo espacio para la parte del cierre."
+   -------------------------------------------------------------------------- */
+.world-tree-experience {
+  position: relative;
+  width: 100%;
+  min-height: 500vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: calc(var(--climber-bar-height) + 2rem);
+  overflow: hidden;
+  background-color: var(--core-space-void);
+}
+
+.tree-backdrop-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Top (0%-22%): Pure Black/Navy Starry Space Sky (#01030A -> #050E24)
+     Middle (22%-72%): Canopy Emerald (#122D1C / #339136) -> Palo Santo Trunk (#29190A)
+     Bottom (72%-100%): Full Warm Tree Roots (#321401 -> #1C0A00) */
+  background: linear-gradient(180deg,
+      #010208 0%,
+      #030818 11%,
+      #06122B 20%,
+      #0C2224 31%,
+      #16331B 44%,
+      #242410 58%,
+      #2E1A07 72%,
+      #321401 86%,
+      #1A0900 100%);
+}
+
+/* Crisp Starfield Layer across the upper half (Full Space Sky at top, fading into tree below) */
+.cosmic-starfield-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58%;
+  z-index: 1;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8% 6%, #FFFFFF 90%, transparent),
+    radial-gradient(2px 2px at 16% 14%, #E7F434 90%, transparent),
+    radial-gradient(1.5px 1.5px at 25% 4%, #FFFFFF 90%, transparent),
+    radial-gradient(2.5px 2.5px at 34% 11%, #9CC9FF 85%, transparent),
+    radial-gradient(1.2px 1.2px at 44% 8%, #FFFFFF 90%, transparent),
+    radial-gradient(2px 2px at 56% 5%, #E7F434 90%, transparent),
+    radial-gradient(1.5px 1.5px at 67% 13%, #FFFFFF 90%, transparent),
+    radial-gradient(2.2px 2.2px at 78% 7%, #F48138 90%, transparent),
+    radial-gradient(1.5px 1.5px at 88% 12%, #FFFFFF 90%, transparent),
+    radial-gradient(1.8px 1.8px at 94% 4%, #9CC9FF 90%, transparent),
+    radial-gradient(1.4px 1.4px at 12% 24%, #FFFFFF 90%, transparent),
+    radial-gradient(2px 2px at 29% 28%, #E7F434 85%, transparent),
+    radial-gradient(1.5px 1.5px at 49% 22%, #FFFFFF 90%, transparent),
+    radial-gradient(2px 2px at 72% 26%, #9CC9FF 85%, transparent),
+    radial-gradient(1.4px 1.4px at 85% 21%, #FFFFFF 90%, transparent),
+    radial-gradient(1.6px 1.6px at 19% 38%, #FFFFFF 80%, transparent),
+    radial-gradient(2px 2px at 63% 36%, #E7F434 80%, transparent),
+    radial-gradient(1.4px 1.4px at 82% 40%, #FFFFFF 80%, transparent);
+  background-size: 640px 480px;
+  background-repeat: repeat;
+  -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.92) 38%, rgba(0, 0, 0, 0.35) 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.92) 38%, rgba(0, 0, 0, 0.35) 72%, transparent 100%);
+}
+
+/* High-res vertical tree image: full intensity at the roots and trunk,
+   dissolving into the pure starry night sky at the very top (Summit) */
+.tree-backdrop-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: url('../assets/tree-bg.jpg');
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.72;
+  mix-blend-mode: screen;
+  filter: contrast(1.08) saturate(1.12);
+  -webkit-mask-image: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.35) 14%,
+      rgba(0, 0, 0, 0.85) 32%,
+      rgba(0, 0, 0, 1) 100%);
+  mask-image: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.14) 0%,
+      rgba(0, 0, 0, 0.35) 14%,
+      rgba(0, 0, 0, 0.85) 32%,
+      rgba(0, 0, 0, 1) 100%);
+}
+
+.tree-svg-spine {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1400px, 100vw);
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.88;
+}
+
+.tree-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(2, 5, 14, 0.65) 100%),
+    linear-gradient(180deg, rgba(1, 3, 10, 0.35) 0%, transparent 18%, transparent 86%, rgba(26, 9, 0, 0.85) 100%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. TOP HUD BAR
+   -------------------------------------------------------------------------- */
+.top-brand-hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 55;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(180deg, rgba(2, 5, 14, 0.82) 0%, rgba(2, 5, 14, 0) 100%);
+  pointer-events: none;
+}
+
+.top-brand-hud>* {
+  pointer-events: auto;
+}
+
+.brand-Identity-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-pill);
+  background: rgba(20, 14, 10, 0.82);
+  border: 1px solid rgba(244, 129, 56, 0.45);
+  backdrop-filter: blur(10px);
+  color: var(--text-light);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+}
+
+.brand-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--wichi-ocre), var(--space-neon-yellow));
+  box-shadow: 0 0 10px var(--brand-orange);
+}
+
+.top-hud-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.hud-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: rgba(18, 16, 24, 0.82);
+  border: 1px solid rgba(231, 244, 52, 0.4);
+  color: var(--text-warm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(10px);
+  transition: all 0.2s ease;
+}
+
+.hud-chip-btn:hover {
+  border-color: var(--space-neon-yellow);
+  color: var(--space-neon-yellow);
+  background: rgba(27, 43, 133, 0.45);
+}
+
+/* --------------------------------------------------------------------------
+   4. RIGHT-SIDE SCREEN INDICATOR (UPWARD ARROW + SMOOTH SCROLL/SWIPE)
+   -------------------------------------------------------------------------- */
+.climb-indicator-right {
+  position: fixed;
+  right: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 65;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, rgba(7, 23, 63, 0.88) 0%, rgba(50, 20, 1, 0.92) 100%);
+  border: 1px solid rgba(244, 129, 56, 0.48);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(12px);
+  width: 64px;
+}
+
+.climb-up-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--space-neon-yellow);
+  background: linear-gradient(180deg, var(--brand-orange) 0%, var(--brand-dark-orange) 100%);
+  color: var(--brand-dark-brown);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 22px rgba(244, 129, 56, 0.65);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.climb-up-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 32px rgba(231, 244, 52, 0.85);
+}
+
+.climb-up-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: #1c0a00;
+  stroke-width: 2.6;
+  animation: arrowPulseUp 1.8s ease-in-out infinite;
+}
+
+@keyframes arrowPulseUp {
+
+  0%,
+  100% {
+    transform: translateY(2px);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.climb-direction-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-orange);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.altitude-track {
+  position: relative;
+  width: 6px;
+  height: 130px;
+  background: rgba(255, 248, 242, 0.14);
+  border-radius: var(--radius-pill);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.altitude-track-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(0deg, var(--brand-dark-orange), var(--brand-green), var(--space-neon-yellow));
+  border-radius: var(--radius-pill);
+  transition: height 0.15s linear;
+}
+
+.altitude-node-dot {
+  position: relative;
+  z-index: 2;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--brand-dark-brown);
+  border: 2px solid rgba(234, 211, 192, 0.45);
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.altitude-node-dot.is-active {
+  border-color: var(--space-neon-yellow);
+  background: var(--brand-orange);
+  box-shadow: 0 0 10px var(--space-neon-yellow);
+  transform: scale(1.25);
+}
+
+.altitude-node-dot.is-level-painted {
+  border-color: var(--brand-green);
+  background: var(--brand-green);
+  box-shadow: 0 0 10px var(--brand-green);
+}
+
+.altitude-readout {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.smooth-physics-badge {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--space-neon-yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.climb-hint-callout {
+  position: fixed;
+  right: 5.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 64;
+  background: rgba(42, 32, 25, 0.94);
+  border: 1px solid var(--brand-orange);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  max-width: 215px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.climb-hint-callout.is-dismissed {
+  opacity: 0;
+  transform: translateY(-50%) translateX(15px);
+  pointer-events: none;
+}
+
+.climb-hint-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--brand-orange);
+}
+
+.climb-hint-desc {
+  font-size: 0.72rem;
+  color: var(--wichi-chaguar-light);
+  margin-top: 0.2rem;
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   5. FIXED BOTTOM CLIMBER NAVBAR
+   -------------------------------------------------------------------------- */
+.climber-bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--climber-bar-height);
+  z-index: 60;
+  background: linear-gradient(0deg,
+      #0b0502 0%,
+      rgba(36, 16, 4, 0.94) 60%,
+      rgba(36, 16, 4, 0) 100%);
+  border-top: 1px solid rgba(244, 129, 56, 0.28);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  padding: 0 1.5rem 0.7rem;
+  pointer-events: none;
+}
+
+.climber-bottom-navbar>* {
+  pointer-events: auto;
+}
+
+.climber-nav-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-self: center;
+}
+
+.climber-zone-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--brand-orange);
+}
+
+.climber-zone-name {
+  font-family: var(--font-wichi-title);
+  font-size: clamp(0.95rem, 1.8vw, 1.18rem);
+  font-weight: 700;
+  color: var(--wichi-chaguar-light);
+}
+
+.climber-figure-anchor {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 152px;
+  margin-bottom: -0.25rem;
+  padding: 0 1rem;
+}
+
+.climber-avatar-frame {
+  position: relative;
+  width: 176px;
+  height: 146px;
+  border-radius: 88px 88px 10px 10px;
+  overflow: hidden;
+  border: 2px solid var(--brand-orange);
+  box-shadow:
+    0 -8px 28px rgba(244, 129, 56, 0.5),
+    0 0 24px rgba(51, 145, 54, 0.35);
+  background: #120600;
+}
+
+.climber-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 62%;
+  transform: scale(1.38);
+  display: block;
+  filter: contrast(1.14) saturate(1.18);
+  transition: transform 0.35s ease;
+}
+
+body.is-climbing .climber-avatar-img {
+  transform: scale(1.46) translateY(-3px);
+}
+
+.climber-avatar-rim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(51, 145, 54, 0.15) 0%,
+      transparent 45%,
+      rgba(18, 6, 0, 0.85) 100%);
+  pointer-events: none;
+}
+
+.climber-caption-pill {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: rgba(26, 21, 18, 0.94);
+  border: 1px solid var(--brand-orange);
+  color: var(--wichi-chaguar-light);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.16rem 0.65rem;
+  border-radius: var(--radius-pill);
+}
+
+.climber-nav-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+  align-self: center;
+  padding-right: 3.5rem;
+}
+
+.painted-counter-label {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--wichi-chaguar-raw);
+  letter-spacing: 0.08em;
+}
+
+.painted-counter-label strong {
+  color: var(--space-neon-yellow);
+  font-size: 0.92rem;
+}
+
+.painted-mini-pips {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+}
+
+.story-pip {
+  width: 24px;
+  height: 10px;
+  border-radius: 3px;
+  background: rgba(255, 248, 242, 0.15);
+  border: 1px solid rgba(234, 211, 192, 0.35);
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+.story-pip.is-painted[data-mode="wichi"] {
+  background: var(--wichi-ocre);
+  border-color: var(--wichi-chaguar-light);
+  box-shadow: 0 0 10px var(--wichi-ocre);
+}
+
+.story-pip.is-painted[data-mode="espacial"] {
+  background: var(--space-neon-yellow);
+  border-color: #FFFFFF;
+  box-shadow: 0 0 10px var(--space-neon-yellow);
+}
+
+/* --------------------------------------------------------------------------
+   6. VERTICAL ZONES & ROOTS START ZONE (BOTTOM FULL TREE TONE)
+   -------------------------------------------------------------------------- */
+.tree-zone {
+  position: relative;
+  z-index: 10;
+  min-height: 96vh;
+  width: 100%;
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 5rem 5.5rem 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.roots-start-zone {
+  min-height: 95vh;
+  justify-content: flex-end;
+  padding-bottom: 3.5rem;
+}
+
+.roots-hero-card {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  background: linear-gradient(180deg,
+      rgba(50, 20, 1, 0.88) 0%,
+      rgba(26, 10, 1, 0.94) 100%);
+  border: 1px solid rgba(244, 129, 56, 0.48);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.5rem, 3vw, 2.3rem);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.roots-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-pill);
+  background: rgba(185, 93, 14, 0.28);
+  border: 1px solid var(--brand-orange);
+  color: var(--brand-orange);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-3);
+}
+
+.roots-title {
+  font-family: var(--font-wichi-title);
+  font-size: clamp(1.85rem, 4.2vw, 2.95rem);
+  font-weight: 800;
+  line-height: 1.16;
+  color: var(--wichi-chaguar-light);
+  margin-bottom: var(--space-3);
+}
+
+.roots-title span {
+  color: var(--brand-orange);
+}
+
+.roots-lead {
+  font-size: clamp(0.95rem, 1.8vw, 1.08rem);
+  color: var(--wichi-chaguar-raw);
+  max-width: 640px;
+  margin: 0 auto var(--space-6);
+}
+
+.btn-start-climb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.8rem 1.7rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--brand-orange);
+  background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-dark-orange) 100%);
+  color: var(--brand-dark-brown);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 0 25px rgba(244, 129, 56, 0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-start-climb:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 36px rgba(244, 129, 56, 0.85);
+}
+
+/* --------------------------------------------------------------------------
+   7. LEVEL HEADERS & DUAL-WORLD CONNECTOR GRID
+   "quiero que se note mas los dos mundos que estamos uniendo con las
+   historias como conector"
+   -------------------------------------------------------------------------- */
+.level-header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.level-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(20, 26, 22, 0.82);
+  border: 1px solid rgba(244, 129, 56, 0.45);
+  color: var(--wichi-chaguar-light);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.level-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.2vw, 2.25rem);
+  color: var(--text-light);
+  margin-top: var(--space-2);
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.9);
+}
+
+.level-subtitle {
+  font-size: 0.92rem;
+  color: var(--wichi-chaguar-raw);
+  max-width: 620px;
+  margin: 0.2rem auto 0;
+}
+
+/* 3-Column Connector Layout on Desktop: [Wichí World] <-- [Conector] --> [NASA Space Apps World] */
+.level-modes-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: clamp(0.85rem, 2vw, 1.5rem);
+  align-items: stretch;
+}
+
+/* Center Connector Bridge uniting Earth (Wichí) & Cosmos (Space Apps) */
+.worlds-connector-bridge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.25rem;
+  min-width: 112px;
+  user-select: none;
+}
+
+.connector-line-visual {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connector-line-visual svg {
+  width: 108px;
+  height: 36px;
+  overflow: visible;
+}
+
+.connector-pill-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--wichi-chaguar-light);
+  background: linear-gradient(90deg, rgba(185, 93, 14, 0.55) 0%, rgba(27, 43, 133, 0.65) 100%);
+  border: 1px solid rgba(231, 244, 52, 0.45);
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-pill);
+  text-align: center;
+  line-height: 1.25;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.connector-worlds-sub {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+/* Base Story Node */
+.story-node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition:
+    transform 0.32s var(--ease-out-expo),
+    filter 0.4s ease,
+    border-color 0.4s ease,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.story-node:hover {
+  transform: translateY(-5px);
+}
+
+/* ==========================================================================
+   8. MUNDO A: IDENTIDAD VISUAL WICHÍ (EL IMPENETRABLE, CHACO)
+   - Paleta: Tonos crudos del chaguar (#F3EBDD, #E2D3BA), grises de monte
+     (#857F74, #49443C), ocres (#C97A2B, #B95D0E), negros de tintes naturales
+     y vetas de palo santo (#1A1512, #2A2019).
+   - Texturas: Fibras tejidas de chaguar + vetas de madera de palo santo.
+   - Guarda geométrica: Patrones angulares y líneas quebradas de yicas.
+   - Tipografía: 'Sansita' (sólida, limpia, moderno-regional).
+   ========================================================================== */
+.story-node--wichi {
+  border-radius: 6px;
+  /* Angular artesanal silhouette */
+  padding: 0;
+  /* Unpainted State: Tinte negro natural + gris de monte + trama de chaguar crudo */
+  background-color: var(--wichi-tinte-negro);
+  background-image:
+    /* Woven Chaguar Fiber Texture */
+    repeating-linear-gradient(45deg,
+      rgba(226, 211, 186, 0.035) 0px,
+      rgba(226, 211, 186, 0.035) 2px,
+      transparent 2px,
+      transparent 8px),
+    repeating-linear-gradient(-45deg,
+      rgba(133, 127, 116, 0.04) 0px,
+      rgba(133, 127, 116, 0.04) 2px,
+      transparent 2px,
+      transparent 8px),
+    /* Palo Santo Wood Grain Texture */
+    repeating-linear-gradient(94deg,
+      rgba(42, 32, 25, 0.65) 0px,
+      rgba(26, 21, 18, 0.85) 18px,
+      rgba(73, 68, 60, 0.25) 32px);
+  border: 2px solid var(--wichi-monte-dark);
+  color: var(--wichi-chaguar-light);
+  filter: saturate(0.42) brightness(0.93);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65);
+}
+
+.story-node--wichi:hover {
+  filter: saturate(0.85) brightness(1.02);
+  border-color: var(--wichi-ocre);
+}
+
+/* WICHÍ PAINTED STATE ("PINTADA" — Tintes naturales vivos de Ocre, Algarrobo, Chaguar y Monte) */
+.story-node--wichi.is-painted {
+  filter: saturate(1.15) brightness(1.05);
+  border-color: var(--wichi-ocre);
+  background-color: var(--wichi-palo-santo);
+  background-image:
+    repeating-linear-gradient(45deg,
+      rgba(243, 235, 221, 0.06) 0px,
+      rgba(243, 235, 221, 0.06) 2px,
+      transparent 2px,
+      transparent 8px),
+    repeating-linear-gradient(-45deg,
+      rgba(201, 122, 43, 0.07) 0px,
+      rgba(201, 122, 43, 0.07) 2px,
+      transparent 2px,
+      transparent 8px),
+    linear-gradient(145deg,
+      rgba(201, 122, 43, 0.34) 0%,
+      rgba(42, 32, 25, 0.95) 52%,
+      rgba(51, 145, 54, 0.28) 100%);
+  box-shadow:
+    0 16px 42px rgba(0, 0, 0, 0.75),
+    0 0 28px rgba(201, 122, 43, 0.45),
+    inset 0 0 22px rgba(226, 211, 186, 0.12);
+}
+
+/* Yica Angular Geometric Guard (Top & Bottom Borders of Wichí Node) */
+.yica-guard-strip {
+  width: 100%;
+  height: 16px;
+  background-color: rgba(26, 21, 18, 0.9);
+  border-bottom: 1px solid rgba(226, 211, 186, 0.2);
+  overflow: hidden;
+  display: block;
+}
+
+.yica-guard-strip--bottom {
+  border-bottom: none;
+  border-top: 1px solid rgba(226, 211, 186, 0.2);
+}
+
+.yica-guard-strip svg {
+  width: 100%;
+  height: 16px;
+  display: block;
+}
+
+.story-node-inner {
+  padding: clamp(1.15rem, 2.2vw, 1.65rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.story-node-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: var(--space-3);
+}
+
+.wichi-identity-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.26rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(226, 211, 186, 0.12);
+  border-left: 3px solid var(--wichi-ocre);
+  color: var(--wichi-chaguar-light);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Modern-Regional Typography ('Sansita') for Wichí Titles */
+.story-node--wichi .story-node-title {
+  font-family: var(--font-wichi-title);
+  font-weight: 800;
+  font-size: clamp(1.25rem, 2.3vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--wichi-chaguar-light);
+}
+
+.story-node--wichi .story-node-protagonist {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--wichi-ocre);
+  margin-top: 0.25rem;
+}
+
+.story-node--wichi .story-node-teaser {
+  font-size: 0.9rem;
+  color: var(--wichi-chaguar-raw);
+  margin-bottom: var(--space-4);
+  line-height: 1.55;
+}
+
+.story-node--wichi .story-emblem-icon {
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+  /* Angular octagonal/diamond yica frame */
+  clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+  background: var(--wichi-palo-santo);
+  border: 2px solid var(--wichi-ocre);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-node--wichi.is-painted .story-emblem-icon {
+  background: linear-gradient(135deg, var(--wichi-ocre) 0%, var(--wichi-palo-santo) 80%);
+  box-shadow: 0 0 20px rgba(201, 122, 43, 0.6);
+}
+
+.story-node--wichi .story-node-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-wichi-title);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--wichi-chaguar-light);
+  padding-top: 0.55rem;
+  border-top: 1px dashed rgba(226, 211, 186, 0.25);
+}
+
+.story-node--wichi.is-painted .story-node-cta {
+  color: var(--wichi-ocre);
+}
+
+/* ==========================================================================
+   9. MUNDO B: IDENTIDAD VISUAL ESPACIAL (NASA SPACE APPS CHALLENGE)
+   - Branding oficial: https://www.spaceappschallenge.org/ + Logo NASA
+   - Paleta: Gradiente desde arriba-izquierda Electric Blue (#1B2B85) hacia
+     Deep Space Navy (#07173F / #151622) + Acento Neon Yellow (#E7F434) y
+     NASA Red (#FC3D21).
+   - Tipografía: 'Space Grotesk' + 'JetBrains Mono'
+   ========================================================================== */
+.story-node--espacial {
+  border-radius: 14px;
+  padding: clamp(1.15rem, 2.2vw, 1.65rem);
+  /* Unpainted State: Deep Space Structural Dark (#151622) with subtle telemetry grid */
+  background-color: var(--space-structural-dark);
+  background-image:
+    linear-gradient(rgba(46, 150, 245, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 150, 245, 0.06) 1px, transparent 1px),
+    linear-gradient(135deg, rgba(27, 43, 133, 0.42) 0%, rgba(21, 22, 34, 0.94) 70%);
+  background-size: 24px 24px, 24px 24px, 100% 100%;
+  border: 1.5px solid rgba(46, 150, 245, 0.35);
+  color: #FFFFFF;
+  filter: saturate(0.5) brightness(0.92);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7);
+}
+
+/* Technical HUD Corner Brackets on Space Apps Card */
+.story-node--espacial::before,
+.story-node--espacial::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--space-neon-yellow);
+  pointer-events: none;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.story-node--espacial::before {
+  top: 8px;
+  left: 8px;
+  border-top: 2px solid var(--space-neon-yellow);
+  border-left: 2px solid var(--space-neon-yellow);
+}
+
+.story-node--espacial::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 2px solid var(--space-neon-yellow);
+  border-right: 2px solid var(--space-neon-yellow);
+}
+
+.story-node--espacial:hover {
+  filter: saturate(0.95) brightness(1.03);
+  border-color: var(--space-neon-yellow);
+}
+
+/* ESPACIAL PAINTED STATE ("ESTRELLA PINTADA ★" — Official Space Apps Top-Left Electric Blue Gradient + Neon Yellow Accent) */
+.story-node--espacial.is-painted {
+  filter: saturate(1.15) brightness(1.06);
+  border: 2px solid var(--space-neon-yellow);
+  background-color: var(--space-deep-navy);
+  background-image:
+    linear-gradient(rgba(231, 244, 52, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(231, 244, 52, 0.05) 1px, transparent 1px),
+    /* Official Space Apps Guideline: Linear gradient from top-left Electric Blue outward */
+    linear-gradient(135deg,
+      #1B2B85 0%,
+      #0B3D91 34%,
+      #07173F 72%,
+      #151622 100%);
+  background-size: 24px 24px, 24px 24px, 100% 100%;
+  box-shadow:
+    0 16px 44px rgba(0, 0, 0, 0.8),
+    0 0 32px rgba(27, 43, 133, 0.85),
+    0 0 18px rgba(231, 244, 52, 0.38);
+}
+
+.story-node--espacial.is-painted::before,
+.story-node--espacial.is-painted::after {
+  opacity: 1;
+}
+
+/* NASA & Space Apps Challenge Header Bar inside Espacial Card */
+.spaceapps-brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(46, 150, 245, 0.28);
+}
+
+.nasa-logo-cluster {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.nasa-meatball-svg {
+  width: 34px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.spaceapps-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.spaceapps-wordmark-top {
+  font-family: var(--font-space-title);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.spaceapps-wordmark-sub {
+  font-family: var(--font-mono);
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--space-neon-yellow);
+  text-transform: uppercase;
+}
+
+/* Space Grotesk Typography for NASA Space Apps Titles */
+.story-node--espacial .story-node-title {
+  font-family: var(--font-space-title);
+  font-weight: 700;
+  font-size: clamp(1.18rem, 2.1vw, 1.44rem);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
+}
+
+.story-node--espacial .story-node-protagonist {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--space-neon-yellow);
+  margin-top: 0.3rem;
+}
+
+.story-node--espacial .story-node-teaser {
+  font-size: 0.88rem;
+  color: #D5E4FF;
+  margin-bottom: var(--space-4);
+  line-height: 1.55;
+}
+
+.story-emblem-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: var(--space-3);
+}
+
+.story-emblem-icon--star {
+  width: 68px;
+  height: 68px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(27, 43, 133, 0.8) 0%, rgba(7, 23, 63, 0.95) 75%);
+  border: 2px solid var(--space-neon-yellow);
+  transition: all 0.35s ease;
+}
+
+.story-node--espacial.is-painted .story-emblem-icon--star {
+  background: radial-gradient(circle, rgba(231, 244, 52, 0.35) 0%, #1B2B85 68%, #07173F 100%);
+  border-color: var(--space-neon-yellow);
+  box-shadow: 0 0 24px rgba(231, 244, 52, 0.65);
+  transform: rotate(12deg) scale(1.05);
+}
+
+.story-emblem-icon svg {
+  width: 38px;
+  height: 38px;
+}
+
+.story-node--espacial .story-node-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--space-neon-yellow);
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(46, 150, 245, 0.28);
+}
+
+/* Status Pill for Unpainted vs Painted */
+.painted-status-pill {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.22rem 0.6rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.story-node--wichi.is-painted .painted-status-pill {
+  background: var(--wichi-ocre);
+  border-color: var(--wichi-chaguar-light);
+  color: var(--wichi-tinte-negro);
+  font-weight: 800;
+}
+
+.story-node--espacial.is-painted .painted-status-pill {
+  /* Space Apps Neon Yellow accent */
+  background: transparent;
+  border: 1.5px solid var(--space-neon-yellow);
+  color: var(--space-neon-yellow);
+  box-shadow: 0 0 12px rgba(231, 244, 52, 0.35);
+}
+
+/* ==========================================================================
+   10. PARTE FINAL SUPERIOR (CIERRE EN EL TOPE — COMPUESTO CON EL FONDO ESPACIAL)
+   "al llegar arriba ya puede verse full cielo espacio para la parte del cierre.
+   En esta parte final (superior) no crear tantas cajas para todo, recarga mucho
+   la visual. donde pueda, componer con el fondo"
+   ========================================================================== */
+.summit-top-zone {
+  min-height: 100vh;
+  justify-content: flex-start;
+  padding-top: 3.6rem;
+  padding-bottom: 8rem;
+}
+
+.summit-open-cosmos {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  /* Zero heavy outer card or background box — composed directly on the starry space sky! */
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0;
+}
+
+.summit-header {
+  text-align: center;
+  max-width: 820px;
+  margin: 0 auto 1.5rem;
+}
+
+.summit-dual-emblems {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--space-neon-yellow);
+}
+
+.summit-dual-emblems .emblem-divider {
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--wichi-ocre), var(--space-neon-yellow));
+}
+
+.summit-title {
+  font-family: var(--font-space-title);
+  font-size: clamp(1.85rem, 3.6vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.12;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.9);
+  margin-bottom: 0.85rem;
+}
+
+.summit-title span {
+  color: var(--space-neon-yellow);
+}
+
+/* Open Typographic Gratitude Text floating directly on the starry cosmos */
+.summit-gratitude-text {
+  font-size: clamp(0.92rem, 1.35vw, 1.04rem);
+  color: #E5EEFF;
+  line-height: 1.62;
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.summit-gratitude-text strong {
+  color: var(--wichi-chaguar-light);
+}
+
+/* Delicate Constellation Line instead of a heavy banner box */
+.summit-constellation-line {
+  margin: 1.35rem auto 1.65rem;
+  padding: 0.65rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summit-constellation-line.is-all-painted {
+  border-top-color: rgba(231, 244, 52, 0.45);
+  border-bottom-color: rgba(201, 122, 43, 0.45);
+}
+
+.completion-status-info h3 {
+  font-family: var(--font-space-title);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--space-neon-yellow);
+}
+
+.completion-status-info p {
+  font-size: 0.82rem;
+  color: rgba(229, 238, 255, 0.82);
+}
+
+/* Open, Box-Free Two-Column Credits Composed Directly Over the Starry Sky */
+.summit-credits-open-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: 0.75rem;
+}
+
+.credits-open-column {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.credits-open-title {
+  font-family: var(--font-space-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--wichi-ocre);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(201, 122, 43, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.credits-open-column--tools .credits-open-title {
+  color: var(--space-neon-yellow);
+  border-bottom-color: rgba(231, 244, 52, 0.35);
+}
+
+.credits-open-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 1.25rem;
+}
+
+.credits-open-list li {
+  background: transparent;
+  border: none;
+  padding: 0.15rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.credit-role-or-name {
+  font-weight: 700;
+  font-size: 0.83rem;
+  color: #FFFFFF;
+  line-height: 1.25;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.credit-detail {
+  font-size: 0.74rem;
+  color: rgba(226, 211, 186, 0.86);
+  line-height: 1.32;
+  margin-top: 0.12rem;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9);
+}
+
+.credits-open-column--tools .credit-detail {
+  color: rgba(213, 228, 255, 0.85);
+}
+
+.summit-footer-actions {
+  margin-top: 1.4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-descend-minimal {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-pill);
+  background: rgba(7, 23, 63, 0.55);
+  border: 1px solid var(--space-neon-yellow);
+  color: var(--space-neon-yellow);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  transition: all 0.25s ease;
+}
+
+.btn-descend-minimal:hover {
+  background: var(--space-neon-yellow);
+  color: var(--space-deep-navy);
+}
+
+/* ==========================================================================
+   11. STORY POPUP MODAL (RESPECTS EACH WORLD'S STYLE MANUAL!)
+   ========================================================================== */
+.story-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(2, 4, 10, 0.84);
+  backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.story-modal-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.story-modal-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: clamp(1.5rem, 3.2vw, 2.35rem);
+  transform: translateY(18px) scale(0.96);
+  transition: transform 0.32s var(--ease-out-expo);
+}
+
+.story-modal-backdrop.is-open .story-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+/* MODAL MODE A: WICHÍ STYLE MANUAL (Chaguar, Palo Santo, Ocre, Sansita, Yica Pattern) */
+.story-modal-dialog[data-mode="wichi"] {
+  border-radius: 6px;
+  background-color: var(--wichi-tinte-negro);
+  background-image:
+    repeating-linear-gradient(45deg,
+      rgba(243, 235, 221, 0.04) 0px,
+      rgba(243, 235, 221, 0.04) 2px,
+      transparent 2px,
+      transparent 8px),
+    linear-gradient(160deg, #2A2019 0%, #1A1512 100%);
+  border: 2px solid var(--wichi-ocre);
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.92),
+    0 0 40px rgba(201, 122, 43, 0.38);
+  color: var(--wichi-chaguar-light);
+}
+
+.story-modal-dialog[data-mode="wichi"] .modal-title {
+  font-family: var(--font-wichi-title);
+  font-weight: 800;
+  color: var(--wichi-chaguar-light);
+}
+
+.story-modal-dialog[data-mode="wichi"] .modal-protagonist {
+  color: var(--wichi-ocre);
+}
+
+.story-modal-dialog[data-mode="wichi"] .modal-quote-box {
+  background: rgba(42, 32, 25, 0.85);
+  border-left: 4px solid var(--wichi-ocre);
+  color: var(--wichi-chaguar-light);
+}
+
+.story-modal-dialog[data-mode="wichi"] .modal-story-body {
+  color: var(--wichi-chaguar-raw);
+}
+
+/* MODAL MODE B: NASA SPACE APPS CHALLENGE STYLE MANUAL */
+.story-modal-dialog[data-mode="espacial"] {
+  border-radius: 16px;
+  background-color: var(--space-deep-navy);
+  background-image:
+    linear-gradient(rgba(46, 150, 245, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46, 150, 245, 0.05) 1px, transparent 1px),
+    linear-gradient(135deg, #1B2B85 0%, #07173F 62%, #151622 100%);
+  background-size: 24px 24px, 24px 24px, 100% 100%;
+  border: 2px solid var(--space-neon-yellow);
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.92),
+    0 0 45px rgba(27, 43, 133, 0.8),
+    0 0 20px rgba(231, 244, 52, 0.3);
+  color: #FFFFFF;
+}
+
+.story-modal-dialog[data-mode="espacial"] .modal-title {
+  font-family: var(--font-space-title);
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.story-modal-dialog[data-mode="espacial"] .modal-protagonist {
+  font-family: var(--font-mono);
+  color: var(--space-neon-yellow);
+}
+
+.story-modal-dialog[data-mode="espacial"] .modal-quote-box {
+  background: rgba(7, 23, 63, 0.82);
+  border-left: 4px solid var(--space-neon-yellow);
+  color: #FFFFFF;
+}
+
+.story-modal-dialog[data-mode="espacial"] .modal-story-body {
+  color: #DCE8FF;
+}
+
+.modal-yica-banner {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(201, 122, 43, 0.35);
+  padding-bottom: 0.5rem;
+}
+
+.modal-spaceapps-banner {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(46, 150, 245, 0.35);
+}
+
+.story-modal-dialog[data-mode="wichi"] .modal-yica-banner {
+  display: block;
+}
+
+.story-modal-dialog[data-mode="espacial"] .modal-yica-banner {
+  display: none;
+}
+
+.story-modal-dialog[data-mode="espacial"] .modal-spaceapps-banner {
+  display: flex;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1.15rem;
+  right: 1.15rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(15, 15, 20, 0.85);
+  color: var(--text-light);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--space-neon-yellow);
+  color: #07173F;
+}
+
+.modal-header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: var(--space-3);
+  padding-right: 2.5rem;
+}
+
+.modal-painted-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.24rem 0.7rem;
+  border-radius: 4px;
+  background: var(--space-neon-yellow);
+  color: #07173F;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-modal-dialog[data-mode="wichi"] .modal-painted-badge {
+  background: var(--wichi-ocre);
+  color: var(--wichi-tinte-negro);
+}
+
+.modal-title {
+  font-size: clamp(1.5rem, 3vw, 2.05rem);
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+}
+
+.modal-protagonist {
+  font-size: 0.88rem;
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.modal-quote-box {
+  padding: 0.9rem 1.2rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-style: italic;
+  margin-bottom: var(--space-4);
+}
+
+.modal-story-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  font-size: 0.98rem;
+  line-height: 1.72;
+}
+
+.modal-footer {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. MOBILE & TABLET RESPONSIVENESS
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .level-modes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .worlds-connector-bridge {
+    flex-direction: row;
+    padding: 0.25rem 0;
+  }
+
+  .summit-credits-open-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .tree-zone {
+    padding: 4.5rem 4.8rem 3.5rem 1rem;
+  }
+
+  .climb-hint-callout {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .credits-open-list {
+    grid-template-columns: 1fr;
+  }
+
+  .climb-indicator-right {
+    right: 0.45rem;
+    width: 48px;
+    padding: 0.55rem 0.35rem;
+  }
+
+  .climb-up-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .altitude-track {
+    height: 84px;
+  }
+
+  .climber-bottom-navbar {
+    padding: 0 0.5rem 0.35rem;
+  }
+
+  .climber-figure-anchor {
+    height: 112px;
+    padding: 0 0.35rem;
+  }
+
+  .climber-avatar-frame {
+    width: 112px;
+    height: 102px;
+  }
+
+  .climber-caption-pill {
+    font-size: 0.54rem;
+    padding: 0.12rem 0.45rem;
+  }
+
+  .climber-nav-left .climber-zone-tag {
+    font-size: 0.56rem;
+  }
+
+  .climber-nav-left .climber-zone-name {
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+
+  .climber-nav-right {
+    padding-right: 0.15rem;
+  }
+
+  .painted-counter-label {
+    font-size: 0.64rem;
+  }
+
+  .story-pip {
+    width: 12px;
+    height: 7px;
+  }
+}

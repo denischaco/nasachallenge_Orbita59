@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.gemini/
+public/qa-screenshots/
+qa_playwright_capture.py
