@@ -84,14 +84,32 @@ function SoundToggle({ enabled, onChange, compact = false }) {
   );
 }
 
+function LoadingScreen({ visible }) {
+  if (!visible) return null;
+
+  return (
+    <div className="loading-screen" aria-live="polite" aria-label="Cargando la experiencia">
+      <div className="loading-glow" aria-hidden="true" />
+      <span className="loading-word">ORBITAR</span>
+      <span className="loading-line" aria-hidden="true" />
+    </div>
+  );
+}
+
 export default function App() {
   const [settingsOpen, setSettingsOpen] = useState(true);
   const [musicEnabled, setMusicEnabled] = useState(false);
   const [started, setStarted] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [openedStories, setOpenedStories] = useState(() => new Set());
   const [activeStory, setActiveStory] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const audioRef = useRef(null);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setLoading(false), 2200);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (musicEnabled && started) {
@@ -109,11 +127,14 @@ export default function App() {
   useEffect(() => {
     const updateProgress = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(maxScroll > 0 ? Math.max(0, Math.min(1, 1 - window.scrollY / maxScroll)) : 0);
+      const nextValue = maxScroll > 0 ? Math.max(0, Math.min(1, 1 - window.scrollY / maxScroll)) : 0;
+      setScrollProgress(nextValue);
     };
+
     updateProgress();
     window.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', updateProgress);
+
     return () => {
       window.removeEventListener('scroll', updateProgress);
       window.removeEventListener('resize', updateProgress);
@@ -124,7 +145,8 @@ export default function App() {
     setStarted(true);
     setSettingsOpen(false);
     window.requestAnimationFrame(() => {
-      window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+      const target = document.documentElement.scrollHeight;
+      window.scrollTo({ top: target, behavior: 'smooth' });
     });
   }
 
@@ -134,15 +156,26 @@ export default function App() {
   }
 
   function moveUp() {
-    window.scrollBy({ top: -Math.max(360, window.innerHeight * 0.68), behavior: 'smooth' });
+    window.scrollBy({ top: -Math.max(360, window.innerHeight * 0.72), behavior: 'smooth' });
   }
 
   const allStoriesSeen = openedStories.size === 6;
 
   return (
     <main className="experience-shell">
-      <div className="starfield" aria-hidden="true" />
-      <div className="planet-glow" aria-hidden="true" />
+      <LoadingScreen visible={loading} />
+      <div className="tree-backdrop" aria-hidden="true">
+        <div className="tree-trunk" />
+        <div className="tree-branch tree-branch--left" />
+        <div className="tree-branch tree-branch--right" />
+        <div className="tree-branch tree-branch--mid" />
+      </div>
+      <div className="climber-fixed" aria-hidden="true">
+        <div className="climber-body" />
+        <div className="climber-head" />
+        <div className="climber-limb climber-limb--left" />
+        <div className="climber-limb climber-limb--right" />
+      </div>
 
       <header className="topbar">
         <a className="wordmark" href="#inicio" aria-label="Órbita 59, inicio">ÓRBITA<span>59</span></a>
