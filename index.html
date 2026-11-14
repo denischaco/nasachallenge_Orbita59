@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ORBITA 59 — Tierra Wichí &amp; NASA Space Apps Challenge</title>
-  <meta name="description" content="Experiencia web y mobile de navegabilidad invertida que une la cosmovisión Wichí de El Impenetrable, Chaco con las misiones espaciales de NASA Space Apps Challenge." />
+  <meta name="description"
+    content="Experiencia web y mobile de navegabilidad invertida que une la cosmovisión Wichí de El Impenetrable, Chaco con las misiones espaciales de NASA Space Apps Challenge." />
 
   <!-- Google Fonts:
        - Sansita (Mundo Wichí: moderna-regional, sólida y limpia)
@@ -12,12 +14,15 @@
        - Cinzel & Plus Jakarta Sans (Core & Lectura) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Sansita:ital,wght@0,700;0,800;0,900;1,700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Sansita:ital,wght@0,700;0,800;0,900;1,700&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet" />
 
   <!-- Design System & Main Experience CSS -->
   <link rel="stylesheet" href="css/design-system.css" />
   <link rel="stylesheet" href="css/main.css" />
 </head>
+
 <body>
 
   <!-- Shared SVG Symbols:
@@ -27,7 +32,8 @@
     <defs>
       <!-- Patrón angular de líneas quebradas y rombos inspirado en las Yicas de Chaguar -->
       <pattern id="yicaPattern" x="0" y="0" width="48" height="16" patternUnits="userSpaceOnUse">
-        <path d="M0,14 L12,2 L24,14 L36,2 L48,14" fill="none" stroke="#C97A2B" stroke-width="2.2" stroke-linejoin="miter" />
+        <path d="M0,14 L12,2 L24,14 L36,2 L48,14" fill="none" stroke="#C97A2B" stroke-width="2.2"
+          stroke-linejoin="miter" />
         <path d="M0,8 L12,15 L24,3 L36,15 L48,8" fill="none" stroke="#E2D3BA" stroke-width="1.3" opacity="0.78" />
         <polygon points="12,5 15,8 12,11 9,8" fill="#857F74" />
         <polygon points="36,5 39,8 36,11 33,8" fill="#F3EBDD" />
@@ -44,12 +50,14 @@
         <circle cx="38" cy="74" r="1.5" fill="#FFFFFF" />
         <circle cx="74" cy="78" r="1.4" fill="#FFFFFF" />
         <!-- Órbita blanca -->
-        <ellipse cx="60" cy="50" rx="42" ry="14" transform="rotate(-24 60 50)" fill="none" stroke="#FFFFFF" stroke-width="2.2" />
+        <ellipse cx="60" cy="50" rx="42" ry="14" transform="rotate(-24 60 50)" fill="none" stroke="#FFFFFF"
+          stroke-width="2.2" />
         <!-- Vector Rojo NASA -->
         <path d="M14,64 Q58,18 108,30 Q64,34 26,74 Z" fill="#FC3D21" />
         <path d="M52,78 L66,22 L76,78 L69,78 L64,44 L57,78 Z" fill="#FC3D21" opacity="0.9" />
         <!-- Texto NASA -->
-        <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="22" letter-spacing="2">NASA</text>
+        <text x="60" y="57" text-anchor="middle" fill="#FFFFFF" font-family="'Space Grotesk', sans-serif"
+          font-weight="700" font-size="22" letter-spacing="2">NASA</text>
       </symbol>
     </defs>
   </svg>
@@ -57,7 +65,8 @@
   <!-- ========================================================================
        1. LOADING SCREEN: "ORBITA 59" EMERGING SLOWLY FROM DARKNESS
        ======================================================================== -->
-  <div id="orbitar-loader" class="orbitar-loader" role="status" aria-live="polite" aria-label="Cargando experiencia ORBITA 59">
+  <div id="orbitar-loader" class="orbitar-loader" role="status" aria-live="polite"
+    aria-label="Cargando experiencia ORBITA 59">
     <div class="loader-ambient-halo" aria-hidden="true"></div>
     <div class="loader-content">
       <p class="loader-kicker">Tierra Wichí · Conector de Historias · NASA Space Apps</p>
@@ -88,7 +97,8 @@
       <span>ORBITA 59</span>
     </a>
     <div class="top-hud-actions">
-      <button id="btn-paint-all-demo" type="button" class="hud-chip-btn" title="Pintar las 6 historias para vista previa">
+      <button id="btn-paint-all-demo" type="button" class="hud-chip-btn"
+        title="Pintar las 6 historias para vista previa">
         <span>★ Pintar 6/6</span>
       </button>
       <button id="btn-reset-painted" type="button" class="hud-chip-btn" title="Reiniciar historias pintadas">
@@ -101,13 +111,8 @@
        3. RIGHT-SIDE SCREEN INDICATOR (UPWARD ARROW + SMOOTH SCROLL/SWIPE)
        ======================================================================== -->
   <aside id="climb-indicator-right" class="climb-indicator-right" aria-label="Indicador de ascenso hacia arriba">
-    <button
-      id="btn-climb-up"
-      type="button"
-      class="climb-up-btn"
-      aria-label="Subir al siguiente nivel del árbol (Scroll o Swipe hacia arriba)"
-      title="Subir al siguiente nivel ↑"
-    >
+    <button id="btn-climb-up" type="button" class="climb-up-btn"
+      aria-label="Subir al siguiente nivel del árbol (Scroll o Swipe hacia arriba)" title="Subir al siguiente nivel ↑">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
@@ -118,41 +123,16 @@
     <div class="altitude-track" role="navigation" aria-label="Niveles del árbol">
       <div id="altitude-track-fill" class="altitude-track-fill" aria-hidden="true"></div>
 
-      <button
-        type="button"
-        class="altitude-node-dot"
-        data-target-zone="zone-summit"
-        title="Tope del Árbol · Cielo Espacial y Agradecimientos"
-        aria-label="Ir al Tope del Árbol (Cima)"
-      ></button>
-      <button
-        type="button"
-        class="altitude-node-dot"
-        data-target-zone="zone-level-3"
-        title="Nivel 3 · Copa Celeste y Espacio Profundo"
-        aria-label="Ir al Nivel 3"
-      ></button>
-      <button
-        type="button"
-        class="altitude-node-dot"
-        data-target-zone="zone-level-2"
-        title="Nivel 2 · Tronco Sagrado y Órbita"
-        aria-label="Ir al Nivel 2"
-      ></button>
-      <button
-        type="button"
-        class="altitude-node-dot"
-        data-target-zone="zone-level-1"
-        title="Nivel 1 · Raíces y Horizonte"
-        aria-label="Ir al Nivel 1"
-      ></button>
-      <button
-        type="button"
-        class="altitude-node-dot is-active"
-        data-target-zone="zone-roots"
-        title="Raíces · Inicio del Ascenso (Abajo)"
-        aria-label="Ir a las Raíces (Inicio)"
-      ></button>
+      <button type="button" class="altitude-node-dot" data-target-zone="zone-summit"
+        title="Tope del Árbol · Cielo Espacial y Agradecimientos" aria-label="Ir al Tope del Árbol (Cima)"></button>
+      <button type="button" class="altitude-node-dot" data-target-zone="zone-level-3"
+        title="Nivel 3 · Copa Celeste y Espacio Profundo" aria-label="Ir al Nivel 3"></button>
+      <button type="button" class="altitude-node-dot" data-target-zone="zone-level-2"
+        title="Nivel 2 · Tronco Sagrado y Órbita" aria-label="Ir al Nivel 2"></button>
+      <button type="button" class="altitude-node-dot" data-target-zone="zone-level-1"
+        title="Nivel 1 · Raíces y Horizonte" aria-label="Ir al Nivel 1"></button>
+      <button type="button" class="altitude-node-dot is-active" data-target-zone="zone-roots"
+        title="Raíces · Inicio del Ascenso (Abajo)" aria-label="Ir a las Raíces (Inicio)"></button>
     </div>
 
     <div id="altitude-readout" class="altitude-readout" aria-live="off">0%</div>
@@ -223,18 +203,14 @@
         <ellipse cx="600" cy="2760" rx="540" ry="260" fill="url(#rootGlow)" />
 
         <!-- Sacred Tree Trunk & Root Silhouette (Starts below the open space summit) -->
-        <path
-          d="M600,520
+        <path d="M600,520
              C545,720 495,960 470,1360
              C445,1760 430,2120 370,2480
              C290,2680 140,2830 40,2960
              L1160,2960
              C1060,2830 910,2680 830,2480
              C770,2120 755,1760 730,1360
-             C705,960 655,720 600,520 Z"
-          fill="url(#trunkGrad)"
-          opacity="0.45"
-        />
+             C705,960 655,720 600,520 Z" fill="url(#trunkGrad)" opacity="0.45" />
 
         <!-- Glowing Root Veins at Bottom (#F48138 & #B95D0E) -->
         <g stroke="#F48138" stroke-width="3" fill="none" opacity="0.55">
@@ -279,14 +255,16 @@
             <p>
               <strong>¡Gracias por haber ascendido desde las raíces de la tierra hasta el cielo estrellado!</strong>
               A través de cada historia conectaste dos mundos que laten juntos: la sabiduría ancestral del pueblo
-              <strong>Wichí de El Impenetrable chaqueño</strong> —tejida en fibras de chaguar, madera de palo santo y memoria de la tierra—
+              <strong>Wichí de El Impenetrable chaqueño</strong> —tejida en fibras de chaguar, madera de palo santo y
+              memoria de la tierra—
               y la mirada científica de <strong>NASA Space Apps Challenge</strong> hacia las estrellas.
             </p>
           </div>
         </div>
 
         <!-- Delicate Open Constellation Status Line (No heavy box) -->
-        <div id="summit-completion-banner" class="summit-constellation-line" role="region" aria-label="Estado de historias pintadas">
+        <div id="summit-completion-banner" class="summit-constellation-line" role="region"
+          aria-label="Estado de historias pintadas">
           <div class="completion-status-info">
             <h3 id="summit-banner-title">Has pintado 0 de 6 historias en tu ascenso</h3>
             <p id="summit-banner-desc">
@@ -316,7 +294,8 @@
               </li>
               <li>
                 <span class="credit-role-or-name">Relatos de Misiones Espaciales</span>
-                <span class="credit-detail">Protagonistas: Neil Armstrong (Apolo 11), Dra. Laura Frulla (SAOCOM), Carl Sagan &amp; Ann Druyan (Voyager 1)</span>
+                <span class="credit-detail">Protagonistas: Neil Armstrong (Apolo 11), Dra. Laura Frulla (SAOCOM), Carl
+                  Sagan &amp; Ann Druyan (Voyager 1)</span>
               </li>
               <li>
                 <span class="credit-role-or-name">Arquitectura UX, Dirección Visual y UI</span>
@@ -328,7 +307,8 @@
               </li>
               <li>
                 <span class="credit-role-or-name">Orquestación, QA y Certificación</span>
-                <span class="credit-detail">Agents Orchestrator, Senior PM, Evidence Collector &amp; Reality Checker</span>
+                <span class="credit-detail">Agents Orchestrator, Senior PM, Evidence Collector &amp; Reality
+                  Checker</span>
               </li>
             </ul>
           </div>
@@ -341,7 +321,8 @@
             <ul class="credits-open-list credits-panel--tools">
               <li>
                 <span class="credit-role-or-name">Sistema Dual de Diseño (CSS3 &amp; SVG)</span>
-                <span class="credit-detail">Manual Wichí (Chaguar, Palo Santo, Yicas, Sansita) + Manual NASA Space Apps</span>
+                <span class="credit-detail">Manual Wichí (Chaguar, Palo Santo, Yicas, Sansita) + Manual NASA Space
+                  Apps</span>
               </li>
               <li>
                 <span class="credit-role-or-name">HTML5 Semántico &amp; Gráficos Vectoriales</span>
@@ -349,7 +330,8 @@
               </li>
               <li>
                 <span class="credit-role-or-name">Motor JS de Scroll y Swipe Amortiguado</span>
-                <span class="credit-detail">Interpolación LERP de velocidad reducida para ascenso suave en Web y Mobile</span>
+                <span class="credit-detail">Interpolación LERP de velocidad reducida para ascenso suave en Web y
+                  Mobile</span>
               </li>
               <li>
                 <span class="credit-role-or-name">Ilustración Digital &amp; Fusión Atmosférica</span>
@@ -378,7 +360,7 @@
     <!-- ======================================================================
          ZONE B: NIVEL 3 (ALTO — COPA CELESTE Y ESPACIO PROFUNDO)
          Uniting Mundo Wichí (Left) <-- Story Connector --> Mundo NASA Space Apps (Right)
-         ====================================================================== -->
+    ====================================================================== -->
     <section id="zone-level-3" class="tree-zone" aria-labelledby="level-3-heading">
       <div class="level-header">
         <span class="level-kicker">Nivel 3 de 3 · El Tejido del Cielo y el Espacio Interestelar</span>
@@ -390,16 +372,12 @@
 
       <div class="level-modes-grid">
         <!-- Nivel 3 - MUNDO WICHÍ (Manual de Estilo El Impenetrable, Chaco) -->
-        <button
-          type="button"
-          class="story-node story-node--wichi"
-          data-story-id="wichi-3"
-          data-mode="wichi"
-          data-level="3"
-          aria-pressed="false"
-        >
+        <button type="button" class="story-node story-node--wichi" data-story-id="wichi-3" data-mode="wichi"
+          data-level="3" aria-pressed="false">
           <span class="yica-guard-strip" aria-hidden="true">
-            <svg><rect width="100%" height="16" fill="url(#yicaPattern)" /></svg>
+            <svg>
+              <rect width="100%" height="16" fill="url(#yicaPattern)" />
+            </svg>
           </span>
 
           <div class="story-node-inner">
@@ -413,7 +391,8 @@
                 <div class="story-emblem-icon" aria-hidden="true">
                   <!-- Yica Angular Geometric Emblem -->
                   <svg viewBox="0 0 64 64" fill="none">
-                    <polygon points="32,6 56,32 32,58 8,32" stroke="#F3EBDD" stroke-width="2.5" fill="rgba(201,122,43,0.28)" />
+                    <polygon points="32,6 56,32 32,58 8,32" stroke="#F3EBDD" stroke-width="2.5"
+                      fill="rgba(201,122,43,0.28)" />
                     <polygon points="32,16 46,32 32,48 18,32" stroke="#C97A2B" stroke-width="2.2" />
                     <polygon points="32,25 38,32 32,39 26,32" fill="#F3EBDD" />
                   </svg>
@@ -425,7 +404,8 @@
               </div>
 
               <p class="story-node-teaser">
-                Cómo las Mujeres Estrella descendían desde la Vía Láctea por una cuerda tejida de chaguar hasta la copa del monte chaqueño.
+                Cómo las Mujeres Estrella descendían desde la Vía Láctea por una cuerda tejida de chaguar hasta la copa
+                del monte chaqueño.
               </p>
             </div>
 
@@ -436,7 +416,9 @@
           </div>
 
           <span class="yica-guard-strip yica-guard-strip--bottom" aria-hidden="true">
-            <svg><rect width="100%" height="16" fill="url(#yicaPattern)" /></svg>
+            <svg>
+              <rect width="100%" height="16" fill="url(#yicaPattern)" />
+            </svg>
           </span>
         </button>
 
@@ -448,21 +430,16 @@
               <!-- Left: Angular Wichí Yica Zigzag -> Right: Smooth NASA Orbital Wave -->
               <path d="M2,18 L14,8 L26,28 L38,8 L50,18" fill="none" stroke="#C97A2B" stroke-width="2.5" />
               <circle cx="54" cy="18" r="4.5" fill="#F48138" stroke="#E7F434" stroke-width="1.5" />
-              <path d="M58,18 C72,6 86,30 106,18" fill="none" stroke="#E7F434" stroke-width="2.2" stroke-dasharray="4 3" />
+              <path d="M58,18 C72,6 86,30 106,18" fill="none" stroke="#E7F434" stroke-width="2.2"
+                stroke-dasharray="4 3" />
             </svg>
           </div>
           <span class="connector-worlds-sub">Chaguar ↔ Cosmos</span>
         </div>
 
         <!-- Nivel 3 - MUNDO ESPACIAL (Manual de Estilo NASA Space Apps Challenge) -->
-        <button
-          type="button"
-          class="story-node story-node--espacial"
-          data-story-id="espacial-3"
-          data-mode="espacial"
-          data-level="3"
-          aria-pressed="false"
-        >
+        <button type="button" class="story-node story-node--espacial" data-story-id="espacial-3" data-mode="espacial"
+          data-level="3" aria-pressed="false">
           <div>
             <div class="spaceapps-brand-bar">
               <div class="nasa-logo-cluster">
@@ -480,12 +457,8 @@
             <div class="story-emblem-wrap">
               <div class="story-emblem-icon story-emblem-icon--star" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none">
-                  <path
-                    d="M32 4L39.2 21.8L58 24L43.8 36.8L47.6 55.4L32 45.8L16.4 55.4L20.2 36.8L6 24L24.8 21.8L32 4Z"
-                    fill="#E7F434"
-                    stroke="#FFFFFF"
-                    stroke-width="2"
-                  />
+                  <path d="M32 4L39.2 21.8L58 24L43.8 36.8L47.6 55.4L32 45.8L16.4 55.4L20.2 36.8L6 24L24.8 21.8L32 4Z"
+                    fill="#E7F434" stroke="#FFFFFF" stroke-width="2" />
                   <circle cx="32" cy="31" r="6" fill="#0B3D91" stroke="#FC3D21" stroke-width="2" />
                 </svg>
               </div>
@@ -496,7 +469,8 @@
             </div>
 
             <p class="story-node-teaser">
-              Hacé clic en la estrella para vivir en primera persona cómo la NASA grabó los sonidos de los árboles y de la Tierra para navegar hacia las estrellas.
+              Hacé clic en la estrella para vivir en primera persona cómo la NASA grabó los sonidos de los árboles y de
+              la Tierra para navegar hacia las estrellas.
             </p>
           </div>
 
@@ -511,7 +485,7 @@
     <!-- ======================================================================
          ZONE C: NIVEL 2 (MEDIO — TRONCO DE PALO SANTO Y ÓRBITA TERRESTRE)
          Uniting Mundo Wichí (Left) <-- Story Connector --> Mundo NASA Space Apps (Right)
-         ====================================================================== -->
+    ====================================================================== -->
     <section id="zone-level-2" class="tree-zone" aria-labelledby="level-2-heading">
       <div class="level-header">
         <span class="level-kicker">Nivel 2 de 3 · Vetas del Monte y Mirada Orbital</span>
@@ -523,16 +497,12 @@
 
       <div class="level-modes-grid">
         <!-- Nivel 2 - MUNDO WICHÍ (Manual de Estilo El Impenetrable, Chaco) -->
-        <button
-          type="button"
-          class="story-node story-node--wichi"
-          data-story-id="wichi-2"
-          data-mode="wichi"
-          data-level="2"
-          aria-pressed="false"
-        >
+        <button type="button" class="story-node story-node--wichi" data-story-id="wichi-2" data-mode="wichi"
+          data-level="2" aria-pressed="false">
           <span class="yica-guard-strip" aria-hidden="true">
-            <svg><rect width="100%" height="16" fill="url(#yicaPattern)" /></svg>
+            <svg>
+              <rect width="100%" height="16" fill="url(#yicaPattern)" />
+            </svg>
           </span>
 
           <div class="story-node-inner">
@@ -547,7 +517,8 @@
                   <!-- Angular Palo Santo & Ember Yica Motif -->
                   <svg viewBox="0 0 64 64" fill="none">
                     <polyline points="10,46 24,18 32,34 40,18 54,46" stroke="#C97A2B" stroke-width="3" fill="none" />
-                    <polygon points="32,12 44,36 32,52 20,36" stroke="#F3EBDD" stroke-width="2" fill="rgba(185,93,14,0.32)" />
+                    <polygon points="32,12 44,36 32,52 20,36" stroke="#F3EBDD" stroke-width="2"
+                      fill="rgba(185,93,14,0.32)" />
                     <circle cx="32" cy="36" r="4" fill="#C97A2B" />
                   </svg>
                 </div>
@@ -558,7 +529,8 @@
               </div>
 
               <p class="story-node-teaser">
-                Cómo la primera chispa de fuego fue escondida dentro de la fibra de las maderas nativas del Gran Chaco para abrigar a las comunidades.
+                Cómo la primera chispa de fuego fue escondida dentro de la fibra de las maderas nativas del Gran Chaco
+                para abrigar a las comunidades.
               </p>
             </div>
 
@@ -569,7 +541,9 @@
           </div>
 
           <span class="yica-guard-strip yica-guard-strip--bottom" aria-hidden="true">
-            <svg><rect width="100%" height="16" fill="url(#yicaPattern)" /></svg>
+            <svg>
+              <rect width="100%" height="16" fill="url(#yicaPattern)" />
+            </svg>
           </span>
         </button>
 
@@ -580,21 +554,16 @@
             <svg viewBox="0 0 108 36">
               <path d="M2,18 L14,8 L26,28 L38,8 L50,18" fill="none" stroke="#C97A2B" stroke-width="2.5" />
               <circle cx="54" cy="18" r="4.5" fill="#F48138" stroke="#E7F434" stroke-width="1.5" />
-              <path d="M58,18 C72,6 86,30 106,18" fill="none" stroke="#E7F434" stroke-width="2.2" stroke-dasharray="4 3" />
+              <path d="M58,18 C72,6 86,30 106,18" fill="none" stroke="#E7F434" stroke-width="2.2"
+                stroke-dasharray="4 3" />
             </svg>
           </div>
           <span class="connector-worlds-sub">Monte ↔ Órbita</span>
         </div>
 
         <!-- Nivel 2 - MUNDO ESPACIAL (Manual de Estilo NASA Space Apps Challenge) -->
-        <button
-          type="button"
-          class="story-node story-node--espacial"
-          data-story-id="espacial-2"
-          data-mode="espacial"
-          data-level="2"
-          aria-pressed="false"
-        >
+        <button type="button" class="story-node story-node--espacial" data-story-id="espacial-2" data-mode="espacial"
+          data-level="2" aria-pressed="false">
           <div>
             <div class="spaceapps-brand-bar">
               <div class="nasa-logo-cluster">
@@ -612,12 +581,8 @@
             <div class="story-emblem-wrap">
               <div class="story-emblem-icon story-emblem-icon--star" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none">
-                  <path
-                    d="M32 4L39.2 21.8L58 24L43.8 36.8L47.6 55.4L32 45.8L16.4 55.4L20.2 36.8L6 24L24.8 21.8L32 4Z"
-                    fill="#E7F434"
-                    stroke="#FFFFFF"
-                    stroke-width="2"
-                  />
+                  <path d="M32 4L39.2 21.8L58 24L43.8 36.8L47.6 55.4L32 45.8L16.4 55.4L20.2 36.8L6 24L24.8 21.8L32 4Z"
+                    fill="#E7F434" stroke="#FFFFFF" stroke-width="2" />
                   <circle cx="32" cy="31" r="6" fill="#0B3D91" stroke="#2E96F5" stroke-width="2" />
                 </svg>
               </div>
@@ -628,7 +593,8 @@
             </div>
 
             <p class="story-node-teaser">
-              Hacé clic en la estrella para vivir en primera persona cómo los pulsos de radar desde el espacio atraviesan el follaje y miden el agua de nuestra tierra.
+              Hacé clic en la estrella para vivir en primera persona cómo los pulsos de radar desde el espacio
+              atraviesan el follaje y miden el agua de nuestra tierra.
             </p>
           </div>
 
@@ -643,28 +609,25 @@
     <!-- ======================================================================
          ZONE D: NIVEL 1 (BAJO — RAÍCES DEL YUCHÁN Y HORIZONTE LUNAR)
          Uniting Mundo Wichí (Left) <-- Story Connector --> Mundo NASA Space Apps (Right)
-         ====================================================================== -->
+    ====================================================================== -->
     <section id="zone-level-1" class="tree-zone" aria-labelledby="level-1-heading">
       <div class="level-header">
         <span class="level-kicker">Nivel 1 de 3 · El Origen del Agua y la Primera Huella Lunar</span>
         <h2 id="level-1-heading" class="level-title">Las Raíces del Río y el Mar de la Tranquilidad</h2>
         <p class="level-subtitle">
-          Cada historia respeta su identidad: a la izquierda la tierra tejida del pueblo Wichí; a la derecha la exploración espacial de NASA Space Apps.
+          Cada historia respeta su identidad: a la izquierda la tierra tejida del pueblo Wichí; a la derecha la
+          exploración espacial de NASA Space Apps.
         </p>
       </div>
 
       <div class="level-modes-grid">
         <!-- Nivel 1 - MUNDO WICHÍ (Manual de Estilo El Impenetrable, Chaco) -->
-        <button
-          type="button"
-          class="story-node story-node--wichi"
-          data-story-id="wichi-1"
-          data-mode="wichi"
-          data-level="1"
-          aria-pressed="false"
-        >
+        <button type="button" class="story-node story-node--wichi" data-story-id="wichi-1" data-mode="wichi"
+          data-level="1" aria-pressed="false">
           <span class="yica-guard-strip" aria-hidden="true">
-            <svg><rect width="100%" height="16" fill="url(#yicaPattern)" /></svg>
+            <svg>
+              <rect width="100%" height="16" fill="url(#yicaPattern)" />
+            </svg>
           </span>
 
           <div class="story-node-inner">
@@ -678,7 +641,8 @@
                 <div class="story-emblem-icon" aria-hidden="true">
                   <!-- Angular Yica River & Yuchán Motif -->
                   <svg viewBox="0 0 64 64" fill="none">
-                    <polygon points="32,8 50,28 32,48 14,28" stroke="#F3EBDD" stroke-width="2.4" fill="rgba(201,122,43,0.26)" />
+                    <polygon points="32,8 50,28 32,48 14,28" stroke="#F3EBDD" stroke-width="2.4"
+                      fill="rgba(201,122,43,0.26)" />
                     <polyline points="10,50 21,42 32,50 43,42 54,50" stroke="#C97A2B" stroke-width="2.6" fill="none" />
                     <circle cx="32" cy="28" r="4" fill="#F3EBDD" />
                   </svg>
@@ -690,7 +654,8 @@
               </div>
 
               <p class="story-node-teaser">
-                Descubrí cómo en el principio del mundo toda el agua y los peces habitaban dentro del gran árbol botella (Palo Borracho) en las raíces del monte.
+                Descubrí cómo en el principio del mundo toda el agua y los peces habitaban dentro del gran árbol botella
+                (Palo Borracho) en las raíces del monte.
               </p>
             </div>
 
@@ -701,7 +666,9 @@
           </div>
 
           <span class="yica-guard-strip yica-guard-strip--bottom" aria-hidden="true">
-            <svg><rect width="100%" height="16" fill="url(#yicaPattern)" /></svg>
+            <svg>
+              <rect width="100%" height="16" fill="url(#yicaPattern)" />
+            </svg>
           </span>
         </button>
 
@@ -712,21 +679,16 @@
             <svg viewBox="0 0 108 36">
               <path d="M2,18 L14,8 L26,28 L38,8 L50,18" fill="none" stroke="#C97A2B" stroke-width="2.5" />
               <circle cx="54" cy="18" r="4.5" fill="#F48138" stroke="#E7F434" stroke-width="1.5" />
-              <path d="M58,18 C72,6 86,30 106,18" fill="none" stroke="#E7F434" stroke-width="2.2" stroke-dasharray="4 3" />
+              <path d="M58,18 C72,6 86,30 106,18" fill="none" stroke="#E7F434" stroke-width="2.2"
+                stroke-dasharray="4 3" />
             </svg>
           </div>
           <span class="connector-worlds-sub">Raíz ↔ Estrella</span>
         </div>
 
         <!-- Nivel 1 - MUNDO ESPACIAL (Manual de Estilo NASA Space Apps Challenge) -->
-        <button
-          type="button"
-          class="story-node story-node--espacial"
-          data-story-id="espacial-1"
-          data-mode="espacial"
-          data-level="1"
-          aria-pressed="false"
-        >
+        <button type="button" class="story-node story-node--espacial" data-story-id="espacial-1" data-mode="espacial"
+          data-level="1" aria-pressed="false">
           <div>
             <div class="spaceapps-brand-bar">
               <div class="nasa-logo-cluster">
@@ -744,12 +706,8 @@
             <div class="story-emblem-wrap">
               <div class="story-emblem-icon story-emblem-icon--star" aria-hidden="true">
                 <svg viewBox="0 0 64 64" fill="none">
-                  <path
-                    d="M32 4L39.2 21.8L58 24L43.8 36.8L47.6 55.4L32 45.8L16.4 55.4L20.2 36.8L6 24L24.8 21.8L32 4Z"
-                    fill="#E7F434"
-                    stroke="#FFFFFF"
-                    stroke-width="2"
-                  />
+                  <path d="M32 4L39.2 21.8L58 24L43.8 36.8L47.6 55.4L32 45.8L16.4 55.4L20.2 36.8L6 24L24.8 21.8L32 4Z"
+                    fill="#E7F434" stroke="#FFFFFF" stroke-width="2" />
                   <circle cx="32" cy="31" r="6" fill="#0B3D91" stroke="#FC3D21" stroke-width="2" />
                 </svg>
               </div>
@@ -760,7 +718,8 @@
             </div>
 
             <p class="story-node-teaser">
-              Hacé clic en la estrella para vivir en primera persona el descenso lunar y la emoción de alzar la vista y contemplar nuestra Tierra desde el espacio.
+              Hacé clic en la estrella para vivir en primera persona el descenso lunar y la emoción de alzar la vista y
+              contemplar nuestra Tierra desde el espacio.
             </p>
           </div>
 
@@ -787,8 +746,10 @@
         </h2>
         <p class="roots-lead">
           Comenzás aquí abajo, en el corazón terroso de la raíz. Scrolleá o deslizá suavemente
-          <strong>hacia arriba ↑</strong> para escalar los <strong>3 niveles</strong> donde las historias unen dos mundos:
-          la cultura <strong>Wichí</strong> tejida en chaguar y palo santo, y la exploración espacial de la <strong>NASA</strong>.
+          <strong>hacia arriba ↑</strong> para escalar los <strong>3 niveles</strong> donde las historias unen dos
+          mundos:
+          la cultura <strong>Wichí</strong> tejida en chaguar y palo santo, y la exploración espacial de la
+          <strong>NASA</strong>.
         </p>
         <div class="roots-start-cta-group">
           <button id="btn-start-climb" type="button" class="btn-start-climb">
@@ -812,11 +773,9 @@
 
     <div class="climber-figure-anchor">
       <div class="climber-avatar-frame" title="Escalador mirando hacia la copa del árbol y las estrellas">
-        <img
-          src="assets/climber-back.jpg"
+        <img src="assets/climber-back.jpg"
           alt="Persona de espaldas mirando hacia arriba trepando el gran árbol hacia las estrellas"
-          class="climber-avatar-img"
-        />
+          class="climber-avatar-img" />
         <div class="climber-avatar-rim" aria-hidden="true"></div>
       </div>
       <span id="climber-status-caption" class="climber-caption-pill">Escalando desde la Raíz ↑</span>
@@ -827,12 +786,18 @@
         Historias Pintadas: <strong><span class="js-painted-count">0</span> / 6</strong>
       </div>
       <div class="painted-mini-pips" role="group" aria-label="Indicadores de las 6 historias (3 Wichí y 3 Espaciales)">
-        <button type="button" class="story-pip" data-story-id="wichi-1" data-mode="wichi" title="Nivel 1 · Mito Wichí 1" aria-label="Nivel 1 Mito Wichí"></button>
-        <button type="button" class="story-pip" data-story-id="espacial-1" data-mode="espacial" title="Nivel 1 · Estrella Espacial 1" aria-label="Nivel 1 Estrella Espacial"></button>
-        <button type="button" class="story-pip" data-story-id="wichi-2" data-mode="wichi" title="Nivel 2 · Mito Wichí 2" aria-label="Nivel 2 Mito Wichí"></button>
-        <button type="button" class="story-pip" data-story-id="espacial-2" data-mode="espacial" title="Nivel 2 · Estrella Espacial 2" aria-label="Nivel 2 Estrella Espacial"></button>
-        <button type="button" class="story-pip" data-story-id="wichi-3" data-mode="wichi" title="Nivel 3 · Mito Wichí 3" aria-label="Nivel 3 Mito Wichí"></button>
-        <button type="button" class="story-pip" data-story-id="espacial-3" data-mode="espacial" title="Nivel 3 · Estrella Espacial 3" aria-label="Nivel 3 Estrella Espacial"></button>
+        <button type="button" class="story-pip" data-story-id="wichi-1" data-mode="wichi" title="Nivel 1 · Mito Wichí 1"
+          aria-label="Nivel 1 Mito Wichí"></button>
+        <button type="button" class="story-pip" data-story-id="espacial-1" data-mode="espacial"
+          title="Nivel 1 · Estrella Espacial 1" aria-label="Nivel 1 Estrella Espacial"></button>
+        <button type="button" class="story-pip" data-story-id="wichi-2" data-mode="wichi" title="Nivel 2 · Mito Wichí 2"
+          aria-label="Nivel 2 Mito Wichí"></button>
+        <button type="button" class="story-pip" data-story-id="espacial-2" data-mode="espacial"
+          title="Nivel 2 · Estrella Espacial 2" aria-label="Nivel 2 Estrella Espacial"></button>
+        <button type="button" class="story-pip" data-story-id="wichi-3" data-mode="wichi" title="Nivel 3 · Mito Wichí 3"
+          aria-label="Nivel 3 Mito Wichí"></button>
+        <button type="button" class="story-pip" data-story-id="espacial-3" data-mode="espacial"
+          title="Nivel 3 · Estrella Espacial 3" aria-label="Nivel 3 Estrella Espacial"></button>
       </div>
     </div>
   </footer>
@@ -840,14 +805,8 @@
   <!-- ========================================================================
        6. DUAL-IDENTITY STORY POPUP MODAL (WICHÍ MANUAL vs NASA SPACE APPS MANUAL)
        ======================================================================== -->
-  <div
-    id="story-modal"
-    class="story-modal-backdrop"
-    role="dialog"
-    aria-modal="true"
-    aria-hidden="true"
-    aria-labelledby="modal-title"
-  >
+  <div id="story-modal" class="story-modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true"
+    aria-labelledby="modal-title">
     <div id="story-modal-dialog" class="story-modal-dialog" data-mode="wichi">
       <button id="modal-close-btn" type="button" class="modal-close-btn" aria-label="Cerrar historia">
         ✕
@@ -855,7 +814,9 @@
 
       <!-- Header Exclusivo Modo WICHÍ (Guarda Geométrica de Yica Chaqueña) -->
       <div class="modal-yica-banner" aria-hidden="true">
-        <svg width="100%" height="16"><rect width="100%" height="16" fill="url(#yicaPattern)" /></svg>
+        <svg width="100%" height="16">
+          <rect width="100%" height="16" fill="url(#yicaPattern)" />
+        </svg>
       </div>
 
       <!-- Header Exclusivo Modo ESPACIAL (Branding NASA + Space Apps Challenge) -->
@@ -880,18 +841,24 @@
       <h2 id="modal-title" class="modal-title">Título de la Historia</h2>
       <p id="modal-protagonist" class="modal-protagonist">Protagonista / Mito</p>
 
-      <blockquote id="modal-quote" class="modal-quote-box">
-        Cita destacada de la historia...
-      </blockquote>
+      <div id="modal-story-scroll" class="modal-story-scroll-area" tabindex="0" aria-label="Contenido desplazable del relato">
+        <blockquote id="modal-quote" class="modal-quote-box">
+          Cita destacada de la historia...
+        </blockquote>
 
-      <div id="modal-story-body" class="modal-story-body"></div>
+        <div class="modal-scroll-hint-pill" aria-hidden="true">
+          <span>↕ Deslizá dentro del cuento para leer y ver las ilustraciones</span>
+        </div>
+
+        <div id="modal-story-body" class="modal-story-body"></div>
+      </div>
 
       <div class="modal-footer">
         <button id="modal-close-footer-btn" type="button" class="hud-chip-btn">
-          <span>Cerrar y Seguir Trepando</span>
+          <span>Cerrar y seguir trepando</span>
         </button>
         <button id="modal-next-story-btn" type="button" class="btn-start-climb">
-          <span>Siguiente Historia / Subir ↑</span>
+          <span id="modal-next-story-label">Ir al relato ESPACIAL de este Nivel ★</span>
         </button>
       </div>
     </div>
@@ -901,4 +868,5 @@
   <script src="js/stories-data.js"></script>
   <script src="js/app.js"></script>
 </body>
+
 </html>

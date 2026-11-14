@@ -29,8 +29,10 @@
     currentScrollY: 0,
     targetScrollY: 0,
     maxScrollY: 0,
+    lockedScrollY: 0,
     touchStartY: 0,
     touchLastY: 0,
+    modalTouchLastY: 0,
     touchVelocityY: 0,
     isTouching: false,
     isProgrammaticScroll: false,
@@ -70,9 +72,11 @@
     // Modal
     dom.modalBackdrop = document.getElementById("story-modal");
     dom.modalDialog = document.getElementById("story-modal-dialog");
+    dom.modalStoryScroll = document.getElementById("modal-story-scroll");
     dom.modalCloseBtn = document.getElementById("modal-close-btn");
     dom.modalCloseFooterBtn = document.getElementById("modal-close-footer-btn");
     dom.modalNextStoryBtn = document.getElementById("modal-next-story-btn");
+    dom.modalNextStoryLabel = document.getElementById("modal-next-story-label");
     dom.modalModeBadge = document.getElementById("modal-mode-badge");
     dom.modalLevelBadge = document.getElementById("modal-level-badge");
     dom.modalTitle = document.getElementById("modal-title");
@@ -319,11 +323,38 @@
   }
 
   function setupDampedScrollPhysics() {
-    // 1. Wheel listener with reduced speed for smooth climbing
+    // 1. Wheel listener with reduced speed for smooth climbing & strict modal scroll lock
     window.addEventListener(
       "wheel",
       (e) => {
-        if (!state.isLoaded || state.isModalOpen) return;
+        if (!state.isLoaded) {
+          e.preventDefault();
+          return;
+        }
+
+        // When a story popup is open, NEVER scroll the background tree:
+        // allow scrolling ONLY inside #modal-story-scroll and block overscroll at boundaries
+        if (state.isModalOpen) {
+          const scrollArea = dom.modalStoryScroll;
+          if (!scrollArea || !scrollArea.contains(e.target)) {
+            e.preventDefault();
+            return;
+          }
+          const canScroll = scrollArea.scrollHeight > scrollArea.clientHeight;
+          if (!canScroll) {
+            e.preventDefault();
+            return;
+          }
+          const atTop = scrollArea.scrollTop <= 0 && e.deltaY < 0;
+          const atBottom =
+            scrollArea.scrollTop + scrollArea.clientHeight >= scrollArea.scrollHeight - 1 &&
+            e.deltaY > 0;
+          if (atTop || atBottom) {
+            e.preventDefault();
+          }
+          return;
+        }
+
         e.preventDefault();
         recalcScrollBounds();
         const dampedDelta = e.deltaY * WHEEL_SPEED_FACTOR;
@@ -336,12 +367,16 @@
       { passive: false }
     );
 
-    // 2. Touch swipe listener with reduced velocity for smooth mobile swipe
+    // 2. Touch swipe listener with reduced velocity for smooth mobile swipe & modal lock
     window.addEventListener(
       "touchstart",
       (e) => {
-        if (!state.isLoaded || state.isModalOpen) return;
         if (!e.touches || e.touches.length === 0) return;
+        if (state.isModalOpen) {
+          state.modalTouchLastY = e.touches[0].clientY;
+          return;
+        }
+        if (!state.isLoaded) return;
         state.isTouching = true;
         state.touchStartY = e.touches[0].clientY;
         state.touchLastY = state.touchStartY;
@@ -353,8 +388,35 @@
     window.addEventListener(
       "touchmove",
       (e) => {
-        if (!state.isLoaded || state.isModalOpen || !state.isTouching) return;
         if (!e.touches || e.touches.length === 0) return;
+
+        // When modal is open, prevent touch-scrolling outside #modal-story-scroll or past its edges
+        if (state.isModalOpen) {
+          const scrollArea = dom.modalStoryScroll;
+          const currentTouchY = e.touches[0].clientY;
+          const deltaTouchY = state.modalTouchLastY - currentTouchY; // >0 scrolling down
+          state.modalTouchLastY = currentTouchY;
+
+          if (!scrollArea || !scrollArea.contains(e.target)) {
+            e.preventDefault();
+            return;
+          }
+          const canScroll = scrollArea.scrollHeight > scrollArea.clientHeight;
+          if (!canScroll) {
+            e.preventDefault();
+            return;
+          }
+          const atTop = scrollArea.scrollTop <= 0 && deltaTouchY < 0;
+          const atBottom =
+            scrollArea.scrollTop + scrollArea.clientHeight >= scrollArea.scrollHeight - 1 &&
+            deltaTouchY > 0;
+          if (atTop || atBottom) {
+            e.preventDefault();
+          }
+          return;
+        }
+
+        if (!state.isLoaded || !state.isTouching) return;
         // Prevent abrupt native fling so our damped swipe governs ascent smoothly
         e.preventDefault();
         recalcScrollBounds();
@@ -381,10 +443,18 @@
       { passive: true }
     );
 
-    // 3. Sync when user drags scrollbar or programmatic scroll happens
+    // 3. Sync when user drags scrollbar or programmatic scroll happens (strictly locked when modal open)
     window.addEventListener(
       "scroll",
       () => {
+        if (state.isModalOpen) {
+          if (Math.abs(window.scrollY - state.lockedScrollY) > 1) {
+            state.isProgrammaticScroll = true;
+            window.scrollTo(0, state.lockedScrollY);
+            state.isProgrammaticScroll = false;
+          }
+          return;
+        }
         if (!state.isProgrammaticScroll) {
           const actualY = window.scrollY;
           // If external scroll jump happened (e.g. scrollbar drag), sync target
@@ -425,11 +495,162 @@
   }
 
   /* --------------------------------------------------------------------------
-     3. STORY MODAL POPUP (WICHÍ MYTHS & ESPACIAL STARS)
+     3. STORY MODAL POPUP (SCROLLABLE ILLUSTRATED STORIES + SAME-LEVEL SIBLING)
      -------------------------------------------------------------------------- */
+  function renderStoryIllustrationSVG(artId, mode) {
+    if (mode === "wichi") {
+      if (artId === "wichi-yuchan-water") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del Gran Yuchán resguardando los peces y el agua primordial">
+          <rect width="640" height="220" fill="#1A1512"/>
+          <rect x="0" y="0" width="640" height="14" fill="url(#yicaPattern)"/>
+          <rect x="0" y="206" width="640" height="14" fill="url(#yicaPattern)"/>
+          <ellipse cx="320" cy="110" rx="82" ry="74" fill="#2A2019" stroke="#C97A2B" stroke-width="4"/>
+          <ellipse cx="320" cy="110" rx="58" ry="52" fill="#162319" stroke="#339136" stroke-width="2.5"/>
+          <path d="M286,98 Q320,78 350,98 Q320,118 286,98 Z" fill="#F48138"/>
+          <polygon points="280,98 264,87 264,109" fill="#F48138"/>
+          <path d="M352,126 Q320,108 292,126 Q320,144 352,126 Z" fill="#E2D3BA"/>
+          <polygon points="358,126 374,115 374,137" fill="#E2D3BA"/>
+          <path d="M110,175 Q210,145 250,165 M390,165 Q430,145 530,175" stroke="#C97A2B" stroke-width="3.5" fill="none"/>
+          <text x="320" y="30" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">LLACH'E · LA VASIJA VIVIENTE DEL YUCHÁN</text>
+        </svg>`;
+      }
+      if (artId === "wichi-pilcomayo-river") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del nacimiento de los ríos Pilcomayo y Bermejo">
+          <rect width="640" height="220" fill="#1E1713"/>
+          <path d="M0,135 Q160,95 320,135 T640,130" stroke="#C97A2B" stroke-width="18" fill="none" opacity="0.45"/>
+          <path d="M0,150 Q160,110 320,150 T640,145" stroke="#F3EBDD" stroke-width="4" fill="none" stroke-dasharray="10 6"/>
+          <path d="M0,170 Q160,130 320,170 T640,165" stroke="#339136" stroke-width="3.5" fill="none"/>
+          <polygon points="320,32 358,84 320,136 282,84" fill="#2A2019" stroke="#C97A2B" stroke-width="3"/>
+          <polygon points="320,50 342,84 320,118 298,84" fill="none" stroke="#E2D3BA" stroke-width="2"/>
+          <text x="320" y="198" text-anchor="middle" fill="#E2D3BA" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">TEWOK · EL CAUCE QUE NUTRE EL MONTE</text>
+        </svg>`;
+      }
+      if (artId === "wichi-ember-guardian") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del guardián de la brasa sagrada">
+          <rect width="640" height="220" fill="#1A1512"/>
+          <circle cx="320" cy="105" r="56" fill="rgba(244,129,56,0.16)" stroke="#C97A2B" stroke-width="2" stroke-dasharray="6 4"/>
+          <polygon points="320,52 352,108 320,154 288,108" fill="#F48138" stroke="#F3EBDD" stroke-width="2.5"/>
+          <polygon points="320,74 338,108 320,136 302,108" fill="#E2D3BA"/>
+          <g stroke="#C97A2B" stroke-width="2.5" fill="none">
+            <polyline points="70,110 110,80 150,110 190,80 230,110"/>
+            <polyline points="410,110 450,80 490,110 530,80 570,110"/>
+          </g>
+          <text x="320" y="196" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">LA CHISPA SAGRADA EN LA NOCHE DEL CHACO</text>
+        </svg>`;
+      }
+      if (artId === "wichi-palo-santo-grain") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de las vetas de palo santo y quebracho">
+          <rect width="640" height="220" fill="#1C1510"/>
+          <path d="M40,65 Q180,40 320,65 T600,65" stroke="#857F74" stroke-width="3" fill="none"/>
+          <path d="M40,105 Q180,82 320,105 T600,105" stroke="#C97A2B" stroke-width="4" fill="none"/>
+          <path d="M40,145 Q180,125 320,145 T600,145" stroke="#339136" stroke-width="3" fill="none"/>
+          <circle cx="320" cy="105" r="28" fill="#2A2019" stroke="#F48138" stroke-width="3.5"/>
+          <circle cx="320" cy="105" r="11" fill="#F48138"/>
+          <text x="320" y="196" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">VETAS DE PALO SANTO · EL CALOR DE LA MADERA</text>
+        </svg>`;
+      }
+      if (artId === "wichi-chaguar-cord") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de las mujeres estrella y cuerda de chaguar">
+          <rect width="640" height="220" fill="#161215"/>
+          <line x1="320" y1="20" x2="320" y2="180" stroke="#C97A2B" stroke-width="6" stroke-dasharray="10 5"/>
+          <polygon points="320,24 328,46 352,46 332,60 340,82 320,68 300,82 308,60 288,46 312,46" fill="#F3EBDD" stroke="#F48138" stroke-width="2"/>
+          <circle cx="200" cy="70" r="4.5" fill="#E2D3BA"/>
+          <circle cx="440" cy="65" r="5.5" fill="#F48138"/>
+          <circle cx="150" cy="135" r="4" fill="#339136"/>
+          <circle cx="485" cy="130" r="4.5" fill="#E2D3BA"/>
+          <text x="320" y="202" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">CHELCHUPÉ · LA CUERDA ENTRE MONTE Y CIELO</text>
+        </svg>`;
+      }
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de geometría de yica y constelaciones wichí">
+        <rect width="640" height="220" fill="#121014"/>
+        <path d="M40,175 Q240,40 600,40" stroke="#E2D3BA" stroke-width="22" stroke-linecap="round" fill="none" opacity="0.22"/>
+        <polyline points="90,145 160,95 230,145 300,95 370,145 440,95 510,145" stroke="#C97A2B" stroke-width="3.5" fill="none"/>
+        <g fill="#F48138">
+          <circle cx="160" cy="95" r="6"/><circle cx="300" cy="95" r="6"/><circle cx="440" cy="95" r="6"/>
+        </g>
+        <text x="320" y="198" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">NAYIC · TEJIDO DE YICA Y CAMINO ESTELAR</text>
+      </svg>`;
+    }
+
+    // Mode === "espacial" (NASA Space Apps Challenge palette)
+    if (artId === "space-apollo-bootprint") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Registro visual NASA Apolo 11 en el Mar de la Tranquilidad">
+        <rect width="640" height="220" fill="#07173F"/>
+        <path d="M0,165 Q320,130 640,165 L640,220 L0,220 Z" fill="#151622" stroke="#2E96F5" stroke-width="2"/>
+        <polygon points="320,54 358,125 282,125" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
+        <line x1="282" y1="125" x2="255" y2="158" stroke="#E7F434" stroke-width="3"/>
+        <line x1="358" y1="125" x2="385" y2="158" stroke="#E7F434" stroke-width="3"/>
+        <circle cx="490" cy="68" r="24" fill="#2E96F5" stroke="#339136" stroke-width="4"/>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">APOLLO 11 · EAGLE LANDING · TRANQUILLITATIS</text>
+      </svg>`;
+    }
+    if (artId === "space-earthrise-oasis") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="La Tierra vista desde el horizonte lunar">
+        <rect width="640" height="220" fill="#050D24"/>
+        <circle cx="320" cy="98" r="52" fill="#1B2B85" stroke="#2E96F5" stroke-width="3"/>
+        <path d="M292,78 Q318,65 340,88 T315,126 Z" fill="#339136"/>
+        <circle cx="320" cy="98" r="58" fill="none" stroke="#E7F434" stroke-width="1.5" stroke-dasharray="5 5"/>
+        <path d="M0,178 Q320,148 640,178" stroke="#857F74" stroke-width="4" fill="none"/>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">EARTHRISE OASIS · LUNAR ORBIT TELEMETRY</text>
+      </svg>`;
+    }
+    if (artId === "space-saocom-radar") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Telemetría radar banda L SAOCOM sobre El Impenetrable">
+        <rect width="640" height="220" fill="#07173F"/>
+        <g stroke="rgba(46,150,245,0.22)" stroke-width="1">
+          <line x1="0" y1="55" x2="640" y2="55"/><line x1="0" y1="110" x2="640" y2="110"/><line x1="0" y1="165" x2="640" y2="165"/>
+          <line x1="160" y1="0" x2="160" y2="220"/><line x1="320" y1="0" x2="320" y2="220"/><line x1="480" y1="0" x2="480" y2="220"/>
+        </g>
+        <polygon points="320,42 175,185 465,185" fill="rgba(231,244,52,0.12)" stroke="#E7F434" stroke-width="2" stroke-dasharray="6 4"/>
+        <rect x="292" y="24" width="56" height="22" rx="4" fill="#1B2B85" stroke="#E7F434" stroke-width="2"/>
+        <rect x="230" y="28" width="54" height="14" fill="#2E96F5"/><rect x="356" y="28" width="54" height="14" fill="#2E96F5"/>
+        <path d="M160,185 Q250,155 320,178 T490,175" stroke="#339136" stroke-width="5" fill="none"/>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">SAR L-BAND · 1.275 GHz · ALT 619 KM</text>
+      </svg>`;
+    }
+    if (artId === "space-chaco-moisture") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa de humedad de suelo del Gran Chaco">
+        <rect width="640" height="220" fill="#091533"/>
+        <circle cx="320" cy="110" r="76" fill="none" stroke="#2E96F5" stroke-width="2"/>
+        <circle cx="320" cy="110" r="52" fill="rgba(51,145,54,0.22)" stroke="#339136" stroke-width="2"/>
+        <circle cx="320" cy="110" r="24" fill="rgba(231,244,52,0.28)" stroke="#E7F434" stroke-width="2"/>
+        <path d="M80,155 L170,115 L250,132 L320,78 L410,98 L510,64 L575,85" stroke="#E7F434" stroke-width="3" fill="none"/>
+        <text x="24" y="32" fill="#2E96F5" font-family="JetBrains Mono, monospace" font-size="11">CHACO SOIL MOISTURE INDEX · SYNC OK</text>
+      </svg>`;
+    }
+    if (artId === "space-golden-record") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="El Disco de Oro de las sondas Voyager">
+        <rect width="640" height="220" fill="#050D24"/>
+        <circle cx="320" cy="112" r="74" fill="rgba(231,244,52,0.14)" stroke="#E7F434" stroke-width="3.5"/>
+        <circle cx="320" cy="112" r="52" fill="none" stroke="#F48138" stroke-width="1.8" stroke-dasharray="8 4"/>
+        <circle cx="320" cy="112" r="18" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
+        <g stroke="#2E96F5" stroke-width="1.8">
+          <line x1="170" y1="112" x2="228" y2="112"/><line x1="412" y1="112" x2="470" y2="112"/>
+          <line x1="215" y1="55" x2="255" y2="82"/><line x1="385" y1="142" x2="425" y2="168"/>
+        </g>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">VOYAGER GOLDEN RECORD · PULSAR MAP &amp; SOUNDS OF EARTH</text>
+      </svg>`;
+    }
+    return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Voyager 1 navegando en el espacio interestelar">
+      <rect width="640" height="220" fill="#07173F"/>
+      <ellipse cx="320" cy="110" rx="190" ry="62" fill="rgba(46,150,245,0.18)" stroke="#2E96F5" stroke-width="2"/>
+      <ellipse cx="320" cy="110" rx="110" ry="36" fill="rgba(244,129,56,0.22)" stroke="#F48138" stroke-width="2"/>
+      <circle cx="320" cy="110" r="10" fill="#E7F434"/>
+      <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">HELIOPAUSE CROSSING · 24B KM · ORBITA 59</text>
+    </svg>`;
+  }
+
   function openStoryModal(storyId) {
     const story = window.ORBITAR_STORIES && window.ORBITAR_STORIES[storyId];
     if (!story || !dom.modalBackdrop) return;
+
+    // Lock background scroll position at the exact tree altitude where modal opened
+    if (!state.isModalOpen) {
+      state.lockedScrollY = window.scrollY;
+      state.currentScrollY = state.lockedScrollY;
+      state.targetScrollY = state.lockedScrollY;
+      state.touchVelocityY = 0;
+    }
 
     state.currentStoryId = storyId;
     state.isModalOpen = true;
@@ -447,16 +668,65 @@
     dom.modalProtagonist.textContent = story.protagonist;
     dom.modalQuote.textContent = story.quote;
 
+    // Update the same-level sibling button label (Wichí -> Space or Space -> Wichí)
+    if (dom.modalNextStoryLabel && story.siblingButtonLabel) {
+      dom.modalNextStoryLabel.textContent = story.siblingButtonLabel;
+    }
+
+    // Populate rich story blocks (paragraphs + illustrations/photos) inside the scrollable container
     dom.modalBody.innerHTML = "";
-    story.paragraphs.forEach((pText) => {
-      const p = document.createElement("p");
-      p.textContent = pText;
-      dom.modalBody.appendChild(p);
-    });
+    if (Array.isArray(story.blocks) && story.blocks.length > 0) {
+      story.blocks.forEach((block) => {
+        if (block.type === "text") {
+          const p = document.createElement("p");
+          p.textContent = block.content;
+          dom.modalBody.appendChild(p);
+        } else if (block.type === "illustration") {
+          const figure = document.createElement("figure");
+          figure.className = "modal-story-figure";
+
+          const artWrap = document.createElement("div");
+          artWrap.className = "modal-story-illustration";
+          if (block.imageSrc) {
+            const img = document.createElement("img");
+            img.className = "modal-story-photo";
+            img.src = block.imageSrc;
+            img.alt = block.caption || story.title;
+            img.loading = "lazy";
+            artWrap.appendChild(img);
+          } else {
+            artWrap.innerHTML = renderStoryIllustrationSVG(block.artId, story.mode);
+          }
+          figure.appendChild(artWrap);
+
+          if (block.caption) {
+            const figcaption = document.createElement("figcaption");
+            figcaption.className = "modal-story-caption";
+            figcaption.textContent = block.caption;
+            figure.appendChild(figcaption);
+          }
+
+          dom.modalBody.appendChild(figure);
+        }
+      });
+    } else if (Array.isArray(story.paragraphs)) {
+      story.paragraphs.forEach((pText) => {
+        const p = document.createElement("p");
+        p.textContent = pText;
+        dom.modalBody.appendChild(p);
+      });
+    }
+
+    // Reset story scroll container to top so user reads from the beginning
+    if (dom.modalStoryScroll) {
+      dom.modalStoryScroll.scrollTop = 0;
+    }
 
     dom.modalBackdrop.classList.add("is-open");
     dom.modalBackdrop.setAttribute("aria-hidden", "false");
-    dom.modalCloseBtn.focus();
+    if (dom.modalStoryScroll) {
+      dom.modalStoryScroll.focus({ preventScroll: true });
+    }
   }
 
   function closeStoryModal() {
@@ -464,28 +734,20 @@
     state.isModalOpen = false;
     dom.modalBackdrop.classList.remove("is-open");
     dom.modalBackdrop.setAttribute("aria-hidden", "true");
+    // Ensure background scroll stays at the exact locked tree position on close
+    state.isProgrammaticScroll = true;
+    window.scrollTo(0, state.lockedScrollY);
+    state.currentScrollY = state.lockedScrollY;
+    state.targetScrollY = state.lockedScrollY;
+    state.isProgrammaticScroll = false;
   }
 
-  function openNextUnpaintedOrSequentialStory() {
-    const order = window.ORBITAR_STORY_ORDER || [];
-    if (!order.length) return;
-
-    // Prefer next unpainted story if any exists
-    for (const id of order) {
-      if (!state.paintedStories.has(id)) {
-        openStoryModal(id);
-        const node = document.querySelector(`.story-node[data-story-id="${id}"]`);
-        if (node) {
-          const rect = node.getBoundingClientRect();
-          smoothGlideToY(window.scrollY + rect.top - window.innerHeight * 0.22);
-        }
-        return;
-      }
-    }
-
-    // All 6 are painted! Close modal and ascend to the Summit at the top of the tree
-    closeStoryModal();
-    smoothGlideToY(0);
+  // Switches ONLY to the companion story of the SAME level (Wichí <-> Espacial)
+  // Does NOT advance to another level so the user must close the popup and climb the tree
+  function openSiblingStorySameLevel() {
+    const currentStory = window.ORBITAR_STORIES && window.ORBITAR_STORIES[state.currentStoryId];
+    if (!currentStory || !currentStory.siblingId) return;
+    openStoryModal(currentStory.siblingId);
   }
 
   /* --------------------------------------------------------------------------
@@ -637,7 +899,7 @@
       dom.modalCloseFooterBtn.addEventListener("click", closeStoryModal);
     }
     if (dom.modalNextStoryBtn) {
-      dom.modalNextStoryBtn.addEventListener("click", openNextUnpaintedOrSequentialStory);
+      dom.modalNextStoryBtn.addEventListener("click", openSiblingStorySameLevel);
     }
     if (dom.modalBackdrop) {
       dom.modalBackdrop.addEventListener("click", (e) => {
@@ -648,9 +910,21 @@
     }
 
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && state.isModalOpen) {
-        closeStoryModal();
-      } else if (!state.isModalOpen && state.isLoaded) {
+      if (state.isModalOpen) {
+        if (e.key === "Escape") {
+          closeStoryModal();
+          return;
+        }
+        if (
+          dom.modalStoryScroll &&
+          (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "PageDown" || e.key === "PageUp")
+        ) {
+          e.preventDefault();
+          const step = e.key.startsWith("Page") ? dom.modalStoryScroll.clientHeight * 0.75 : 75;
+          const dir = e.key === "ArrowDown" || e.key === "PageDown" ? 1 : -1;
+          dom.modalStoryScroll.scrollBy({ top: dir * step, behavior: "smooth" });
+        }
+      } else if (state.isLoaded) {
         if (e.key === "ArrowUp" || e.key === "PageUp") {
           e.preventDefault();
           const step = e.key === "PageUp" ? window.innerHeight * 0.65 : 140;
