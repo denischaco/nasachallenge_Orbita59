@@ -1,0 +1,25 @@
+/* Applied after the component styles: ORBITAR dual-world design tokens. */
+.experience-shell { background-color: var(--core-space-void); color: var(--text-light); font-family: var(--font-sans); }
+.topbar .wordmark { font-family: var(--font-display); }
+.level-heading h2, .ending-panel h2, .root-card h1, .settings-dialog h2 { font-family: var(--font-display); }
+.journey-kicker, .story-kind, .story-state, .story-open, .dock-location span, .dock-progress > span, .climb-hint { font-family: var(--font-mono); }
+.story-card { border-radius: var(--radius-md); transition-timing-function: var(--ease-out-expo); }
+.story-card--wichi { border-color: rgb(51 145 54 / 42%); }
+.story-card--wichi::before { background: var(--brand-green); }
+.story-card--wichi .story-kind, .story-card--wichi .story-open { color: var(--wichi-chaguar-raw); }
+.story-card--wichi .story-card__symbol { border-color: rgb(51 145 54 / 58%); color: #8bc77e; }
+.story-card--wichi.story-card--seen { border-color: var(--brand-green); background: linear-gradient(145deg, rgb(26 58 30 / 88%), rgb(26 21 18 / 91%)); }
+.story-card--espacial { border-color: rgb(46 150 245 / 42%); }
+.story-card--espacial::before { background: var(--space-cyan-glow); }
+.story-card--espacial .story-kind, .story-card--espacial .story-open { color: #93caff; }
+.story-card--espacial .story-card__symbol { border-color: rgb(46 150 245 / 62%); color: var(--space-neon-yellow); }
+.story-card--espacial.story-card--seen { border-color: var(--space-cyan-glow); background: linear-gradient(145deg, rgb(11 61 145 / 77%), rgb(7 23 63 / 92%)); }
+.story-card--espacial.story-card--seen .story-state { border-color: var(--space-neon-yellow); color: var(--space-neon-yellow); }
+.story-card--espacial:hover { border-color: var(--space-cyan-glow); box-shadow: 0 22px 65px rgb(0 0 0 / 50%), 0 0 24px rgb(46 150 245 / 16%); }
+.climb-dock { min-height: var(--climber-bar-height); }
+.dock-up { border-color: var(--brand-orange); background: radial-gradient(circle at 35% 25%, #ffad68, var(--brand-dark-orange)); }
+.return-button, .start-button, .launch-button { border-color: var(--brand-orange); background: linear-gradient(110deg, var(--brand-orange), var(--brand-dark-orange)); }
+.settings-dialog { border-radius: var(--radius-lg); }
+@media (max-width: 768px) {
+  .climb-dock { min-height: var(--climber-bar-height); }
+}
