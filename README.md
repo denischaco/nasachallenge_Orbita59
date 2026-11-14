@@ -1,10 +1,10 @@
-# ORBITAR (Órbita 59 — v2)
+# ORBITA 59 (v2)
 
 Experiencia web y mobile de **navegabilidad invertida** que une la cosmovisión del pueblo **Wichí de El Impenetrable, Chaco** con las misiones espaciales en el marco de **NASA International Space Apps Challenge**.
 
 ## Características principales (v2)
 
-1. **Preloader "ORBITAR" desde la oscuridad**: El título emerge lentamente mientras se precargan los recursos visuales y aguarda a que la persona presione **"Iniciar en las Raíces ↑"** para comenzar.
+1. **Preloader "ORBITA 59" desde la oscuridad**: El título emerge lentamente mientras se precargan los recursos visuales y aguarda a que la persona presione **"Iniciar en las Raíces ↑"** para comenzar.
 2. **Inicio abajo en las raíces + Escalador fijo**: La experiencia comienza al final de la página (`Altitud 0%`, pleno tono árbol y raíces) con una barra inferior fija (`position: fixed`) que muestra al escalador de espaldas mirando hacia arriba.
 3. **Indicador lateral derecho y física de ascenso suave**: Flecha derecha interactiva (`SUBIR · SWIPE ↑`) y motor de scroll/swipe con velocidad reducida e interpolación suave (LERP).
 4. **3 Niveles × 2 Mundos unidos por Historias Conectoras (6 relatos en total)**:
