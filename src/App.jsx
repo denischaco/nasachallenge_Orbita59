@@ -68,13 +68,7 @@ const levels = [
 
 function SoundToggle({ enabled, onChange, compact = false }) {
   return (
-    <button
-      className={`sound-toggle${compact ? ' sound-toggle--compact' : ''}`}
-      type="button"
-      role="switch"
-      aria-checked={enabled}
-      onClick={() => onChange(!enabled)}
-    >
+    <button className={`sound-toggle${compact ? ' sound-toggle--compact' : ''}`} type="button" role="switch" aria-checked={enabled} onClick={() => onChange(!enabled)}>
       <span className="sound-copy">
         <span className="sound-title">Música ambiental</span>
         {!compact && <span className="sound-detail">Podés activarla o disfrutar el viaje en silencio.</span>}
@@ -85,19 +79,74 @@ function SoundToggle({ enabled, onChange, compact = false }) {
 }
 
 function LoadingScreen({ visible }) {
-  if (!visible) return null;
-
   return (
-    <div className="loading-screen" aria-live="polite" aria-label="Cargando la experiencia">
-      <div className="loading-glow" aria-hidden="true" />
+    <div className={`loading-screen${visible ? ' loading-screen--visible' : ''}`} aria-hidden={!visible}>
       <span className="loading-word">ORBITAR</span>
-      <span className="loading-line" aria-hidden="true" />
+      <span className="loading-caption">PREPARANDO EL VIAJE</span>
+      <span className="loading-line" aria-hidden="true"><span /></span>
+    </div>
+  );
+}
+
+function TreeArtwork() {
+  return (
+    <div className="tree-backdrop" aria-hidden="true">
+      <svg className="tree-art" viewBox="0 0 1440 5000" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="bark" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stopColor="#302a2e" />
+            <stop offset=".48" stopColor="#91634b" />
+            <stop offset="1" stopColor="#342a31" />
+          </linearGradient>
+          <radialGradient id="canopy"><stop stopColor="#637a65" stopOpacity=".42" /><stop offset="1" stopColor="#26333a" stopOpacity="0" /></radialGradient>
+        </defs>
+        <ellipse cx="720" cy="450" rx="490" ry="390" fill="url(#canopy)" />
+        <ellipse cx="390" cy="1460" rx="350" ry="330" fill="url(#canopy)" />
+        <ellipse cx="1050" cy="2380" rx="370" ry="380" fill="url(#canopy)" />
+        <ellipse cx="430" cy="3380" rx="390" ry="360" fill="url(#canopy)" />
+        <path d="M680 5000 C650 4240 795 3550 700 2800 C625 2190 765 1510 700 880 C675 620 710 340 720 100" fill="none" stroke="url(#bark)" strokeWidth="150" strokeLinecap="round" />
+        <g fill="none" stroke="#785342" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M700 900 C520 800 440 610 310 430 M710 1160 C880 1040 990 790 1150 600 M680 1780 C490 1680 380 1470 220 1320 M730 2260 C930 2130 1030 1920 1210 1760 M700 3000 C510 2880 400 2670 220 2500 M710 3550 C930 3410 1030 3210 1210 3040 M690 4120 C500 4000 390 3810 230 3650" strokeWidth="68" />
+          <path d="M680 5000 C540 4810 430 4780 300 4730 M680 5000 C615 4790 610 4680 600 4550 M700 5000 C790 4780 920 4730 1050 4670 M700 5000 C850 4880 1010 4880 1190 4850 M670 5000 C510 4930 390 4910 190 4920 M710 5000 C730 4810 760 4690 810 4540" strokeWidth="46" />
+        </g>
+        <g fill="#78906d" opacity=".55">
+          <circle cx="300" cy="420" r="100"/><circle cx="440" cy="560" r="120"/><circle cx="1140" cy="590" r="125"/><circle cx="970" cy="830" r="115"/>
+          <circle cx="220" cy="1300" r="115"/><circle cx="400" cy="1510" r="135"/><circle cx="1200" cy="1740" r="130"/><circle cx="1030" cy="1980" r="115"/>
+          <circle cx="230" cy="2480" r="130"/><circle cx="420" cy="2690" r="125"/><circle cx="1200" cy="3010" r="125"/><circle cx="1020" cy="3260" r="125"/>
+          <circle cx="240" cy="3620" r="130"/><circle cx="430" cy="3840" r="120"/>
+        </g>
+        <g fill="#f4c593" opacity=".8">
+          <circle cx="360" cy="780" r="12"/><circle cx="1080" cy="1280" r="10"/><circle cx="340" cy="2150" r="11"/><circle cx="1110" cy="2700" r="12"/><circle cx="370" cy="3200" r="10"/><circle cx="1030" cy="3900" r="12"/>
+        </g>
+      </svg>
+      <div className="tree-vignette" />
+    </div>
+  );
+}
+
+function FixedClimber() {
+  return (
+    <div className="climber-fixed" aria-hidden="true">
+      <svg viewBox="0 0 150 220" role="presentation">
+        <ellipse cx="80" cy="207" rx="65" ry="9" fill="#070a0d" opacity=".55" />
+        <path d="M93 112 C78 119 73 140 79 162 L95 192 L119 187 L108 152 L122 128 Z" fill="#d5a176" />
+        <path d="M86 117 C68 124 55 140 45 158 L55 165 L86 145 L105 137 Z" fill="#f0c39b" />
+        <path d="M99 117 C119 120 132 131 139 147 L130 153 L105 139 L91 137 Z" fill="#e9b88c" />
+        <path d="M81 158 L57 183 L35 190 L39 199 L70 195 L101 173 Z" fill="#33404b" />
+        <path d="M99 158 L113 181 L137 187 L134 197 L104 195 L84 174 Z" fill="#27333e" />
+        <path d="M78 83 C78 65 93 53 109 57 C126 60 132 77 126 93 L119 111 L97 111 L83 99 Z" fill="#dca980" />
+        <path d="M77 78 C82 56 105 48 124 60 L132 77 L119 73 L110 65 L95 76 Z" fill="#202b32" />
+        <path d="M120 88 Q129 91 135 86" fill="none" stroke="#6e4338" strokeWidth="3" strokeLinecap="round" />
+        <path d="M91 111 Q104 101 121 112 L113 153 L83 155 L76 132 Z" fill="#b76f50" />
+        <path d="M91 119 L105 140" stroke="#e9b88c" strokeWidth="4" opacity=".8" />
+      </svg>
+      <span>SUBIENDO JUNTOS</span>
     </div>
   );
 }
 
 export default function App() {
-  const [settingsOpen, setSettingsOpen] = useState(true);
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [musicEnabled, setMusicEnabled] = useState(false);
   const [started, setStarted] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -105,9 +154,13 @@ export default function App() {
   const [activeStory, setActiveStory] = useState(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const audioRef = useRef(null);
+  const touchStartY = useRef(null);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 2200);
+    const timer = window.setTimeout(() => {
+      setLoading(false);
+      setSettingsOpen(true);
+    }, 2200);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -127,27 +180,56 @@ export default function App() {
   useEffect(() => {
     const updateProgress = () => {
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const nextValue = maxScroll > 0 ? Math.max(0, Math.min(1, 1 - window.scrollY / maxScroll)) : 0;
-      setScrollProgress(nextValue);
+      setScrollProgress(maxScroll > 0 ? Math.max(0, Math.min(1, 1 - window.scrollY / maxScroll)) : 0);
     };
-
     updateProgress();
     window.addEventListener('scroll', updateProgress, { passive: true });
     window.addEventListener('resize', updateProgress);
-
     return () => {
       window.removeEventListener('scroll', updateProgress);
       window.removeEventListener('resize', updateProgress);
     };
   }, [started]);
 
+  useEffect(() => {
+    if (!started) return undefined;
+    const frame = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [started]);
+
+  useEffect(() => {
+    if (!started || settingsOpen || activeStory) return undefined;
+    const handleWheel = (event) => {
+      event.preventDefault();
+      window.scrollBy({ top: event.deltaY * 0.55, behavior: 'smooth' });
+    };
+    const handleTouchStart = (event) => {
+      touchStartY.current = event.touches[0]?.clientY ?? null;
+    };
+    const handleTouchMove = (event) => {
+      if (touchStartY.current === null) return;
+      const currentY = event.touches[0]?.clientY;
+      if (currentY === undefined) return;
+      const fingerDelta = currentY - touchStartY.current;
+      touchStartY.current = currentY;
+      event.preventDefault();
+      window.scrollBy({ top: -fingerDelta * 0.7, behavior: 'auto' });
+    };
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [started, settingsOpen, activeStory]);
+
   function beginJourney() {
     setStarted(true);
     setSettingsOpen(false);
-    window.requestAnimationFrame(() => {
-      const target = document.documentElement.scrollHeight;
-      window.scrollTo({ top: target, behavior: 'smooth' });
-    });
   }
 
   function openStory(story) {
@@ -156,7 +238,7 @@ export default function App() {
   }
 
   function moveUp() {
-    window.scrollBy({ top: -Math.max(360, window.innerHeight * 0.72), behavior: 'smooth' });
+    window.scrollBy({ top: -Math.max(360, window.innerHeight * 0.68), behavior: 'smooth' });
   }
 
   const allStoriesSeen = openedStories.size === 6;
@@ -164,18 +246,8 @@ export default function App() {
   return (
     <main className="experience-shell">
       <LoadingScreen visible={loading} />
-      <div className="tree-backdrop" aria-hidden="true">
-        <div className="tree-trunk" />
-        <div className="tree-branch tree-branch--left" />
-        <div className="tree-branch tree-branch--right" />
-        <div className="tree-branch tree-branch--mid" />
-      </div>
-      <div className="climber-fixed" aria-hidden="true">
-        <div className="climber-body" />
-        <div className="climber-head" />
-        <div className="climber-limb climber-limb--left" />
-        <div className="climber-limb climber-limb--right" />
-      </div>
+      <TreeArtwork />
+      <FixedClimber />
 
       <header className="topbar">
         <a className="wordmark" href="#inicio" aria-label="Órbita 59, inicio">ÓRBITA<span>59</span></a>
@@ -205,12 +277,7 @@ export default function App() {
             </div>
             <div className="story-pair">
               {level.stories.map((story) => (
-                <button
-                  className={`story-card${openedStories.has(story.id) ? ' story-card--seen' : ''}`}
-                  type="button"
-                  key={story.id}
-                  onClick={() => openStory(story)}
-                >
+                <button className={`story-card${openedStories.has(story.id) ? ' story-card--seen' : ''}`} type="button" key={story.id} onClick={() => openStory(story)}>
                   <span className="story-star" aria-hidden="true">{openedStories.has(story.id) ? '✦' : '✧'}</span>
                   <span className="story-kind">{story.kind}</span>
                   <strong>{story.title}</strong>
@@ -257,7 +324,7 @@ export default function App() {
         </>
       )}
 
-      {settingsOpen && (
+      {settingsOpen && !loading && (
         <div className="dialog-backdrop" role="presentation">
           <section className="settings-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" aria-describedby="dialog-description">
             <button className="dialog-close" type="button" aria-label="Cerrar configuración" onClick={() => setSettingsOpen(false)}>×</button>
