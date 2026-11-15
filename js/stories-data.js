@@ -155,8 +155,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "space-rovers-water",
-        caption: "Ilustración NASA · Los robots gemelos Spirit y Opportunity buscando las huellas de antiguos ríos y lagunas sobre el suelo seco de Marte."
+        imageSrc: "public/fotos_reales/NASA_Rovers_1_Spirit_Marte.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Rovers_1_Spirit_Marte.jpg",
+        caption: "📷 Imagen oficial de la NASA (science.nasa.gov) · Los robots exploradores gemelos Spirit y Opportunity recorriendo el suelo seco de Marte en busca de las pistas del agua."
       },
       {
         type: "text",
@@ -168,8 +169,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "space-opportunity-tracks",
-        caption: "Registro de Exploración · Más de 45 kilómetros de huellas dejadas por Opportunity recorriendo antiguas orillas de agua en Marte."
+        imageSrc: "public/fotos_reales/NASA_Rovers_2_Opportunity_Crater_Agua.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Rovers_2_Opportunity_Crater_Agua.jpg",
+        caption: "📷 Fotografía real tomada por Opportunity en Marte (NASA / JPL · PIA05755) · Las huellas de las ruedas del robot sobre un antiguo cráter donde hace millones de años hubo agua líquida."
       },
       {
         type: "text",
@@ -292,8 +294,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "space-dawn-vesta-ceres",
-        caption: "Ilustración NASA Dawn · La pequeña sonda Dawn impulsada por su brasa azul de iones visitando primero el mundo rocoso Vesta (2011) y luego el planeta enano Ceres (2015)."
+        imageSrc: "public/fotos_reales/NASA_Dawn_1_Sonda_Vesta_Ceres.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Dawn_1_Sonda_Vesta_Ceres.jpg",
+        caption: "📷 Imagen oficial de la misión Dawn (NASA / JPL · PIA12033) · La pequeña sonda Dawn impulsada por la luz azul de su motor de iones («su brasita») entre los dos mundos que visitó: Vesta (abajo a la izquierda) y Ceres (arriba a la derecha)."
       },
       {
         type: "text",
@@ -305,8 +308,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "space-dawn-silent-orbit",
-        caption: "Órbita Eterna en Ceres · En 2018 Dawn se quedó sin combustible y quedó girando en silencio alrededor de Ceres por décadas, después de enviar toda su luz a la Tierra."
+        imageSrc: "public/fotos_reales/NASA_Dawn_2_Ceres_Brillante.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Dawn_2_Ceres_Brillante.jpg",
+        caption: "📷 Fotografía real capturada por la sonda Dawn en Ceres (NASA / JPL · PIA20350) · Los puntos brillantes de sales minerales dentro del cráter Occator en Ceres, alrededor del cual Dawn sigue girando en silencio."
       },
       {
         type: "text",
@@ -385,8 +389,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "space-pioneer-plaque",
-        caption: "Ilustración NASA · La Placa Dorada que lleva Pioneer 10 con el dibujo de un hombre y una mujer saludando y el mapa para encontrar nuestro Sol."
+        imageSrc: "public/fotos_reales/NASA_Pioneer10_1_Placa_Dorada.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Pioneer10_1_Placa_Dorada.jpg",
+        caption: "📷 Fotografía histórica oficial de la NASA (science.nasa.gov) · La Placa Dorada instalada en la nave Pioneer 10 con el dibujo de un hombre y una mujer saludando y el mapa para encontrar nuestro Sol."
       },
       {
         type: "text",
@@ -394,8 +399,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "space-pioneer-aldebaran",
-        caption: "Rumbo a las Estrellas · Pioneer 10 viajando en silencio hacia la estrella Aldebarán, muy cerca de las Pléyades del cuento Wichí."
+        imageSrc: "public/fotos_reales/NASA_Pioneer10_2_Espacio_Profundo.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Pioneer10_2_Espacio_Profundo.jpg",
+        caption: "📷 Imagen oficial de la misión Pioneer 10 (NASA · science.nasa.gov) · La sonda Pioneer 10 pasando junto al planeta gigante Júpiter en su viaje hacia las estrellas Aldebarán y las Pléyades."
       },
       {
         type: "text",
