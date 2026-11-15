@@ -816,7 +816,7 @@
         if (dom.modalAudioSub) {
           dom.modalAudioSub.textContent =
             story.audioSubtitle ||
-            "Narrada en la lengua Wichí originaria histórica que la comunidad aún mantiene · Voz: Berté Simeón (DNI: 44.087.200), Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya";
+            "Narrada en la lengua Wichí originaria histórica que la comunidad aún mantiene · Alumnos del Profesorado de TIC en la escuela en Misión Nueva Pompeya";
         }
         if (dom.btnAudioBoost) {
           dom.btnAudioBoost.textContent = BOOST_MODES[currentBoostIndex].label;

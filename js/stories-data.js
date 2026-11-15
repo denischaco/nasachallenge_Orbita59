@@ -22,7 +22,7 @@ window.ORBITAR_STORIES = {
     audioSrc: "public/audio/cuento.mp3",
     audioFallbackSrc: "audio/cuento.mp3",
     audioTitle: "🔊 Escuchar la leyenda original en lengua Wichí originaria",
-    audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Berté Simeón (DNI: 44.087.200), Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
+    audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Simeón Gerónimo, Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
     quote: "«— A veces, hijo, lo que soñamos es la historia que nos están contando.»",
     blocks: [
       {
@@ -197,7 +197,7 @@ window.ORBITAR_STORIES = {
     audioSrc: "public/audio/cuento2.mp3",
     audioFallbackSrc: "audio/cuento2.mp3",
     audioTitle: "🔊 Escuchar la leyenda original en lengua Wichí originaria",
-    audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Berté Simeón (DNI: 44.087.200), Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
+    audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Berte Gustavo, Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
     quote: "«Y el fuego entonces quedó guardado dentro de la madera de los árboles. Por eso cuando frotamos dos palitos, el fuego vuelve a salir. Porque es ahí donde se esconde.»",
     blocks: [
       {
@@ -334,14 +334,24 @@ window.ORBITAR_STORIES = {
     levelLabel: "Nivel 3 · La Copa y las Estrellas",
     mode: "wichi",
     modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
-    title: "✨ Chelchupé y el Tejido de las Mujeres Estrella",
-    protagonist: "Relato Ancestral Wichí · El Camino del Cielo (Nayic) · El Impenetrable, Chaco",
-    adaptationNote: "📌 Nota pedagógica: Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y configurado en lenguaje claro para las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59 de El Impenetrable).",
-    quote: "«La copa del árbol toca el río blanco de la Vía Láctea; por sus fibras de chaguar bajaban las estrellas a conversar con la tierra.»",
+    title: "✨ Mi historia — ¿Te conté alguna vez que yo vivía en las estrellas...?",
+    protagonist: "Relato en primera persona · Adaptación de Xiomara · Narración en lengua Wichí: Simeón Gustavo",
+    adaptationNote: "📌 Nota pedagógica (Adaptación de Xiomara): Relato en primera persona adaptado respetando la idiosincrasia del pueblo Wichí y configurado para las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59 de El Impenetrable). ¡Importante!: La leyenda narrada en el audio es la versión original en la lengua Wichí originaria histórica que la comunidad aún mantiene viva, aportada por Simeón Gustavo (Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya).",
+    audioTitle: "🔊 Escuchar la leyenda original en lengua Wichí originaria",
+    audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Simeón Gustavo, Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
+    quote: "«Aquí nos quedamos para compartir nuestra sabiduría y acompañarnos mutuamente. Y aunque aquí soy muy feliz no puedo evitar recordar con lágrimas en los ojos de donde vengo.»",
     blocks: [
       {
         type: "text",
-        content: "En lo más alto del árbol, donde las ramas verdes parecen tocar la noche estrellada, los antiguos wichí contaban que el cielo y la tierra eran dos pisos de una misma casa. A la Vía Láctea la llamaban Nayic, el gran camino blanco del cielo."
+        content: "¿Te conté alguna vez que yo vivía en las estrellas...?"
+      },
+      {
+        type: "text",
+        content: "Yo vivía ahí arriba, con las demás. Éramos muchísimas."
+      },
+      {
+        type: "text",
+        content: "De día descansábamos en las estrellas pero de noche teníamos que bajar a la tierra para conseguir comida."
       },
       {
         type: "illustration",
@@ -353,17 +363,29 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "text",
-        content: "Por una larga cuerda trenzada con fibra de chaguar que colgaba desde el cielo hasta las ramas más altas del monte, bajaban de noche las Mujeres Estrella —el grupo de estrellas que conocemos como las Pléyades o Siete Cabritas, llamadas Chelchupé—. Ellas traían el conocimiento de cuándo iba a llegar el frío del invierno y cuándo iban a madurar las vainas del algarrobo y los frutos del monte."
+        content: "Bajábamos por unos hilitos de chaguar, bien finitos. Había que bajar despacito, con cuidado para que nadie nos viera."
+      },
+      {
+        type: "text",
+        content: "Una noche de esas en las que la luna ilumina el camino sin necesidad de nada más nos descubrieron los hombres que habitaban la tierra."
+      },
+      {
+        type: "text",
+        content: "Ellos cortaron los hilos y ya no pudimos volver."
       },
       {
         type: "illustration",
         imageSrc: "public/fotos_reales/ImpenetrableChacoARG_paisaje3.jpg",
         imageFallbackSrc: "fotos_reales/ImpenetrableChacoARG_paisaje3.jpg",
-        caption: "📷 Camino de tierra en El Impenetrable, Chaco · Así como los caminos cruzan el monte chaqueño en la tierra, en lo alto brilla Nayic, el gran camino blanco de las estrellas."
+        caption: "📷 Camino de tierra en El Impenetrable, Chaco · Donde el monte abraza la memoria de quienes bajaron de las estrellas para compartir su sabiduría."
       },
       {
         type: "text",
-        content: "Aunque un día aquella cuerda entre los dos mundos se cortó y ellas quedaron viviendo arriba en el cielo, nunca se olvidaron de la tierra: cada año vuelven a brillar sobre la copa de los árboles para avisarnos que empieza un nuevo ciclo de vida."
+        content: "Aquí nos quedamos para compartir nuestra sabiduría y acompañarnos mutuamente."
+      },
+      {
+        type: "text",
+        content: "Y aunque aquí soy muy feliz no puedo evitar recordar con lágrimas en los ojos de donde vengo."
       }
     ]
   },
