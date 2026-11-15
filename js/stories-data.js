@@ -18,11 +18,11 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
     title: "🌳 La Leyenda del Yuchán — El origen de las aguas",
     protagonist: "Relato del Abuelo y su Nieto bajo el Palo Santo · Pueblo Wichí · El Impenetrable, Chaco",
-    adaptationNote: "📌 Nota pedagógica: Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: La leyenda narrada en el audio es la versión original.",
+    adaptationNote: "📌 Nota pedagógica: Este relato escrito fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: La leyenda narrada en el audio es la versión original y está hablada en la lengua Wichí originaria histórica que la comunidad aún mantiene viva.",
     audioSrc: "public/audio/cuento.mp3",
     audioFallbackSrc: "audio/cuento.mp3",
-    audioTitle: "🔊 Escuchar la leyenda original narrada en voz",
-    audioSubtitle: "Narración en voz: Berté Simeón (DNI: 44.087.200) — Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya. (Aclaración: el audio narra la leyenda original)",
+    audioTitle: "🔊 Escuchar la leyenda original en lengua Wichí originaria",
+    audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Berté Simeón (DNI: 44.087.200), Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
     quote: "«— A veces, hijo, lo que soñamos es la historia que nos están contando.»",
     blocks: [
       {
@@ -51,9 +51,11 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        imageSrc: "public/fotos_reales/Arbol_1_MonumentoNacional.jpg",
-        imageFallbackSrc: "fotos_reales/Arbol_1_MonumentoNacional.jpg",
-        caption: "📷 Foto real en nuestra tierra (Prof. Valeria Inés Couseiro) · Yuchán (palo borracho) con su panza grande y sus espinas en el predio de «La Misión» en Misión Nueva Pompeya, corazón de El Impenetrable (Monumento Histórico Nacional y Patrimonio Nacional desde 1989)."
+        images: [
+          "public/fotos_reales/Arbol_1_MonumentoNacional.jpg",
+          "public/fotos_reales/Arbol_3_MonumentoNacional.jpg"
+        ],
+        caption: "📷 Fotos reales en nuestra tierra (Prof. Valeria Inés Couseiro) · Ejemplar de Yuchán (palo borracho) con su panza grande y sus espinas en «La Misión» de Misión Nueva Pompeya, corazón de El Impenetrable."
       },
       {
         type: "text",
@@ -84,11 +86,6 @@ window.ORBITAR_STORIES = {
         content: "Pero un día, un hombre llamado Tokwaj decidió no hacer caso. Vio al dorado, con su cola brillante y colorada, moviéndose lento adentro del árbol, y quiso atraparlo."
       },
       {
-        type: "illustration",
-        artId: "wichi-tokwaj-rios",
-        caption: "Ilustración · La flecha de Tokwaj hiere al dorado y el Yuchán se sacude y revienta, soltando toda el agua que formó los ríos, las lagunas y los arroyos."
-      },
-      {
         type: "text",
         content: "Le tiró con su flecha. Y cuando lo hirió, el Yuchán empezó a sacudirse con fuerza, como si le doliera, como si gritara. Y de golpe, ¡reventó!"
       },
@@ -97,18 +94,18 @@ window.ORBITAR_STORIES = {
         content: "Toda el agua que tenía adentro salió disparada por todas partes. Corrió y corrió, y fue formando los ríos, las lagunas y los arroyos que hoy conocemos en el mundo."
       },
       {
+        type: "illustration",
+        imageSrc: "public/fotos_reales/ImpenetrableChacoARG_paisaje2.jpg",
+        imageFallbackSrc: "fotos_reales/ImpenetrableChacoARG_paisaje2.jpg",
+        caption: "📷 Paisaje real de El Impenetrable, Chaco · Las aguas, lagunas y bañados rodeados por el monte chaqueño que, según cuenta la leyenda Wichí, nacieron cuando el gran Yuchán soltó toda el agua del mundo."
+      },
+      {
         type: "text",
         content: "Por eso se dice que antes de ese día no había ríos. Y que fue el Yuchán quien los guardó y después los soltó."
       },
       {
         type: "text",
         content: "El nieto se quedó mirando el palo borracho, en silencio. El calor seguía pegando, las chicharras no paraban, y las estrellas seguían bailando en el cielo."
-      },
-      {
-        type: "illustration",
-        imageSrc: "public/fotos_reales/Arbol_3_MonumentoNacional.jpg",
-        imageFallbackSrc: "fotos_reales/Arbol_3_MonumentoNacional.jpg",
-        caption: "📷 El Yuchán en «La Misión» de Misión Nueva Pompeya (Foto: Prof. Valeria Inés Couseiro) · Primer plano del tronco del palo borracho frente al edificio histórico declarado Patrimonio Nacional en 1989."
       },
       {
         type: "text",
@@ -127,8 +124,12 @@ window.ORBITAR_STORIES = {
         content: "— A veces, hijo, lo que soñamos es la historia que nos están contando."
       },
       {
-        type: "text",
-        content: "📍 Sobre el lugar de las fotos reales (relato de la Prof. Valeria Inés Couseiro): Los palos borrachos (Yuchanes) de estas fotografías se encuentran en «La Misión», en Misión Nueva Pompeya, localizada en el corazón de El Impenetrable. Ese lugar es el ícono de nuestra zona y fue declarado Monumento Histórico Nacional y Patrimonio Nacional en el año 1989, porque fue la primera construcción que se levantó en todo El Impenetrable cuando aquí habitaba la comunidad Wichí y llegaron los franciscanos desde Salta cruzando el río."
+        type: "illustration",
+        images: [
+          "public/fotos_reales/ImpenetrableChacoARG_EdificioHistorico1.jpg",
+          "public/fotos_reales/ImpenetrableChacoARG_EdificioHistorico2.jpg"
+        ],
+        caption: "📷 Monumento Histórico Nacional «La Misión» en Misión Nueva Pompeya (declarado Patrimonio Nacional en 1989) · El primer edificio construido en todo El Impenetrable cuando allí habitaba la comunidad Wichí y llegaron los franciscanos desde Salta cruzando el río, lugar donde crecen los palos borrachos fotografiados por la Prof. Valeria Inés Couseiro."
       }
     ]
   },
@@ -190,16 +191,22 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
     title: "🔥 Cuando los animales hablaban — El conejo y el fuego",
     protagonist: "Relato Wichí · El pequeño conejo chaqueño, el yaguareté y el fuego en los árboles · El Impenetrable",
-    adaptationNote: "📌 Nota pedagógica: Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: El audio reproduce la narración del cuento original.",
+    adaptationNote: "📌 Nota pedagógica: Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: El audio reproduce la narración de la leyenda original en la lengua Wichí originaria histórica que la comunidad aún mantiene. Ilustraciones artísticas de Lorena Leonhardt («El robo del fuego — Leyenda wichí», versión de Miguel Ángel Palermo, Ministerio de Educación de la Nación, Colección Historias x leer, 2023).",
     audioSrc: "public/audio/cuento2.mp3",
     audioFallbackSrc: "audio/cuento2.mp3",
-    audioTitle: "🔊 Escuchar la narración original del Cuento 2",
-    audioSubtitle: "Narración en voz: Berté Simeón (DNI: 44.087.200) — Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya. (Aclaración: el audio narra la versión original)",
+    audioTitle: "🔊 Escuchar la leyenda original en lengua Wichí originaria",
+    audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Berté Simeón (DNI: 44.087.200), Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
     quote: "«Y el fuego entonces quedó guardado dentro de la madera de los árboles. Por eso cuando frotamos dos palitos, el fuego vuelve a salir. Porque es ahí donde se esconde.»",
     blocks: [
       {
         type: "text",
         content: "Esta es la historia de cuando los animales todavía hablaban…"
+      },
+      {
+        type: "illustration",
+        imageSrc: "public/fotos_reales/ImpenetrableChacoARG_animales.jpg",
+        imageFallbackSrc: "fotos_reales/ImpenetrableChacoARG_animales.jpg",
+        caption: "📷 Fauna y monte de El Impenetrable, Chaco · Los animales al pie de los grandes árboles chaqueños donde nacieron los antiguos relatos."
       },
       {
         type: "text",
@@ -215,8 +222,10 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "wichi-conejo-brasa",
-        caption: "Ilustración · El pequeño conejo chaqueño tomando con valentía una brasita encendida mientras el yaguareté duerme junto a la única fogata."
+        imageSrc: "public/fotos_reales/Leonhardt_1_Personajes_Fuego.jpg",
+        imageFallbackSrc: "fotos_reales/Leonhardt_1_Personajes_Fuego.jpg",
+        photoContain: true,
+        caption: "🎨 Ilustración de Lorena Leonhardt · Los protagonistas de la leyenda Wichí: el Tucutucu (Oculto), el Jaguar (Yaguareté), el Fuego y el Conejo chaqueño (Fuente: «El robo del fuego», versión de Miguel Ángel Palermo, Ministerio de Educación, 2023)."
       },
       {
         type: "text",
@@ -227,18 +236,33 @@ window.ORBITAR_STORIES = {
         content: "Se acercó despacito mientras el yaguareté dormía y tomó una brasita encendida y la escondió debajo de su mandíbula. Le quemaba, pero aguantó. Y salió corriendo."
       },
       {
+        type: "illustration",
+        imageSrc: "public/fotos_reales/Leonhardt_2_Conejo_Brasa.jpg",
+        imageFallbackSrc: "fotos_reales/Leonhardt_2_Conejo_Brasa.jpg",
+        photoContain: true,
+        caption: "🎨 Ilustración de Lorena Leonhardt · El pequeño conejo chaqueño corriendo con valentía con la brasita roja encendida apretada debajo de su mandíbula («El robo del fuego»)."
+      },
+      {
         type: "text",
         content: "El yaguareté se dio cuenta y lo persiguió furioso por todo el monte. El conejo corría y corría, hasta que se vio acorralado. Y ahí, en un descuido, escondió la brasa dentro del árbol."
       },
       {
         type: "illustration",
-        imageSrc: "public/fotos_reales/Arbol_2_MonumentoNacional.jpg",
-        imageFallbackSrc: "fotos_reales/Arbol_2_MonumentoNacional.jpg",
-        caption: "📷 Foto real en Misión Nueva Pompeya (Prof. Valeria Inés Couseiro) · Gran árbol junto al Monumento Histórico Nacional «La Misión» (declarado Patrimonio Nacional en 1989, primera construcción de El Impenetrable), en cuya madera —según cuenta la leyenda Wichí— quedó escondido el fuego."
+        imageSrc: "public/fotos_reales/Leonhardt_3_Persecucion_Yaguarete.jpg",
+        imageFallbackSrc: "fotos_reales/Leonhardt_3_Persecucion_Yaguarete.jpg",
+        photoContain: true,
+        caption: "🎨 Ilustración de Lorena Leonhardt · El yaguareté persiguiendo furioso al conejo por el monte mientras el fuego se reparte por los árboles para todos («El robo del fuego»)."
       },
       {
         type: "text",
         content: "Y el fuego entonces quedó guardado dentro de la madera de los árboles. Por eso cuando frotamos dos palitos, el fuego vuelve a salir. Porque es ahí donde se esconde."
+      },
+      {
+        type: "illustration",
+        imageSrc: "public/fotos_reales/Leonhardt_4_Frotar_Palitos.jpg",
+        imageFallbackSrc: "fotos_reales/Leonhardt_4_Frotar_Palitos.jpg",
+        photoContain: true,
+        caption: "🎨 Ilustración de Lorena Leonhardt · Sabiduría ancestral: cómo encender el fuego guardado adentro de la madera de los árboles frotando dos palitos («El robo del fuego»)."
       }
     ]
   },
@@ -317,8 +341,11 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "wichi-chaguar-cord",
-        caption: "Ilustración I · La cuerda trenzada con fibra de chaguar que unía la copa de los árboles del monte con las estrellas Pléyades (Chelchupé)."
+        images: [
+          "public/fotos_reales/Arbol_2_MonumentoNacional.jpg",
+          "public/fotos_reales/ImpenetrableChacoARG_paisaje.jpg"
+        ],
+        caption: "📷 Fotos reales en Misión Nueva Pompeya y El Impenetrable · Las altas copas de los árboles junto al Monumento Histórico Nacional «La Misión» y las ramas del monte bajo el cielo chaqueño."
       },
       {
         type: "text",
@@ -326,8 +353,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "wichi-star-weave",
-        caption: "Ilustración II · Los dibujos de las yicas tejidas reflejando los caminos de las estrellas del cielo chaqueño."
+        imageSrc: "public/fotos_reales/ImpenetrableChacoARG_paisaje3.jpg",
+        imageFallbackSrc: "fotos_reales/ImpenetrableChacoARG_paisaje3.jpg",
+        caption: "📷 Camino de tierra en El Impenetrable, Chaco · Así como los caminos cruzan el monte chaqueño en la tierra, en lo alto brilla Nayic, el gran camino blanco de las estrellas."
       },
       {
         type: "text",

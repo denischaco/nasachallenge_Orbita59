@@ -811,12 +811,12 @@
         dom.modalAudioBox.hidden = false;
         if (dom.modalAudioTitle) {
           dom.modalAudioTitle.textContent =
-            story.audioTitle || "🔊 Escuchar la leyenda original narrada en voz";
+            story.audioTitle || "🔊 Escuchar la leyenda original en lengua Wichí originaria";
         }
         if (dom.modalAudioSub) {
           dom.modalAudioSub.textContent =
             story.audioSubtitle ||
-            "Narración en voz: Berté Simeón (DNI: 44.087.200) — Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya";
+            "Narrada en la lengua Wichí originaria histórica que la comunidad aún mantiene · Voz: Berté Simeón (DNI: 44.087.200), Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya";
         }
         if (dom.btnAudioBoost) {
           dom.btnAudioBoost.textContent = BOOST_MODES[currentBoostIndex].label;
@@ -871,9 +871,31 @@
 
           const artWrap = document.createElement("div");
           artWrap.className = "modal-story-illustration";
-          if (block.imageSrc) {
+          if (Array.isArray(block.images) && block.images.length > 0) {
+            artWrap.classList.add("modal-story-photo-grid");
+            block.images.forEach((imgItem) => {
+              const srcStr = typeof imgItem === "string" ? imgItem : imgItem.src;
+              const fallbackStr =
+                (typeof imgItem === "object" && imgItem.fallback) ||
+                srcStr.replace(/^public\//, "");
+              const img = document.createElement("img");
+              img.className = "modal-story-photo modal-story-photo--grid";
+              img.onerror = function () {
+                if (img.getAttribute("src") !== fallbackStr) {
+                  img.setAttribute("src", fallbackStr);
+                }
+              };
+              img.setAttribute("src", srcStr);
+              img.alt = (typeof imgItem === "object" && imgItem.alt) || block.caption || story.title;
+              img.loading = "lazy";
+              artWrap.appendChild(img);
+            });
+          } else if (block.imageSrc) {
             const img = document.createElement("img");
             img.className = "modal-story-photo";
+            if (block.photoContain) {
+              img.classList.add("modal-story-photo--contain");
+            }
             const fallbackImgSrc =
               block.imageFallbackSrc || block.imageSrc.replace(/^public\//, "");
             img.onerror = function () {
