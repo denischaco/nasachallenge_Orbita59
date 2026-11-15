@@ -73,6 +73,7 @@
     dom.modalBackdrop = document.getElementById("story-modal");
     dom.modalDialog = document.getElementById("story-modal-dialog");
     dom.modalStoryScroll = document.getElementById("modal-story-scroll");
+    dom.modalAdaptationNote = document.getElementById("modal-adaptation-note");
     dom.modalAudioBox = document.getElementById("modal-audio-box");
     dom.modalAudioTitle = document.getElementById("modal-audio-title");
     dom.modalAudioSub = document.getElementById("modal-audio-sub");
@@ -507,7 +508,11 @@
      -------------------------------------------------------------------------- */
   let audioCtx = null;
   let audioGainNode = null;
-  const BOOST_LEVELS = [1.6, 2.2, 1.0];
+  const BOOST_MODES = [
+    { gain: 1.0, label: "🔊 Subir más la voz" },
+    { gain: 1.7, label: "🔊 Voz más fuerte: Sí" },
+    { gain: 2.3, label: "🔊 Voz súper fuerte: Sí" }
+  ];
   let currentBoostIndex = 0;
 
   function ensureWebAudioBooster() {
@@ -526,7 +531,7 @@
         compressor.release.value = 0.2;
 
         audioGainNode = audioCtx.createGain();
-        audioGainNode.gain.value = BOOST_LEVELS[currentBoostIndex];
+        audioGainNode.gain.value = BOOST_MODES[currentBoostIndex].gain;
 
         source.connect(compressor);
         compressor.connect(audioGainNode);
@@ -541,16 +546,15 @@
   }
 
   function cycleAudioBoost() {
-    currentBoostIndex = (currentBoostIndex + 1) % BOOST_LEVELS.length;
-    const gainValue = BOOST_LEVELS[currentBoostIndex];
+    currentBoostIndex = (currentBoostIndex + 1) % BOOST_MODES.length;
+    const mode = BOOST_MODES[currentBoostIndex];
     ensureWebAudioBooster();
     if (audioGainNode && audioCtx) {
-      audioGainNode.gain.setValueAtTime(gainValue, audioCtx.currentTime);
+      audioGainNode.gain.setValueAtTime(mode.gain, audioCtx.currentTime);
     }
     if (dom.btnAudioBoost) {
-      const pct = Math.round(gainValue * 100);
-      dom.btnAudioBoost.innerHTML = `<span>⚡ Boost Voz: ${pct}%</span>`;
-      dom.btnAudioBoost.classList.toggle("is-active", gainValue > 1.0);
+      dom.btnAudioBoost.innerHTML = `<span>${mode.label}</span>`;
+      dom.btnAudioBoost.classList.toggle("is-active", mode.gain > 1.0);
     }
   }
 
@@ -582,7 +586,7 @@
           <path d="M352,132 Q324,116 296,132 Q324,148 352,132 Z" fill="#E2D3BA"/>
           <polygon points="356,132 372,122 372,142" fill="#E2D3BA"/>
           <path d="M90,176 Q190,152 240,168 M400,168 Q450,152 550,176" stroke="#C97A2B" stroke-width="3.5" fill="none"/>
-          <text x="320" y="30" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.8">EL YUCHÁN Y EL DORADO SAGRADO DE COLA COLORADA</text>
+          <text x="320" y="30" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.5">EL YUCHÁN Y EL DORADO SAGRADO DE COLA COLORADA</text>
         </svg>`;
       }
       if (artId === "wichi-tokwaj-rios" || artId === "wichi-pilcomayo-river") {
@@ -598,31 +602,39 @@
           <path d="M0,162 Q160,122 320,162 T640,155" stroke="#F3EBDD" stroke-width="3.5" fill="none" stroke-dasharray="10 6"/>
           <path d="M0,178 Q160,138 320,178 T640,172" stroke="#339136" stroke-width="3.5" fill="none"/>
           <polygon points="320,38 356,88 320,138 284,88" fill="#2A2019" stroke="#F48138" stroke-width="3"/>
-          <text x="320" y="200" text-anchor="middle" fill="#E2D3BA" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.8">TOKWAJ Y EL ESTALLIDO QUE FORMÓ LOS RÍOS Y LAGUNAS</text>
+          <text x="320" y="200" text-anchor="middle" fill="#E2D3BA" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.5">TOKWAJ Y EL ESTALLIDO QUE FORMÓ LOS RÍOS Y LAGUNAS</text>
         </svg>`;
       }
-      if (artId === "wichi-ember-guardian") {
-        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del guardián de la brasa sagrada">
+      if (artId === "wichi-conejo-brasa" || artId === "wichi-ember-guardian") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del pequeño conejo chaqueño corriendo con la brasita encendida">
           <rect width="640" height="220" fill="#1A1512"/>
-          <circle cx="320" cy="105" r="56" fill="rgba(244,129,56,0.16)" stroke="#C97A2B" stroke-width="2" stroke-dasharray="6 4"/>
-          <polygon points="320,52 352,108 320,154 288,108" fill="#F48138" stroke="#F3EBDD" stroke-width="2.5"/>
-          <polygon points="320,74 338,108 320,136 302,108" fill="#E2D3BA"/>
-          <g stroke="#C97A2B" stroke-width="2.5" fill="none">
-            <polyline points="70,110 110,80 150,110 190,80 230,110"/>
-            <polyline points="410,110 450,80 490,110 530,80 570,110"/>
-          </g>
-          <text x="320" y="196" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">LA CHISPA SAGRADA EN LA NOCHE DEL CHACO</text>
+          <rect x="0" y="0" width="640" height="14" fill="url(#yicaPattern)"/>
+          <!-- Fogata vigilada a la izquierda -->
+          <polygon points="120,155 142,98 164,155" fill="#F48138" opacity="0.75"/>
+          <polygon points="130,155 142,116 154,155" fill="#E7F434"/>
+          <!-- Silueta del pequeño conejo corriendo hacia el árbol con la brasita -->
+          <ellipse cx="335" cy="134" rx="28" ry="18" fill="#E2D3BA" stroke="#C97A2B" stroke-width="2"/>
+          <circle cx="364" cy="118" r="13" fill="#E2D3BA" stroke="#C97A2B" stroke-width="2"/>
+          <ellipse cx="356" cy="94" rx="5" ry="16" transform="rotate(-18 356 94)" fill="#E2D3BA" stroke="#C97A2B" stroke-width="2"/>
+          <ellipse cx="368" cy="94" rx="5" ry="16" transform="rotate(-8 368 94)" fill="#E2D3BA" stroke="#C97A2B" stroke-width="2"/>
+          <!-- La brasita encendida debajo de la mandíbula -->
+          <circle cx="375" cy="128" r="7" fill="#F48138" stroke="#E7F434" stroke-width="2"/>
+          <circle cx="375" cy="128" r="14" fill="rgba(244,129,56,0.32)"/>
+          <!-- Árbol a la derecha donde esconde la brasa -->
+          <path d="M510,170 L510,65 M485,85 L510,105 L538,80" stroke="#C97A2B" stroke-width="10" stroke-linecap="round" fill="none"/>
+          <text x="320" y="198" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.5">EL PEQUEÑO CONEJO LLEVANDO LA BRASITA AL ÁRBOL</text>
         </svg>`;
       }
       if (artId === "wichi-palo-santo-grain") {
-        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de las vetas de palo santo y quebracho">
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del fuego guardado dentro de la madera de los árboles">
           <rect width="640" height="220" fill="#1C1510"/>
           <path d="M40,65 Q180,40 320,65 T600,65" stroke="#857F74" stroke-width="3" fill="none"/>
           <path d="M40,105 Q180,82 320,105 T600,105" stroke="#C97A2B" stroke-width="4" fill="none"/>
           <path d="M40,145 Q180,125 320,145 T600,145" stroke="#339136" stroke-width="3" fill="none"/>
-          <circle cx="320" cy="105" r="28" fill="#2A2019" stroke="#F48138" stroke-width="3.5"/>
-          <circle cx="320" cy="105" r="11" fill="#F48138"/>
-          <text x="320" y="196" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">VETAS DE PALO SANTO · EL CALOR DE LA MADERA</text>
+          <circle cx="320" cy="105" r="32" fill="#2A2019" stroke="#F48138" stroke-width="3.5"/>
+          <polygon points="320,82 334,110 320,126 306,110" fill="#F48138"/>
+          <circle cx="320" cy="110" r="7" fill="#E7F434"/>
+          <text x="320" y="196" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.5">EL FUEGO ESCONDIDO DENTRO DE LA MADERA DE LOS ÁRBOLES</text>
         </svg>`;
       }
       if (artId === "wichi-chaguar-cord") {
@@ -634,7 +646,7 @@
           <circle cx="440" cy="65" r="5.5" fill="#F48138"/>
           <circle cx="150" cy="135" r="4" fill="#339136"/>
           <circle cx="485" cy="130" r="4.5" fill="#E2D3BA"/>
-          <text x="320" y="202" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">CHELCHUPÉ · LA CUERDA ENTRE MONTE Y CIELO</text>
+          <text x="320" y="202" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.5">CHELCHUPÉ · LA CUERDA DE CHAGUAR ENTRE MONTE Y CIELO</text>
         </svg>`;
       }
       return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de geometría de yica y constelaciones wichí">
@@ -644,13 +656,13 @@
         <g fill="#F48138">
           <circle cx="160" cy="95" r="6"/><circle cx="300" cy="95" r="6"/><circle cx="440" cy="95" r="6"/>
         </g>
-        <text x="320" y="198" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">NAYIC · TEJIDO DE YICA Y CAMINO ESTELAR</text>
+        <text x="320" y="198" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.5">NAYIC · TEJIDO DE YICA Y CAMINO DE LAS ESTRELLAS</text>
       </svg>`;
     }
 
-    // Mode === "espacial" (3 Selected Official NASA Missions)
+    // Mode === "espacial" (3 Misiones NASA en español claro para estudiantes)
     if (artId === "space-rovers-water") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rovers Spirit y Opportunity siguiendo las huellas del agua en Marte">
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Robots Spirit y Opportunity siguiendo las huellas del agua en Marte">
         <rect width="640" height="220" fill="#07173F"/>
         <path d="M0,155 Q180,120 340,152 T640,145 L640,220 L0,220 Z" fill="#2A1A17" stroke="#F48138" stroke-width="2"/>
         <!-- Cauce antiguo de agua marciana -->
@@ -662,47 +674,55 @@
         <circle cx="292" cy="142" r="10" fill="#151622" stroke="#E7F434" stroke-width="2.5"/>
         <circle cx="320" cy="144" r="10" fill="#151622" stroke="#E7F434" stroke-width="2.5"/>
         <circle cx="348" cy="142" r="10" fill="#151622" stroke="#E7F434" stroke-width="2.5"/>
-        <!-- Hematite blueberries -->
+        <!-- Piedritas de hematita formadas por el agua -->
         <circle cx="205" cy="166" r="5" fill="#2E96F5"/><circle cx="222" cy="174" r="4.5" fill="#2E96F5"/>
         <circle cx="435" cy="168" r="5" fill="#2E96F5"/><circle cx="454" cy="162" r="4" fill="#2E96F5"/>
-        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">MARS EXPLORATION ROVERS · SPIRIT &amp; OPPORTUNITY · FOLLOW THE WATER</text>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">ROBOTS SPIRIT Y OPPORTUNITY · BUSCANDO ANTIGUOS RÍOS EN MARTE</text>
       </svg>`;
     }
     if (artId === "space-opportunity-tracks") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Huellas de Opportunity en Meridiani Planum y el cráter Endeavour">
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Huellas de Opportunity sobre antiguas riberas de agua en Marte">
         <rect width="640" height="220" fill="#050D24"/>
         <path d="M0,130 Q320,95 640,130 L640,220 L0,220 Z" fill="#1F1518" stroke="#C97A2B" stroke-width="2"/>
         <path d="M120,215 Q240,155 305,112" stroke="#E7F434" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
         <path d="M165,215 Q275,155 335,112" stroke="#E7F434" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
         <circle cx="490" cy="64" r="22" fill="rgba(46,150,245,0.25)" stroke="#2E96F5" stroke-width="2.5"/>
-        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">MER-B OPPORTUNITY · 45.16 KM ODYSSEY · ANCIENT SHORELINES</text>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">HUELLAS EN MARTE · 45 KILÓMETROS POR ANTIGUAS LAGUNAS SECAS</text>
       </svg>`;
     }
-    if (artId === "space-insight-seis") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Módulo InSight y sismómetro SEIS sobre la corteza de Marte">
+    if (artId === "space-dawn-vesta-ceres" || artId === "space-insight-seis") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="La nave Dawn impulsada por su brasa azul visitando Vesta y Ceres">
         <rect width="640" height="220" fill="#07173F"/>
-        <line x1="0" y1="150" x2="640" y2="150" stroke="#F48138" stroke-width="3"/>
-        <!-- Lander body & solar arrays -->
-        <rect x="275" y="96" width="76" height="28" rx="4" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
-        <circle cx="220" cy="110" r="32" fill="rgba(46,150,245,0.22)" stroke="#2E96F5" stroke-width="2"/>
-        <circle cx="406" cy="110" r="32" fill="rgba(46,150,245,0.22)" stroke="#2E96F5" stroke-width="2"/>
-        <!-- Robotic arm & SEIS dome -->
-        <polyline points="335,96 390,68 455,134" stroke="#E7F434" stroke-width="3" fill="none"/>
-        <path d="M435,150 Q455,120 475,150 Z" fill="#E7F434"/>
-        <!-- Seismic waves below ground -->
-        <path d="M415,168 Q455,192 495,168" stroke="#F48138" stroke-width="2.5" fill="none"/>
-        <path d="M395,180 Q455,212 515,180" stroke="#E7F434" stroke-width="2" stroke-dasharray="5 4" fill="none"/>
-        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">NASA INSIGHT · SEIS SEISMOMETER · 1,319 MARSQUAKES DETECTED</text>
+        <!-- Mundo 1: Vesta (2011) -->
+        <ellipse cx="145" cy="118" rx="46" ry="38" fill="#3B3734" stroke="#C97A2B" stroke-width="2.5"/>
+        <text x="145" y="176" text-anchor="middle" fill="#E2EEFF" font-family="JetBrains Mono, monospace" font-size="11">VESTA (2011)</text>
+        <!-- Mundo 2: Ceres (2015) con puntos brillantes de sal -->
+        <circle cx="505" cy="114" r="52" fill="#1E2C42" stroke="#2E96F5" stroke-width="2.5"/>
+        <circle cx="515" cy="108" r="5" fill="#FFFFFF"/><circle cx="525" cy="112" r="3" fill="#E7F434"/>
+        <text x="505" y="184" text-anchor="middle" fill="#E2EEFF" font-family="JetBrains Mono, monospace" font-size="11">CERES (2015)</text>
+        <!-- Trayectoria y Sonda Dawn con su brasita azul de iones -->
+        <path d="M192,108 Q320,58 450,104" stroke="#E7F434" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>
+        <rect x="235" y="80" width="52" height="16" fill="#2E96F5" stroke="#E7F434" stroke-width="1.5"/>
+        <rect x="353" y="80" width="52" height="16" fill="#2E96F5" stroke="#E7F434" stroke-width="1.5"/>
+        <rect x="296" y="72" width="48" height="32" rx="4" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
+        <!-- Brasita azul del motor iónico -->
+        <circle cx="320" cy="114" r="9" fill="#2E96F5"/>
+        <circle cx="320" cy="114" r="4.5" fill="#FFFFFF"/>
+        <text x="24" y="30" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">MISIÓN DAWN · LA PEQUEÑA NAVE QUE VISITÓ DOS MUNDOS LEJANOS</text>
       </svg>`;
     }
-    if (artId === "space-insight-core") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interior profundo y núcleo líquido caliente detectado por InSight">
-        <rect width="640" height="220" fill="#091533"/>
-        <circle cx="320" cy="116" r="78" fill="#2A1A17" stroke="#C97A2B" stroke-width="3"/>
-        <circle cx="320" cy="116" r="54" fill="#5A2713" stroke="#F48138" stroke-width="2.5"/>
-        <circle cx="320" cy="116" r="30" fill="#E7F434" stroke="#FFFFFF" stroke-width="2"/>
-        <path d="M110,116 L240,116 M400,116 L530,116" stroke="#2E96F5" stroke-width="2" stroke-dasharray="6 4"/>
-        <text x="24" y="32" fill="#2E96F5" font-family="JetBrains Mono, monospace" font-size="11">PLANETARY INTERIOR · LIQUID CORE HEAT &amp; SEISMIC HEARTBEAT</text>
+    if (artId === "space-dawn-silent-orbit" || artId === "space-insight-core") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dawn girando en silencio alrededor de Ceres como una brasita">
+        <rect width="640" height="220" fill="#050D24"/>
+        <!-- Órbita eterna alrededor de Ceres -->
+        <ellipse cx="320" cy="118" rx="185" ry="58" fill="none" stroke="#2E96F5" stroke-width="2" stroke-dasharray="8 6"/>
+        <!-- Planeta enano Ceres en el centro -->
+        <circle cx="320" cy="118" r="56" fill="#1A273D" stroke="#2E96F5" stroke-width="3"/>
+        <circle cx="332" cy="108" r="6" fill="#FFFFFF"/><circle cx="344" cy="114" r="3.5" fill="#E7F434"/>
+        <!-- Pequeña sonda Dawn en órbita como una brasita -->
+        <circle cx="146" cy="98" r="10" fill="rgba(244,129,56,0.35)"/>
+        <circle cx="146" cy="98" r="5" fill="#F48138" stroke="#E7F434" stroke-width="2"/>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">DAWN EN CERES (2018) · UNA BRASITA QUE YA REPARTIÓ SU LUZ</text>
       </svg>`;
     }
     if (artId === "space-pioneer-plaque") {
@@ -726,7 +746,7 @@
         <line x1="416" y1="92" x2="416" y2="134" stroke="#E7F434" stroke-width="2.2"/>
         <line x1="416" y1="134" x2="408" y2="166" stroke="#E7F434" stroke-width="2.2"/>
         <line x1="416" y1="134" x2="424" y2="166" stroke="#E7F434" stroke-width="2.2"/>
-        <text x="24" y="28" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">PIONEER 10 GOLDEN PLAQUE · HUMAN GREETING &amp; PULSAR MAP</text>
+        <text x="24" y="28" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">PLACA DORADA DE PIONEER 10 · SALUDO HUMANO Y MAPA DEL SOL</text>
       </svg>`;
     }
     return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pioneer 10 navegando hacia Aldebarán y las Pléyades">
@@ -739,7 +759,7 @@
         <circle cx="478" cy="60" r="3.5"/><circle cx="508" cy="44" r="3"/>
       </g>
       <polygon points="240,126 278,106 278,146" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
-      <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">PIONEER 10 INTERSTELLAR TRAJECTORY · TAURUS &amp; PLEIADES</text>
+      <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">VIAJE DE PIONEER 10 · RUMBO A ALDEBARÁN Y LAS PLÉYADES</text>
     </svg>`;
   }
 
@@ -774,29 +794,46 @@
     dom.modalProtagonist.textContent = story.protagonist;
     dom.modalQuote.textContent = story.quote;
 
-    // Bonus Audio Player (e.g. Wichí Level 1 native-language narration cuento.mp4)
+    // Pedagogical / Cultural Adaptation & Connection Note
+    if (dom.modalAdaptationNote) {
+      if (story.adaptationNote) {
+        dom.modalAdaptationNote.hidden = false;
+        dom.modalAdaptationNote.textContent = story.adaptationNote;
+      } else {
+        dom.modalAdaptationNote.hidden = true;
+        dom.modalAdaptationNote.textContent = "";
+      }
+    }
+
+    // Native Audio Player (MP3 universal mobile support + automatic path fallback)
     if (dom.modalAudioBox && dom.modalNativeAudio) {
       if (story.audioSrc) {
         dom.modalAudioBox.hidden = false;
         if (dom.modalAudioTitle) {
           dom.modalAudioTitle.textContent =
-            story.audioTitle || "🔊 Escuchar narración en lengua nativa Wichí";
+            story.audioTitle || "🔊 Escuchar la leyenda original narrada en voz";
         }
         if (dom.modalAudioSub) {
           dom.modalAudioSub.textContent =
-            story.audioSubtitle || "Audio original del relato";
+            story.audioSubtitle || "Aclaración: El audio narra la versión original de la leyenda";
         }
-        const fallback = story.audioFallbackSrc || "audio/cuento.mp4";
-        dom.modalNativeAudio.innerHTML = `
-          <source src="${story.audioSrc}" type="audio/mp4">
-          <source src="${fallback}" type="audio/mp4">
-          <source src="${story.audioSrc}" type="video/mp4">
-          <source src="${fallback}" type="video/mp4">
-        `;
+        if (dom.btnAudioBoost) {
+          dom.btnAudioBoost.textContent = BOOST_MODES[currentBoostIndex].label;
+        }
+        const primarySrc = story.audioSrc;
+        const fallbackSrc = story.audioFallbackSrc || primarySrc.replace(/^public\//, "");
+        dom.modalNativeAudio.onerror = function () {
+          if (dom.modalNativeAudio.getAttribute("src") !== fallbackSrc) {
+            dom.modalNativeAudio.setAttribute("src", fallbackSrc);
+            dom.modalNativeAudio.load();
+          }
+        };
+        dom.modalNativeAudio.setAttribute("src", primarySrc);
         dom.modalNativeAudio.load();
       } else {
         dom.modalAudioBox.hidden = true;
-        dom.modalNativeAudio.innerHTML = "";
+        dom.modalNativeAudio.onerror = null;
+        dom.modalNativeAudio.removeAttribute("src");
       }
     }
 
@@ -1039,11 +1076,10 @@
     });
 
     // Modal controls
-    if (dom.modalNativeAudio) {
-      dom.modalNativeAudio.addEventListener("play", () => {
-        ensureWebAudioBooster();
-      });
-    }
+    // Note: Do not attach ensureWebAudioBooster on native <audio> "play" event,
+    // so mobile browsers play <audio> directly through hardware output without
+    // Web Audio API suspension issues. Web Audio amplification only activates
+    // if the user taps the explicit "#btn-audio-boost" button.
     if (dom.btnAudioBoost) {
       dom.btnAudioBoost.addEventListener("click", cycleAudioBoost);
     }

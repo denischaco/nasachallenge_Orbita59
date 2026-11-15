@@ -1,60 +1,123 @@
 /**
- * ORBITA 59 — Narrative Database (3 Levels × 2 Modes = 6 Interactive Stories)
- * Each story belongs to either:
- * - "wichi": Cultura Wichí de El Impenetrable, Chaco
- * - "espacial": NASA International Space Apps Challenge (3 selected NASA Missions paired with the Wichí stories)
- * Includes native-language audio support for Wichí Level 1 and illustrated visual plates.
+ * ORBITA 59 — Base de Cuentos Educativos (3 Niveles × 2 Mundos = 6 Historias)
+ * Pensado y adaptado para estudiantes de 1.° año del Ciclo Básico (13 años)
+ * de la Escuela N.° 59 de El Impenetrable, Chaco (lenguaje claro, accesible y optimizado para baja señal).
  */
 
 window.ORBITAR_STORIES = {
   /* ==========================================================================
-     NIVEL 1: EL ORIGEN DE LAS AGUAS (YUCHÁN ↔ SPIRIT & OPPORTUNITY)
+     NIVEL 1: EL ORIGEN DE LAS AGUAS (LA LEYENDA DEL YUCHÁN ↔ SPIRIT Y OPPORTUNITY)
      ========================================================================== */
   "wichi-1": {
     id: "wichi-1",
     siblingId: "espacial-1",
-    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 1 (Spirit y Opportunity) ★",
+    siblingButtonLabel: "Ir al cuento ESPACIAL del Nivel 1 (Spirit y Opportunity) ★",
     level: 1,
     levelLabel: "Nivel 1 · El Origen de las Aguas",
     mode: "wichi",
-    modeTitle: "Modo WICHÍ · Mito de la Tierra",
+    modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
     title: "🌳 La Leyenda del Yuchán — El origen de las aguas",
-    protagonist: "Relato Ancestral Wichí · Chiláj, Tokwaj y el Árbol Madre (Yuchán) · El Impenetrable, Chaco",
-    audioSrc: "public/audio/cuento.mp4",
-    audioFallbackSrc: "audio/cuento.mp4",
-    audioTitle: "🔊 Bonus: Escuchar narración en lengua nativa Wichí",
-    audioSubtitle: "Audio original del relato «La Leyenda del Yuchán — El origen de las aguas»",
-    quote: "«Había una regla sagrada: podían pescar cualquier pez, menos el dorado. Era considerado el pez sagrado, el más grande y hermoso de todos, y estaba prohibido tocarlo.»",
+    protagonist: "Relato del Abuelo y su Nieto bajo el Palo Santo · Pueblo Wichí · El Impenetrable, Chaco",
+    adaptationNote: "📌 Nota pedagógica (Xiomara — Equipo NASA): Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: La leyenda narrada en el audio es la versión original.",
+    audioSrc: "public/audio/cuento.mp3",
+    audioFallbackSrc: "audio/cuento.mp3",
+    audioTitle: "🔊 Escuchar la leyenda original narrada en voz",
+    audioSubtitle: "Aclaración: El audio narra la versión original de la leyenda (Optimizado para baja señal · 950 KB)",
+    quote: "«— A veces, hijo, lo que soñamos es la historia que nos están contando.»",
     blocks: [
       {
         type: "text",
-        content: "Hace muchísimo tiempo, el Chaco era una tierra seca, sin ríos ni lagunas. Toda el agua del mundo estaba guardada adentro de un enorme Yuchán (palo borracho). Y no solo agua: también había peces nadando en su interior."
+        content: "Una noche de intenso calor, de esas que solo pueden soportar las chicharras, se encontraban un nieto con su abuelo debajo de un inmenso árbol de palo santo observando las constelaciones."
+      },
+      {
+        type: "text",
+        content: "El abuelo contaba la historia del nacimiento de las estrellas y éstas brillaban casi como si bailaran en el cielo."
+      },
+      {
+        type: "text",
+        content: "El nieto, que ya tenía sueño pero no quería dormirse, miró un palo borracho que estaba ahí cerca, con su panza grande y sus espinas, y le preguntó:"
+      },
+      {
+        type: "text",
+        content: "— Abuelo, ¿por qué ese árbol tiene la panza tan grande? ¿Qué tiene adentro?"
+      },
+      {
+        type: "text",
+        content: "El abuelo se acomodó, como se acomodan los abuelos cuando van a contar algo importante, y le dijo:"
+      },
+      {
+        type: "text",
+        content: "— Ese no es un árbol cualquiera, hijo. Ese es el Yuchán. Y adentro suyo, hace muchísimo tiempo, estaba guardada toda el agua del mundo."
       },
       {
         type: "illustration",
         artId: "wichi-yuchan-dorado",
-        caption: "Ilustración I · El enorme Yuchán en medio del Chaco seco, guardando en su interior toda el agua del mundo y al dorado sagrado de cola brillante y colorada."
+        caption: "Ilustración I · El abuelo y su nieto en la noche del Chaco mirando el gran Yuchán (palo borracho), que guardaba toda el agua del mundo y al dorado sagrado de cola colorada."
       },
       {
         type: "text",
-        content: "La gente podía acercarse, abrir una pequeña abertura que tenía el árbol y sacar agua y pescar lo justo para comer. Pero había una regla sagrada: podían pescar cualquier pez, menos el dorado. Era considerado el pez sagrado, el más grande y hermoso de todos, y estaba prohibido tocarlo."
+        content: "El nieto abrió bien los ojos."
       },
       {
         type: "text",
-        content: "Chiláj, el protector de los peces, le había advertido a todos que respetaran esa regla. Pero un día, un hombre llamado Tokwaj decidió no hacer caso. Vio al dorado, con su cola brillante y colorada, y quiso atraparlo."
+        content: "— ¿Toda el agua? ¿Y no había ríos?"
+      },
+      {
+        type: "text",
+        content: "— No, hijo. En ese tiempo el Chaco era una tierra seca, sin ríos ni lagunas. Toda el agua estaba adentro del Yuchán. Y no solo agua. También había peces nadando adentro suyo."
+      },
+      {
+        type: "text",
+        content: "La gente se podía acercar, abrir una ventanita chiquita que tenía el árbol y sacar el agua justa para tomar, y pescar lo justo para comer. Pero había una regla sagrada que no se podía romper: podían pescar cualquier pez, menos el dorado."
+      },
+      {
+        type: "text",
+        content: "El dorado era el pez sagrado, el más grande y el más hermoso de todos. Y estaba prohibido tocarlo."
+      },
+      {
+        type: "text",
+        content: "Chiláj, que era el protector de los peces, les había advertido a todos que respetaran esa regla."
+      },
+      {
+        type: "text",
+        content: "Pero un día, un hombre llamado Tokwaj decidió no hacer caso. Vio al dorado, con su cola brillante y colorada, moviéndose lento adentro del árbol, y quiso atraparlo."
       },
       {
         type: "illustration",
         artId: "wichi-tokwaj-rios",
-        caption: "Ilustración II · La flecha de Tokwaj hiere al dorado y el Yuchán estalla liberando los ríos, las lagunas y los arroyos del mundo."
+        caption: "Ilustración II · La flecha de Tokwaj hiere al dorado y el Yuchán se sacude y revienta, soltando toda el agua que formó los ríos, las lagunas y los arroyos."
       },
       {
         type: "text",
-        content: "Cuando lo hirió con su flecha, el Yuchán empezó a sacudirse con fuerza y reventó. Toda el agua que tenía adentro salió disparada por todas partes, formando los ríos, las lagunas y los arroyos que hoy conocemos en el mundo."
+        content: "Le tiró con su flecha. Y cuando lo hirió, el Yuchán empezó a sacudirse con fuerza, como si le doliera, como si gritara. Y de golpe, ¡reventó!"
       },
       {
         type: "text",
-        content: "Por eso se dice que antes de ese día no había ríos, y que el Yuchán fue quien los guardó y luego los soltó."
+        content: "Toda el agua que tenía adentro salió disparada por todas partes. Corrió y corrió, y fue formando los ríos, las lagunas y los arroyos que hoy conocemos en el mundo."
+      },
+      {
+        type: "text",
+        content: "Por eso se dice que antes de ese día no había ríos. Y que fue el Yuchán quien los guardó y después los soltó."
+      },
+      {
+        type: "text",
+        content: "El nieto se quedó mirando el palo borracho, en silencio. El calor seguía pegando, las chicharras no paraban, y las estrellas seguían bailando en el cielo."
+      },
+      {
+        type: "text",
+        content: "Pasados unos minutos, el niño, intentando abrir sus ojos, escuchaba a lo lejos como si estuviera en un túnel: «despierta»."
+      },
+      {
+        type: "text",
+        content: "Es que a veces el calor del Chaco impenetrable es tan potente que creemos ver lo que no está."
+      },
+      {
+        type: "text",
+        content: "Pero el abuelo le puso la mano en el hombro y le dijo bajito:"
+      },
+      {
+        type: "text",
+        content: "— A veces, hijo, lo que soñamos es la historia que nos están contando."
       }
     ]
   },
@@ -66,78 +129,104 @@ window.ORBITAR_STORIES = {
     level: 1,
     levelLabel: "Nivel 1 · El Origen de las Aguas",
     mode: "espacial",
-    modeTitle: "Modo ESPACIAL · Estrella Alfa",
+    modeTitle: "Mundo ESPACIAL · Estrella 1",
     title: "Spirit y Opportunity — Los Buscadores de los Ríos Perdidos",
-    protagonist: "Protagonista: Rover Opportunity (MER-B) · Misión Mars Exploration Rovers (NASA)",
+    protagonist: "Protagonistas: Los robots gemelos Spirit y Opportunity · Misión de la NASA en Marte",
+    adaptationNote: "🔗 Cómo se une con La Leyenda del Yuchán: En el cuento Wichí, el Chaco era una tierra seca hasta que el Yuchán soltó toda el agua y formó los ríos y lagunas. En Marte pasó algo parecido: hoy es un desierto seco, pero los robots Spirit y Opportunity descubrieron las huellas de antiguos ríos y lagunas.",
     missionUrl: "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
-    missionLabel: "Misión Oficial NASA: Mars Exploration Rovers (Spirit & Opportunity)",
-    quote: "«Así como el Yuchán soltó las aguas que formaron los ríos del Chaco, mi hermano Spirit y yo recorrimos un planeta seco para demostrar que Marte también tuvo ríos, lagunas y mares antiguos.»",
+    missionLabel: "Ver misión oficial de la NASA: Spirit y Opportunity",
+    quote: "«Así como el Yuchán soltó las aguas que formaron los ríos del Chaco, mi hermano Spirit y yo recorrimos un planeta seco para demostrar que Marte también tuvo ríos y lagunas.»",
     blocks: [
       {
         type: "text",
-        content: "Me llamo Opportunity, y junto a mi gemelo Spirit aterrizamos en Marte en enero de 2004. Cuando abrí mis cámaras panorámicas por primera vez en Meridiani Planum, vi una llanura rojiza, silenciosa y completamente seca: un desierto sin ríos ni lagunas, muy parecido al Chaco antiguo antes de que el gran Yuchán abriera sus aguas."
+        content: "Me llamo Opportunity y, junto a mi hermano gemelo Spirit, somos dos robots exploradores del tamaño de un carrito que la NASA envió al planeta Marte en el año 2004. Cuando abrí mis cámaras por primera vez, vi un suelo rojo, silencioso y completamente seco: una tierra sin ríos ni lagunas, muy parecida al Chaco antes de que el Yuchán soltara sus aguas."
       },
       {
         type: "illustration",
         artId: "space-rovers-water",
-        caption: "Registro Visual NASA MER · Los rovers gemelos Spirit y Opportunity explorando antiguos cauces secos y esférulas de hematita formadas por el agua en Marte."
+        caption: "Ilustración NASA · Los robots gemelos Spirit y Opportunity buscando las huellas de antiguos ríos y lagunas sobre el suelo seco de Marte."
       },
       {
         type: "text",
-        content: "Los científicos de la NASA nos enviaron con un mandato claro: «Seguir el agua». Al acercar mi brazo robótico a las rocas estratificadas del cráter Eagle, descubrí miles de pequeñas esferas minerales brillantes a las que llamaron «arándanos» de hematita. Aquellas esferas sólo podían haberse formado dentro del agua líquida."
+        content: "Los científicos nos enviaron con una misión muy clara: «Seguir las pistas del agua». Con mis seis ruedas y la energía que mis paneles solares tomaban del Sol, me acerqué a estudiar las piedras de un cráter. Ahí encontré miles de piedritas redondas y brillantes, del tamaño de pequeñas semillas, llamadas hematitas. ¡Esas piedritas solo se pueden formar cuando hay agua líquida!"
       },
       {
         type: "text",
-        content: "Mientras mi hermano Spirit exploraba antiguas fuentes termales al otro lado del planeta en el cráter Gusev, yo seguí rodando durante casi quince años a lo largo de antiguos bordes de lagunas y arroyos marcianos, hallando vetas de yeso donde el agua alguna vez corrió libremente por la superficie."
+        content: "Mientras mi hermano Spirit descubría restos de antiguas aguas termales del otro lado del planeta, yo seguí caminando durante casi quince años por las orillas de antiguos arroyos y lagunas que hoy están secos, pero que hace millones de años estuvieron llenos de agua."
       },
       {
         type: "illustration",
         artId: "space-opportunity-tracks",
-        caption: "Telemetría NASA · Más de 45 kilómetros de huellas sobre las antiguas riberas del Valle de la Perseverancia en el cráter Endeavour."
+        caption: "Registro de Exploración · Más de 45 kilómetros de huellas dejadas por Opportunity recorriendo antiguas orillas de agua en Marte."
       },
       {
         type: "text",
-        content: "Antes de que una gran tormenta de polvo apagara mis paneles solares en 2018, logré enviar mi último mensaje a la Tierra. Mi viaje probó que los mundos guardan la memoria de sus aguas en la piedra, recordándonos que cada río y cada laguna viva de nuestra Tierra es un tesoro sagrado que debemos proteger."
+        content: "Estaba pensado que mi batería durara solo tres meses, pero aguanté casi 15 años recorriendo más de 45 kilómetros hasta que una gran tormenta de polvo tapó el Sol en 2018. Nuestro viaje demostró que las piedras guardan la memoria de los ríos, y nos enseñó cuánto debemos cuidar el agua que hoy corre viva por nuestra Tierra."
       }
     ]
   },
 
   /* ==========================================================================
-     NIVEL 2: EL LATIDO Y EL CALOR DEL INTERIOR (FUEGO DEL MONTE ↔ INSIGHT)
+     NIVEL 2: LA BRASA COMPARTIDA (EL CONEJO Y EL FUEGO ↔ MISIÓN DAWN)
      ========================================================================== */
   "wichi-2": {
     id: "wichi-2",
     siblingId: "espacial-2",
-    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 2 (Misión InSight) ★",
+    siblingButtonLabel: "Ir al cuento ESPACIAL del Nivel 2 (Misión Dawn) ★",
     level: 2,
-    levelLabel: "Nivel 2 · El Latido Interior y el Tronco",
+    levelLabel: "Nivel 2 · La Brasa que da Luz",
     mode: "wichi",
-    modeTitle: "Modo WICHÍ · Mito de la Tierra",
-    title: "El Guardián de la Brasa y el Fuego del Monte",
-    protagonist: "Relato Ancestral Wichí · Vetas de Palo Santo y Quebracho · El Impenetrable",
-    quote: "«El fuego no cayó del cielo para destruir: se escondió en el corazón profundo del palo santo y de la tierra para abrazar las noches de invierno.»",
+    modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
+    title: "🔥 Cuando los animales hablaban — El conejo y el fuego",
+    protagonist: "Relato Wichí · El pequeño conejo chaqueño, el yaguareté y el fuego en los árboles · El Impenetrable",
+    adaptationNote: "📌 Nota pedagógica (Xiomara — Equipo NASA): Relato adaptado a la idiosincrasia del pueblo Wichí y configurado para las edades de los estudiantes (13 años · 1.° año CB · Escuela N.° 59). ¡Importante!: El audio reproduce la narración del cuento original.",
+    audioSrc: "public/audio/cuento2.mp3",
+    audioFallbackSrc: "audio/cuento2.mp3",
+    audioTitle: "🔊 Escuchar la narración original del Cuento 2",
+    audioSubtitle: "Aclaración: El audio narra la versión original de la historia (Optimizado para baja señal · 470 KB)",
+    quote: "«Y el fuego entonces quedó guardado dentro de la madera de los árboles. Por eso cuando frotamos dos palitos, el fuego vuelve a salir. Porque es ahí donde se esconde.»",
     blocks: [
       {
         type: "text",
-        content: "Antiguamente, la gente de la tierra no conocía el fuego. Cuando el viento helado del sur soplaba entre los troncos del monte chaqueño, las familias se acurrucaban en la penumbra, mirando de lejos el resplandor anaranjado que el dueño egoísta del fuego guardaba sólo para sí."
-      },
-      {
-        type: "illustration",
-        artId: "wichi-ember-guardian",
-        caption: "Ilustración I · La chispa sagrada transportada a través de las sendas nocturnas del monte chaqueño."
+        content: "Esta es la historia de cuando los animales todavía hablaban…"
       },
       {
         type: "text",
-        content: "Fue entonces cuando los pequeños habitantes de la tierra y del aire —el oculto que cava túneles entre las raíces y el ave veloz del monte— trazaron un plan. Aprovechando un descuido, tomaron una brasa viva y corrieron entre la espesura."
+        content: "Hace muchísimo tiempo hubo un incendio muy grande en el monte que se extendió por varios días, hasta que el viento logró apagarlo dejando solo una pequeña fogata prendida en todo el Chaco."
+      },
+      {
+        type: "text",
+        content: "El yaguareté que pasaba por ahí se echó muy cerquita del fuego, adueñándose por completo sin querer compartir con los demás."
+      },
+      {
+        type: "text",
+        content: "Los demás animales tenían frío y, por más que le suplicaran, no conseguían ni una chispa."
+      },
+      {
+        type: "illustration",
+        artId: "wichi-conejo-brasa",
+        caption: "Ilustración I · El pequeño conejo chaqueño tomando con valentía una brasita encendida mientras el yaguareté duerme junto a la única fogata."
+      },
+      {
+        type: "text",
+        content: "Entonces el pequeño conejo chaqueño, que era chiquito pero muy inteligente, pensó un plan."
+      },
+      {
+        type: "text",
+        content: "Se acercó despacito mientras el yaguareté dormía y tomó una brasita encendida y la escondió debajo de su mandíbula. Le quemaba, pero aguantó. Y salió corriendo."
+      },
+      {
+        type: "text",
+        content: "El yaguareté se dio cuenta y lo persiguió furioso por todo el monte. El conejo corría y corría, hasta que se vio acorralado. Y ahí, en un descuido, escondió la brasa dentro del árbol."
       },
       {
         type: "illustration",
         artId: "wichi-palo-santo-grain",
-        caption: "Ilustración II · Las vetas del palo santo y del quebracho guardando el calor vivo dentro de su fibra."
+        caption: "Ilustración II · La brasa escondida por el conejo dentro de la madera de los árboles del monte para que todos pudieran tener fuego."
       },
       {
         type: "text",
-        content: "Para que la lluvia nunca pudiera apagarla, depositaron la chispa sagrada dentro de la fibra de los árboles del Chaco y en el abrigo de la tierra. Desde aquel día, el fuego habita dormido dentro de la madera: basta frotar dos ramas secas con paciencia para que el árbol devuelva su luz cálida y reúna a la comunidad en ronda para contar historias."
+        content: "Y el fuego entonces quedó guardado dentro de la madera de los árboles. Por eso cuando frotamos dos palitos, el fuego vuelve a salir. Porque es ahí donde se esconde."
       }
     ]
   },
@@ -145,38 +234,51 @@ window.ORBITAR_STORIES = {
   "espacial-2": {
     id: "espacial-2",
     siblingId: "wichi-2",
-    siblingButtonLabel: "← Ir al relato WICHÍ del Nivel 2",
+    siblingButtonLabel: "← Ir al cuento del Conejo y el Fuego (Nivel 2)",
     level: 2,
-    levelLabel: "Nivel 2 · El Latido Interior y el Tronco",
+    levelLabel: "Nivel 2 · La Brasa que da Luz",
     mode: "espacial",
-    modeTitle: "Modo ESPACIAL · Estrella Beta",
-    title: "InSight — El Oído que Escuchó el Corazón de un Planeta",
-    protagonist: "Protagonista: Módulo Geofísico InSight · Laboratorio de Propulsión a Chorro (NASA)",
-    missionUrl: "https://science.nasa.gov/mission/insight/",
-    missionLabel: "Misión Oficial NASA: InSight Mars Lander",
-    quote: "«Apoyé mi estetoscopio sobre la piel fría de otro mundo y escuché más de mil latidos profundos: la brasa viva que aún arde en el núcleo del planeta.»",
+    modeTitle: "Mundo ESPACIAL · Estrella 2",
+    title: "Misión Dawn — La pequeña nave que llevó su brasa a dos mundos",
+    protagonist: "Protagonista: Sonda Espacial Dawn («Amanecer») · Exploradora de Vesta y Ceres (NASA)",
+    adaptationNote: "🔗 Conexión en el Nivel 2: En la leyenda Wichí, el yaguareté guarda el único fuego y no lo comparte; el conejo chiquito le roba una brasa, se quema y la reparte a todos. Dawn es ese conejo: viajó sola hasta dos mundos, Vesta y Ceres, llevando luz donde no había. Cuando se le acabó el combustible, quedó dando vueltas sola alrededor de Ceres, como una brasita que se apaga despacito, pero que ya repartió su fuego.",
+    missionUrl: "https://science.nasa.gov/mission/dawn/",
+    missionLabel: "Ver misión oficial de la NASA: Sonda Dawn",
+    quote: "«Dawn es ese pequeño conejo chaqueño: viajó sola hasta dos mundos lejanos, Vesta y Ceres, llevando luz donde no había, como una brasita que repartió su fuego para todos.»",
     blocks: [
       {
         type: "text",
-        content: "Soy InSight. A diferencia de otros exploradores espaciales, no fui enviado a Marte con ruedas para recorrer cañones, sino para quedarme quieto en la llanura de Elysium Planitia y hacer algo que nadie había logrado antes: escuchar lo que late debajo de la tierra."
-      },
-      {
-        type: "illustration",
-        artId: "space-insight-seis",
-        caption: "Telemetría NASA InSight · El brazo robótico depositando el sismómetro SEIS y la sonda de flujo de calor sobre la superficie marciana."
+        content: "En la leyenda del monte, el yaguareté guardaba el único fuego y no quería compartirlo. El pequeño conejo chaqueño tomó una brasita, aguantó el calor y la repartió para todos. En el espacio, yo soy ese pequeño conejo: me llamo Dawn (que significa «Amanecer»)."
       },
       {
         type: "text",
-        content: "Con mi brazo robótico apoyé suavemente sobre el suelo un sismómetro ultrasensible llamado SEIS, cubriéndolo con un escudo contra el viento, y desplegué una sonda térmica para medir el calor que emana del interior. En el silencio de la noche marciana, comencé a sentir pequeños temblores: los primeros «martemotos» registrados en la historia."
+        content: "Fui una nave de la NASA lanzada en el año 2007 con la misión de viajar al Cinturón de Asteroides, una región muy fría y lejana ubicada entre los planetas Marte y Júpiter. Para impulsarme no usaba grandes llamaradas, sino un motor especial de iones (gas xenón cargado con electricidad solar) que brillaba en la oscuridad del espacio como una pequeña brasita azul."
       },
       {
         type: "illustration",
-        artId: "space-insight-core",
-        caption: "Radiografía Planetaria · Ondas sísmicas revelando la corteza, el manto y la brasa líquida del núcleo profundo de Marte."
+        artId: "space-dawn-vesta-ceres",
+        caption: "Ilustración NASA Dawn · La pequeña sonda Dawn impulsada por su brasa azul de iones visitando primero el mundo rocoso Vesta (2011) y luego el planeta enano Ceres (2015)."
       },
       {
         type: "text",
-        content: "Durante cuatro años registré más de 1.300 latidos sísmicos. Gracias a esas vibraciones descubrimos que, al igual que el fuego guardado dentro del palo santo en el relato Wichí, en lo más profundo de Marte todavía arde un gran núcleo líquido caliente. Escuchar el corazón de otro mundo nos enseñó cómo nacieron y cómo respiran por dentro los planetas rocosos como nuestra Tierra."
+        content: "Gracias a esa pequeña brasa logré algo que ninguna otra nave había hecho jamás: fui la primera en girar alrededor (orbitar) de dos mundos distintos más allá de la Tierra para estudiar las rocas de cuando nació el Sistema Solar hace 4.500 millones de años."
+      },
+      {
+        type: "text",
+        content: "Primero llegué a Vesta en 2011, un mundo gigante de roca de 525 kilómetros de ancho, donde descubrí una montaña enorme (Rheasilvia) casi tres veces más alta que el monte Everest. Después seguí corriendo por el espacio y en 2015 llegué a Ceres, un planeta enano de casi 940 kilómetros de ancho cubierto de hielo y sales brillantes que guardan el secreto de un antiguo océano subterráneo."
+      },
+      {
+        type: "illustration",
+        artId: "space-dawn-silent-orbit",
+        caption: "Órbita Eterna en Ceres · En 2018 Dawn se quedó sin combustible y quedó girando en silencio alrededor de Ceres por décadas, después de enviar toda su luz a la Tierra."
+      },
+      {
+        type: "text",
+        content: "En noviembre de 2018, después de recorrer casi 6.900 millones de kilómetros y enviar miles de fotos y descubrimientos para toda la humanidad, me quedé sin combustible y perdí comunicación con la Tierra."
+      },
+      {
+        type: "text",
+        content: "Hoy sigo en silencio, dando vueltas sola alrededor de Ceres, donde voy a seguir girando por décadas: igual que una brasita que se apaga despacito en la noche, pero que ya cumplió su plan y dejó su fuego encendido en el conocimiento de todos."
       }
     ]
   },
@@ -187,36 +289,37 @@ window.ORBITAR_STORIES = {
   "wichi-3": {
     id: "wichi-3",
     siblingId: "espacial-3",
-    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 3 (Misión Pioneer 10) ★",
+    siblingButtonLabel: "Ir al cuento ESPACIAL del Nivel 3 (Misión Pioneer 10) ★",
     level: 3,
-    levelLabel: "Nivel 3 · Copa Celeste y Espacio Profundo",
+    levelLabel: "Nivel 3 · La Copa y las Estrellas",
     mode: "wichi",
-    modeTitle: "Modo WICHÍ · Mito de la Tierra",
-    title: "Chelchupé y el Tejido de las Mujeres Estrella",
-    protagonist: "Relato Ancestral Wichí · El Camino del Cielo (Nayic) · El Impenetrable",
+    modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
+    title: "✨ Chelchupé y el Tejido de las Mujeres Estrella",
+    protagonist: "Relato Ancestral Wichí · El Camino del Cielo (Nayic) · El Impenetrable, Chaco",
+    adaptationNote: "📌 Nota pedagógica: Relato adaptado en lenguaje claro para estudiantes de 1.° año del Ciclo Básico (13 años · Escuela N.° 59 de El Impenetrable).",
     quote: "«La copa del árbol toca el río blanco de la Vía Láctea; por sus fibras de chaguar bajaban las estrellas a conversar con la tierra.»",
     blocks: [
       {
         type: "text",
-        content: "En lo más alto del árbol cósmico, donde las hojas verdes se funden con la noche estrellada, los antiguos wichí sabían que el cielo y la tierra eran dos pisos de una misma casa. La Vía Láctea era conocida como Nayic, el gran camino celeste lleno de huellas luminosas."
+        content: "En lo más alto del árbol, donde las ramas verdes parecen tocar la noche estrellada, los antiguos wichí contaban que el cielo y la tierra eran dos pisos de una misma casa. A la Vía Láctea la llamaban Nayic, el gran camino blanco del cielo."
       },
       {
         type: "illustration",
         artId: "wichi-chaguar-cord",
-        caption: "Ilustración I · La cuerda trenzada de fibra de chaguar uniendo la copa del monte con las Pléyades (Chelchupé)."
+        caption: "Ilustración I · La cuerda trenzada con fibra de chaguar que unía la copa de los árboles del monte con las estrellas Pléyades (Chelchupé)."
       },
       {
         type: "text",
-        content: "Por una larga cuerda trenzada con fibra de chaguar que colgaba desde la copa del cielo hasta las ramas más altas del monte, descendían de noche las Mujeres Estrella —las Pléyades, Chelchupé—. Su piel brillaba como brasas suaves y traían consigo el conocimiento de los ciclos de la escarcha, la floración del algarrobo y la maduración de los frutos."
+        content: "Por una larga cuerda trenzada con fibra de chaguar que colgaba desde el cielo hasta las ramas más altas del monte, bajaban de noche las Mujeres Estrella —el grupo de estrellas que conocemos como las Pléyades o Siete Cabritas, llamadas Chelchupé—. Ellas traían el conocimiento de cuándo iba a llegar el frío del invierno y cuándo iban a madurar las vainas del algarrobo y los frutos del monte."
       },
       {
         type: "illustration",
         artId: "wichi-star-weave",
-        caption: "Ilustración II · Geometría de las yicas reflejando las constelaciones del cielo austral."
+        caption: "Ilustración II · Los dibujos de las yicas tejidas reflejando los caminos de las estrellas del cielo chaqueño."
       },
       {
         type: "text",
-        content: "Aunque un día la cuerda entre ambos mundos se cortó y ellas quedaron habitando en lo alto del firmamento, nunca nos abandonaron: cada invierno reaparecen sobre la copa de los árboles para anunciar el nuevo ciclo de la vida, recordándonos que mirar las estrellas es reconocer nuestra propia memoria."
+        content: "Aunque un día aquella cuerda entre los dos mundos se cortó y ellas quedaron viviendo arriba en el cielo, nunca se olvidaron de la tierra: cada año vuelven a brillar sobre la copa de los árboles para avisarnos que empieza un nuevo ciclo de vida."
       }
     ]
   },
@@ -224,38 +327,39 @@ window.ORBITAR_STORIES = {
   "espacial-3": {
     id: "espacial-3",
     siblingId: "wichi-3",
-    siblingButtonLabel: "← Ir al relato WICHÍ del Nivel 3",
+    siblingButtonLabel: "← Ir al cuento Wichí del Nivel 3",
     level: 3,
-    levelLabel: "Nivel 3 · Copa Celeste y Espacio Profundo",
+    levelLabel: "Nivel 3 · La Copa y las Estrellas",
     mode: "espacial",
-    modeTitle: "Modo ESPACIAL · Estrella Gamma",
+    modeTitle: "Mundo ESPACIAL · Estrella 3",
     title: "Pioneer 10 — La Placa Dorada hacia las Constelaciones",
-    protagonist: "Protagonista: Sonda Interestelar Pioneer 10 · Misión Pioneer (NASA Ames)",
+    protagonist: "Protagonista: Sonda Espacial Pioneer 10 · Primera mensajera hacia las estrellas (NASA)",
+    adaptationNote: "🔗 Conexión en el Nivel 3: Mientras el cuento Wichí recuerda la cuerda de chaguar que unía el monte con las estrellas Pléyades, la nave Pioneer 10 viaja hoy en dirección a esa misma región del cielo llevando una placa dorada con un saludo de la humanidad.",
     missionUrl: "https://science.nasa.gov/mission/pioneer-10/",
-    missionLabel: "Misión Oficial NASA: Pioneer 10",
-    quote: "«Llevo grabada en oro la figura de un hombre y una mujer alzando la mano en señal de saludo, tendiendo un nuevo hilo entre la Tierra y los habitantes de las estrellas.»",
+    missionLabel: "Ver misión oficial de la NASA: Pioneer 10",
+    quote: "«Llevo grabada en oro la figura de un hombre y una mujer levantando la mano en señal de saludo, tendiendo un nuevo hilo entre la Tierra y las estrellas.»",
     blocks: [
       {
         type: "text",
-        content: "Soy Pioneer 10. Despegué en marzo de 1972 con la misión de aventurarme donde ninguna nave humana había llegado jamás: fui la primera en atravesar el turbulento cinturón de asteroides y la primera en mirar de cerca las tormentas gigantes de Júpiter."
+        content: "Soy la nave Pioneer 10 («Pionera 10»). Despegué en el año 1972 con la misión de abrir camino por lugares donde ninguna nave había pasado antes: fui la primera en cruzar el Cinturón de Asteroides y la primera en sacar fotos de cerca al planeta gigante Júpiter."
       },
       {
         type: "illustration",
         artId: "space-pioneer-plaque",
-        caption: "Archivo NASA Ames · La Placa de Pioneer 10 anodizada en oro con el saludo humano y el mapa de púlsares de nuestro Sol."
+        caption: "Ilustración NASA · La Placa Dorada que lleva Pioneer 10 con el dibujo de un hombre y una mujer saludando y el mapa para encontrar nuestro Sol."
       },
       {
         type: "text",
-        content: "Antes de partir, Carl Sagan, Frank Drake y Linda Salzman colocaron sobre mi estructura una placa de aluminio anodizado en oro. En ella grabaron las siluetas de una mujer y un hombre de la Tierra con la mano levantada en gesto de paz, junto a un mapa estelar tejido con las señales de catorce púlsares de nuestra galaxia para indicar dónde se encuentra nuestro hogar."
+        content: "Como mi viaje me iba a llevar fuera del Sistema Solar hacia el espacio profundo, el científico Carl Sagan y su equipo colocaron en mi costado una lámina de metal bañada en oro. En ella dibujaron a una mujer y un hombre de la Tierra levantando la mano para saludar en paz, junto con un mapa de estrellas para mostrar dónde está nuestro planeta."
       },
       {
         type: "illustration",
         artId: "space-pioneer-aldebaran",
-        caption: "Trayectoria Interestelar · Pioneer 10 navegando hacia la estrella Aldebarán en la constelación de Tauro, muy cerca de las Pléyades."
+        caption: "Rumbo a las Estrellas · Pioneer 10 viajando en silencio hacia la estrella Aldebarán, muy cerca de las Pléyades del cuento Wichí."
       },
       {
         type: "text",
-        content: "Tras cruzar la órbita de Neptuno y enviar mi último susurro de radio desde más de 12.000 millones de kilómetros, sigo navegando en silencio hacia la estrella roja Aldebarán, en la misma región del cielo donde brillan las Pléyades del relato Wichí. Soy un mensaje eterno desprendido de la copa del árbol terrestre para volver a unir la Tierra con las estrellas."
+        content: "En el año 2003 envié mi última señal de radio desde más de 12.000 millones de kilómetros de distancia. Hoy sigo viajando en silencio hacia la estrella gigante Aldebarán, en la constelación de Tauro —muy cerquita de las estrellas Pléyades del relato Wichí—, llevando para siempre el recuerdo de la Tierra hacia el cielo."
       }
     ]
   }
