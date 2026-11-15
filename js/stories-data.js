@@ -18,11 +18,11 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
     title: "🌳 La Leyenda del Yuchán — El origen de las aguas",
     protagonist: "Relato del Abuelo y su Nieto bajo el Palo Santo · Pueblo Wichí · El Impenetrable, Chaco",
-    adaptationNote: "📌 Nota pedagógica (Xiomara — Equipo NASA): Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: La leyenda narrada en el audio es la versión original.",
+    adaptationNote: "📌 Nota pedagógica: Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: La leyenda narrada en el audio es la versión original.",
     audioSrc: "public/audio/cuento.mp3",
     audioFallbackSrc: "audio/cuento.mp3",
     audioTitle: "🔊 Escuchar la leyenda original narrada en voz",
-    audioSubtitle: "Aclaración: El audio narra la versión original de la leyenda (Optimizado para baja señal · 950 KB)",
+    audioSubtitle: "Narración en voz: Berté Simeón (DNI: 44.087.200) — Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya. (Aclaración: el audio narra la leyenda original)",
     quote: "«— A veces, hijo, lo que soñamos es la historia que nos están contando.»",
     blocks: [
       {
@@ -51,8 +51,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "wichi-yuchan-dorado",
-        caption: "Ilustración I · El abuelo y su nieto en la noche del Chaco mirando el gran Yuchán (palo borracho), que guardaba toda el agua del mundo y al dorado sagrado de cola colorada."
+        imageSrc: "public/fotos_reales/Arbol_1_MonumentoNacional.jpg",
+        imageFallbackSrc: "fotos_reales/Arbol_1_MonumentoNacional.jpg",
+        caption: "📷 Foto real en nuestra tierra (Prof. Valeria Inés Couseiro) · Yuchán (palo borracho) con su panza grande y sus espinas en el predio de «La Misión» en Misión Nueva Pompeya, corazón de El Impenetrable (Monumento Histórico Nacional y Patrimonio Nacional desde 1989)."
       },
       {
         type: "text",
@@ -85,7 +86,7 @@ window.ORBITAR_STORIES = {
       {
         type: "illustration",
         artId: "wichi-tokwaj-rios",
-        caption: "Ilustración II · La flecha de Tokwaj hiere al dorado y el Yuchán se sacude y revienta, soltando toda el agua que formó los ríos, las lagunas y los arroyos."
+        caption: "Ilustración · La flecha de Tokwaj hiere al dorado y el Yuchán se sacude y revienta, soltando toda el agua que formó los ríos, las lagunas y los arroyos."
       },
       {
         type: "text",
@@ -104,6 +105,12 @@ window.ORBITAR_STORIES = {
         content: "El nieto se quedó mirando el palo borracho, en silencio. El calor seguía pegando, las chicharras no paraban, y las estrellas seguían bailando en el cielo."
       },
       {
+        type: "illustration",
+        imageSrc: "public/fotos_reales/Arbol_3_MonumentoNacional.jpg",
+        imageFallbackSrc: "fotos_reales/Arbol_3_MonumentoNacional.jpg",
+        caption: "📷 El Yuchán en «La Misión» de Misión Nueva Pompeya (Foto: Prof. Valeria Inés Couseiro) · Primer plano del tronco del palo borracho frente al edificio histórico declarado Patrimonio Nacional en 1989."
+      },
+      {
         type: "text",
         content: "Pasados unos minutos, el niño, intentando abrir sus ojos, escuchaba a lo lejos como si estuviera en un túnel: «despierta»."
       },
@@ -118,6 +125,10 @@ window.ORBITAR_STORIES = {
       {
         type: "text",
         content: "— A veces, hijo, lo que soñamos es la historia que nos están contando."
+      },
+      {
+        type: "text",
+        content: "📍 Sobre el lugar de las fotos reales (relato de la Prof. Valeria Inés Couseiro): Los palos borrachos (Yuchanes) de estas fotografías se encuentran en «La Misión», en Misión Nueva Pompeya, localizada en el corazón de El Impenetrable. Ese lugar es el ícono de nuestra zona y fue declarado Monumento Histórico Nacional y Patrimonio Nacional en el año 1989, porque fue la primera construcción que se levantó en todo El Impenetrable cuando aquí habitaba la comunidad Wichí y llegaron los franciscanos desde Salta cruzando el río."
       }
     ]
   },
@@ -132,9 +143,9 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo ESPACIAL · Estrella 1",
     title: "Spirit y Opportunity — Los Buscadores de los Ríos Perdidos",
     protagonist: "Protagonistas: Los robots gemelos Spirit y Opportunity · Misión de la NASA en Marte",
-    adaptationNote: "🔗 Cómo se une con La Leyenda del Yuchán: En el cuento Wichí, el Chaco era una tierra seca hasta que el Yuchán soltó toda el agua y formó los ríos y lagunas. En Marte pasó algo parecido: hoy es un desierto seco, pero los robots Spirit y Opportunity descubrieron las huellas de antiguos ríos y lagunas.",
+    adaptationNote: "📌 Nota pedagógica: Esta historia espacial es una adaptación educativa pensada para las edades de los estudiantes, basada en la misión oficial de la NASA (Fuente: https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/). 🔗 Conexión en el Nivel 1: En el cuento Wichí, el Chaco era una tierra seca hasta que el Yuchán soltó toda el agua y formó los ríos y lagunas. En Marte pasó algo parecido: hoy es un desierto seco, pero los robots Spirit y Opportunity descubrieron las huellas de antiguos ríos y lagunas.",
     missionUrl: "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
-    missionLabel: "Ver misión oficial de la NASA: Spirit y Opportunity",
+    missionLabel: "Fuente oficial NASA: https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
     quote: "«Así como el Yuchán soltó las aguas que formaron los ríos del Chaco, mi hermano Spirit y yo recorrimos un planeta seco para demostrar que Marte también tuvo ríos y lagunas.»",
     blocks: [
       {
@@ -179,11 +190,11 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
     title: "🔥 Cuando los animales hablaban — El conejo y el fuego",
     protagonist: "Relato Wichí · El pequeño conejo chaqueño, el yaguareté y el fuego en los árboles · El Impenetrable",
-    adaptationNote: "📌 Nota pedagógica (Xiomara — Equipo NASA): Relato adaptado a la idiosincrasia del pueblo Wichí y configurado para las edades de los estudiantes (13 años · 1.° año CB · Escuela N.° 59). ¡Importante!: El audio reproduce la narración del cuento original.",
+    adaptationNote: "📌 Nota pedagógica: Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y se realizaron configuraciones especiales para adaptarlo a las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59). ¡Importante!: El audio reproduce la narración del cuento original.",
     audioSrc: "public/audio/cuento2.mp3",
     audioFallbackSrc: "audio/cuento2.mp3",
     audioTitle: "🔊 Escuchar la narración original del Cuento 2",
-    audioSubtitle: "Aclaración: El audio narra la versión original de la historia (Optimizado para baja señal · 470 KB)",
+    audioSubtitle: "Narración en voz: Berté Simeón (DNI: 44.087.200) — Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya. (Aclaración: el audio narra la versión original)",
     quote: "«Y el fuego entonces quedó guardado dentro de la madera de los árboles. Por eso cuando frotamos dos palitos, el fuego vuelve a salir. Porque es ahí donde se esconde.»",
     blocks: [
       {
@@ -205,7 +216,7 @@ window.ORBITAR_STORIES = {
       {
         type: "illustration",
         artId: "wichi-conejo-brasa",
-        caption: "Ilustración I · El pequeño conejo chaqueño tomando con valentía una brasita encendida mientras el yaguareté duerme junto a la única fogata."
+        caption: "Ilustración · El pequeño conejo chaqueño tomando con valentía una brasita encendida mientras el yaguareté duerme junto a la única fogata."
       },
       {
         type: "text",
@@ -221,8 +232,9 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "illustration",
-        artId: "wichi-palo-santo-grain",
-        caption: "Ilustración II · La brasa escondida por el conejo dentro de la madera de los árboles del monte para que todos pudieran tener fuego."
+        imageSrc: "public/fotos_reales/Arbol_2_MonumentoNacional.jpg",
+        imageFallbackSrc: "fotos_reales/Arbol_2_MonumentoNacional.jpg",
+        caption: "📷 Foto real en Misión Nueva Pompeya (Prof. Valeria Inés Couseiro) · Gran árbol junto al Monumento Histórico Nacional «La Misión» (declarado Patrimonio Nacional en 1989, primera construcción de El Impenetrable), en cuya madera —según cuenta la leyenda Wichí— quedó escondido el fuego."
       },
       {
         type: "text",
@@ -241,9 +253,9 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo ESPACIAL · Estrella 2",
     title: "Misión Dawn — La pequeña nave que llevó su brasa a dos mundos",
     protagonist: "Protagonista: Sonda Espacial Dawn («Amanecer») · Exploradora de Vesta y Ceres (NASA)",
-    adaptationNote: "🔗 Conexión en el Nivel 2: En la leyenda Wichí, el yaguareté guarda el único fuego y no lo comparte; el conejo chiquito le roba una brasa, se quema y la reparte a todos. Dawn es ese conejo: viajó sola hasta dos mundos, Vesta y Ceres, llevando luz donde no había. Cuando se le acabó el combustible, quedó dando vueltas sola alrededor de Ceres, como una brasita que se apaga despacito, pero que ya repartió su fuego.",
+    adaptationNote: "📌 Nota pedagógica: Esta historia espacial es una adaptación educativa pensada para las edades de los estudiantes, basada en la misión oficial de la NASA (Fuente: https://science.nasa.gov/mission/dawn/). 🔗 Conexión en el Nivel 2: En la leyenda Wichí, el yaguareté guarda el único fuego y no lo comparte; el conejo chiquito le roba una brasa, se quema y la reparte a todos. Dawn es ese conejo: viajó sola hasta dos mundos, Vesta y Ceres, llevando luz donde no había. Cuando se le acabó el combustible, quedó dando vueltas sola alrededor de Ceres, como una brasita que se apaga despacito, pero que ya repartió su fuego.",
     missionUrl: "https://science.nasa.gov/mission/dawn/",
-    missionLabel: "Ver misión oficial de la NASA: Sonda Dawn",
+    missionLabel: "Fuente oficial NASA: https://science.nasa.gov/mission/dawn/",
     quote: "«Dawn es ese pequeño conejo chaqueño: viajó sola hasta dos mundos lejanos, Vesta y Ceres, llevando luz donde no había, como una brasita que repartió su fuego para todos.»",
     blocks: [
       {
@@ -296,7 +308,7 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
     title: "✨ Chelchupé y el Tejido de las Mujeres Estrella",
     protagonist: "Relato Ancestral Wichí · El Camino del Cielo (Nayic) · El Impenetrable, Chaco",
-    adaptationNote: "📌 Nota pedagógica: Relato adaptado en lenguaje claro para estudiantes de 1.° año del Ciclo Básico (13 años · Escuela N.° 59 de El Impenetrable).",
+    adaptationNote: "📌 Nota pedagógica: Este relato fue adaptado respetando la idiosincrasia del pueblo Wichí y configurado en lenguaje claro para las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59 de El Impenetrable).",
     quote: "«La copa del árbol toca el río blanco de la Vía Láctea; por sus fibras de chaguar bajaban las estrellas a conversar con la tierra.»",
     blocks: [
       {
@@ -334,9 +346,9 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo ESPACIAL · Estrella 3",
     title: "Pioneer 10 — La Placa Dorada hacia las Constelaciones",
     protagonist: "Protagonista: Sonda Espacial Pioneer 10 · Primera mensajera hacia las estrellas (NASA)",
-    adaptationNote: "🔗 Conexión en el Nivel 3: Mientras el cuento Wichí recuerda la cuerda de chaguar que unía el monte con las estrellas Pléyades, la nave Pioneer 10 viaja hoy en dirección a esa misma región del cielo llevando una placa dorada con un saludo de la humanidad.",
+    adaptationNote: "📌 Nota pedagógica: Esta historia espacial es una adaptación educativa pensada para las edades de los estudiantes, basada en la misión oficial de la NASA (Fuente: https://science.nasa.gov/mission/pioneer-10/). 🔗 Conexión en el Nivel 3: Mientras el cuento Wichí recuerda la cuerda de chaguar que unía el monte con las estrellas Pléyades, la nave Pioneer 10 viaja hoy en dirección a esa misma región del cielo llevando una placa dorada con un saludo de la humanidad.",
     missionUrl: "https://science.nasa.gov/mission/pioneer-10/",
-    missionLabel: "Ver misión oficial de la NASA: Pioneer 10",
+    missionLabel: "Fuente oficial NASA: https://science.nasa.gov/mission/pioneer-10/",
     quote: "«Llevo grabada en oro la figura de un hombre y una mujer levantando la mano en señal de saludo, tendiendo un nuevo hilo entre la Tierra y las estrellas.»",
     blocks: [
       {

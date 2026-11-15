@@ -815,7 +815,8 @@
         }
         if (dom.modalAudioSub) {
           dom.modalAudioSub.textContent =
-            story.audioSubtitle || "Aclaración: El audio narra la versión original de la leyenda";
+            story.audioSubtitle ||
+            "Narración en voz: Berté Simeón (DNI: 44.087.200) — Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya";
         }
         if (dom.btnAudioBoost) {
           dom.btnAudioBoost.textContent = BOOST_MODES[currentBoostIndex].label;
@@ -873,7 +874,14 @@
           if (block.imageSrc) {
             const img = document.createElement("img");
             img.className = "modal-story-photo";
-            img.src = block.imageSrc;
+            const fallbackImgSrc =
+              block.imageFallbackSrc || block.imageSrc.replace(/^public\//, "");
+            img.onerror = function () {
+              if (img.getAttribute("src") !== fallbackImgSrc) {
+                img.setAttribute("src", fallbackImgSrc);
+              }
+            };
+            img.setAttribute("src", block.imageSrc);
             img.alt = block.caption || story.title;
             img.loading = "lazy";
             artWrap.appendChild(img);

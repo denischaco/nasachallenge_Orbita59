@@ -1973,15 +1973,16 @@ body.is-climbing .climber-avatar-img {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.42rem 0.9rem;
+  padding: 0.48rem 0.9rem;
   border-radius: 8px;
   background: rgba(46, 150, 245, 0.14);
   border: 1px solid rgba(231, 244, 52, 0.65);
   color: var(--space-neon-yellow);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 700;
   text-decoration: none;
+  word-break: break-word;
   transition: all 0.2s ease;
 }
 
@@ -2033,13 +2034,21 @@ body.is-climbing .climber-avatar-img {
   display: block;
 }
 
-.modal-story-illustration svg,
-.modal-story-photo {
+.modal-story-illustration svg {
   width: 100%;
   height: auto;
   display: block;
   max-height: 240px;
   object-fit: cover;
+}
+
+.modal-story-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 440px;
+  object-fit: contain;
+  background: rgba(16, 12, 9, 0.94);
 }
 
 .modal-story-caption {
@@ -2225,6 +2234,10 @@ body.is-climbing .climber-avatar-img {
 
   .modal-audio-subtitle {
     font-size: 0.7rem;
+  }
+
+  .modal-story-photo {
+    max-height: 300px;
   }
 
   .modal-footer {
