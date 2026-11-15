@@ -144,14 +144,18 @@ window.ORBITAR_STORIES = {
     modeTitle: "Mundo ESPACIAL · Estrella 1",
     title: "Spirit y Opportunity — Los Buscadores de los Ríos Perdidos",
     protagonist: "Protagonistas: Los robots gemelos Spirit y Opportunity · Misión de la NASA en Marte",
-    adaptationNote: "📌 Nota pedagógica: Esta historia espacial es una adaptación educativa pensada para las edades de los estudiantes, basada en la misión oficial de la NASA (Fuente: https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/). 🔗 Conexión en el Nivel 1: En el cuento Wichí, el Chaco era una tierra seca hasta que el Yuchán soltó toda el agua y formó los ríos y lagunas. En Marte pasó algo parecido: hoy es un desierto seco, pero los robots Spirit y Opportunity descubrieron las huellas de antiguos ríos y lagunas.",
+    adaptationNote: "📌 Nota pedagógica: Esta historia espacial es una adaptación educativa pensada para las edades de los estudiantes, basada en la misión oficial de la NASA (Fuente: https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/). 🔗 Hilo conector en el Nivel 1: Mientras el abuelo y su nieto miran las constelaciones debajo del palo santo en una noche de calor, uno de esos puntitos brillantes del cielo es Marte. En el relato Wichí, el Chaco era una tierra seca sin ríos ni lagunas hasta que el Yuchán soltó toda el agua. En Marte ocurrió el espejo de esa historia: hoy es un desierto seco, pero los robots gemelos Spirit y Opportunity encontraron guardada adentro de sus rocas la memoria de antiguos ríos, arroyos y lagunas.",
     missionUrl: "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
     missionLabel: "Fuente oficial NASA: https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
-    quote: "«Así como el Yuchán soltó las aguas que formaron los ríos del Chaco, mi hermano Spirit y yo recorrimos un planeta seco para demostrar que Marte también tuvo ríos y lagunas.»",
+    quote: "«Así como el Yuchán guardaba el secreto de los ríos del Chaco, las piedras de Marte guardaban el secreto de antiguos ríos y lagunas esperando a que alguien las escuchara.»",
     blocks: [
       {
         type: "text",
-        content: "Me llamo Opportunity y, junto a mi hermano gemelo Spirit, somos dos robots exploradores del tamaño de un carrito que la NASA envió al planeta Marte en el año 2004. Cuando abrí mis cámaras por primera vez, vi un suelo rojo, silencioso y completamente seco: una tierra sin ríos ni lagunas, muy parecida al Chaco antes de que el Yuchán soltara sus aguas."
+        content: "Cuando en una noche calurosa de El Impenetrable un abuelo y su nieto miran el cielo desde abajo de un palo santo, entre las estrellas que parecen bailar brilla un puntito de luz rojiza: es el planeta Marte. Hasta allí viajamos en el año 2004 mi hermano gemelo Spirit y yo, Opportunity, dos robots exploradores del tamaño de un carrito enviados por la NASA."
+      },
+      {
+        type: "text",
+        content: "Cuando abrí mis cámaras por primera vez, vi un suelo rojo, silencioso y completamente seco: una tierra sin ríos ni lagunas, idéntica al Chaco del cuento antes de que el gran Yuchán soltara sus aguas."
       },
       {
         type: "illustration",
@@ -161,11 +165,11 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "text",
-        content: "Los científicos nos enviaron con una misión muy clara: «Seguir las pistas del agua». Con mis seis ruedas y la energía que mis paneles solares tomaban del Sol, me acerqué a estudiar las piedras de un cráter. Ahí encontré miles de piedritas redondas y brillantes, del tamaño de pequeñas semillas, llamadas hematitas. ¡Esas piedritas solo se pueden formar cuando hay agua líquida!"
+        content: "Los científicos nos enviaron con una misión muy clara: «Seguir las pistas del agua». Con mis seis ruedas y la energía que mis paneles solares tomaban del Sol, me acerqué a mirar qué había guardado adentro de las rocas de un cráter. ¡Y ahí encontré miles de piedritas redondas y brillantes, del tamaño de pequeñas semillas, llamadas hematitas, que solo pueden nacer donde hubo agua!"
       },
       {
         type: "text",
-        content: "Mientras mi hermano Spirit descubría restos de antiguas aguas termales del otro lado del planeta, yo seguí caminando durante casi quince años por las orillas de antiguos arroyos y lagunas que hoy están secos, pero que hace millones de años estuvieron llenos de agua."
+        content: "Mientras mi hermano Spirit descubría restos de antiguas aguas calientes del otro lado del planeta, yo seguí caminando durante casi quince años por las orillas de antiguos ríos, arroyos y lagunas que hoy están secos, pero que hace millones de años corrieron llenos de vida."
       },
       {
         type: "illustration",
@@ -175,7 +179,7 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "text",
-        content: "Estaba pensado que mi batería durara solo tres meses, pero aguanté casi 15 años recorriendo más de 45 kilómetros hasta que una gran tormenta de polvo tapó el Sol en 2018. Nuestro viaje demostró que las piedras guardan la memoria de los ríos, y nos enseñó cuánto debemos cuidar el agua que hoy corre viva por nuestra Tierra."
+        content: "Estaba pensado que mi batería durara solo tres meses, pero aguanté casi 15 años recorriendo más de 45 kilómetros hasta que una gran tormenta de polvo tapó el Sol en 2018. Igual que el abuelo bajo el palo santo, las piedras de Marte nos contaron su historia y nos recordaron cuánto debemos cuidar los ríos y el agua viva que hoy tenemos en nuestra Tierra."
       }
     ]
   },
@@ -324,14 +328,14 @@ window.ORBITAR_STORIES = {
   },
 
   /* ==========================================================================
-     NIVEL 3: LA COPA CELESTE Y EL MENSAJE AL COSMOS (CHELCHUPÉ ↔ PIONEER 10)
+     NIVEL 3: DESDE LAS ESTRELLAS A LA TIERRA (MI HISTORIA ↔ HELICÓPTERO INGENUITY)
      ========================================================================== */
   "wichi-3": {
     id: "wichi-3",
     siblingId: "espacial-3",
-    siblingButtonLabel: "Ir al cuento ESPACIAL del Nivel 3 (Misión Pioneer 10) ★",
+    siblingButtonLabel: "Ir al cuento ESPACIAL del Nivel 3 (Helicóptero Ingenuity) ★",
     level: 3,
-    levelLabel: "Nivel 3 · La Copa y las Estrellas",
+    levelLabel: "Nivel 3 · Los Hilos del Cielo y la Sabiduría",
     mode: "wichi",
     modeTitle: "Mundo WICHÍ · Leyenda de nuestra Tierra",
     title: "✨ Mi historia — ¿Te conté alguna vez que yo vivía en las estrellas...?",
@@ -393,41 +397,65 @@ window.ORBITAR_STORIES = {
   "espacial-3": {
     id: "espacial-3",
     siblingId: "wichi-3",
-    siblingButtonLabel: "← Ir al cuento Wichí del Nivel 3",
+    siblingButtonLabel: "← Ir a «Mi historia» del Mundo Wichí (Nivel 3)",
     level: 3,
-    levelLabel: "Nivel 3 · La Copa y las Estrellas",
+    levelLabel: "Nivel 3 · Los Hilos del Cielo y la Sabiduría",
     mode: "espacial",
     modeTitle: "Mundo ESPACIAL · Estrella 3",
-    title: "Pioneer 10 — La Placa Dorada hacia las Constelaciones",
-    protagonist: "Protagonista: Sonda Espacial Pioneer 10 · Primera mensajera hacia las estrellas (NASA)",
-    adaptationNote: "📌 Nota pedagógica: Esta historia espacial es una adaptación educativa pensada para las edades de los estudiantes, basada en la misión oficial de la NASA (Fuente: https://science.nasa.gov/mission/pioneer-10/). 🔗 Conexión en el Nivel 3: Mientras el cuento Wichí recuerda la cuerda de chaguar que unía el monte con las estrellas Pléyades, la nave Pioneer 10 viaja hoy en dirección a esa misma región del cielo llevando una placa dorada con un saludo de la humanidad.",
-    missionUrl: "https://science.nasa.gov/mission/pioneer-10/",
-    missionLabel: "Fuente oficial NASA: https://science.nasa.gov/mission/pioneer-10/",
-    quote: "«Llevo grabada en oro la figura de un hombre y una mujer levantando la mano en señal de saludo, tendiendo un nuevo hilo entre la Tierra y las estrellas.»",
+    title: "Helicóptero Ingenuity — El viajero que bajó por hilos del cielo y se quedó a compartir su sabiduría",
+    protagonist: "Relato en primera persona · Helicóptero Marciano Ingenuity (NASA) · Compañero del rover Perseverance",
+    adaptationNote: "📌 Nota pedagógica: Esta historia espacial en primera persona es una adaptación educativa pensada para las edades de los estudiantes, basada en la misión oficial de la NASA (Fuente: https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/). 🔗 Hilo conector en el Nivel 3: En el relato Wichí adaptado por Xiomara, la protagonista cuenta en primera persona cómo bajaba desde las estrellas por hilitos finitos de chaguar hasta que esos hilos se cortaron; ya no pudo volver arriba y se quedó en la tierra para compartir su sabiduría y acompañar a todos, recordando siempre de dónde viene. Al pequeño helicóptero Ingenuity de la NASA le pasó exactamente lo mismo en Marte: llegó desde las estrellas, bajó despacito colgado de cables finitos que se cortaron al tocar el suelo, voló 72 veces por el cielo marciano hasta que se quebraron las puntas de sus hélices y, al no poder volver a subir al cielo, se quedó para siempre en esa tierra acompañando a Perseverance y compartiendo su sabiduría con la humanidad.",
+    missionUrl: "https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
+    missionLabel: "Fuente oficial NASA: https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/",
+    quote: "«Se cortaron las alas que me llevaban al cielo y ya no pude volver a subir, pero aquí me quedé para compartir mi sabiduría, acompañar a mi amigo en esta tierra y mirar con emoción la estrella azul de donde vengo.»",
     blocks: [
       {
         type: "text",
-        content: "Soy la nave Pioneer 10 («Pionera 10»). Despegué en el año 1972 con la misión de abrir camino por lugares donde ninguna nave había pasado antes: fui la primera en cruzar el Cinturón de Asteroides y la primera en sacar fotos de cerca al planeta gigante Júpiter."
-      },
-      {
-        type: "illustration",
-        imageSrc: "public/fotos_reales/NASA_Pioneer10_1_Placa_Dorada.jpg",
-        imageFallbackSrc: "fotos_reales/NASA_Pioneer10_1_Placa_Dorada.jpg",
-        caption: "📷 Fotografía histórica oficial de la NASA (science.nasa.gov) · La Placa Dorada instalada en la nave Pioneer 10 con el dibujo de un hombre y una mujer saludando y el mapa para encontrar nuestro Sol."
+        content: "¿Te conté alguna vez que yo también vine desde las estrellas y vivía en el cielo? Me llamo Ingenuity («Ingenio») y soy un pequeño helicóptero de apenas 1,8 kilos nacido en la Tierra. Viajé millones de kilómetros por el espacio abrazado debajo de la panza de mi gran compañero, el robot Perseverance, hasta llegar al planeta Marte."
       },
       {
         type: "text",
-        content: "Como mi viaje me iba a llevar fuera del Sistema Solar hacia el espacio profundo, el científico Carl Sagan y su equipo colocaron en mi costado una lámina de metal bañada en oro. En ella dibujaron a una mujer y un hombre de la Tierra levantando la mano para saludar en paz, junto con un mapa de estrellas para mostrar dónde está nuestro planeta."
+        content: "Para tocar el suelo marciano tuvimos que bajar desde el cielo muy despacito y con muchísimo cuidado, sostenidos primero por los hilos de un gran paracaídas y después por los cables finitos de una grúa aérea, tan delgados y tensos como los hilitos de chaguar del relato Wichí. Apenas tocamos la arena roja, esos cables se cortaron para siempre: ya no podíamos regresar al lugar de donde veníamos."
       },
       {
         type: "illustration",
-        imageSrc: "public/fotos_reales/NASA_Pioneer10_2_Espacio_Profundo.jpg",
-        imageFallbackSrc: "fotos_reales/NASA_Pioneer10_2_Espacio_Profundo.jpg",
-        caption: "📷 Imagen oficial de la misión Pioneer 10 (NASA · science.nasa.gov) · La sonda Pioneer 10 pasando junto al planeta gigante Júpiter en su viaje hacia las estrellas Aldebarán y las Pléyades."
+        images: [
+          "public/fotos_reales/NASA_Ingenuity_3_Descenso_Marte.jpg",
+          "public/fotos_reales/NASA_Ingenuity_2_En_Tierra_Marte.jpg"
+        ],
+        caption: "📷 Fotografías reales de la NASA en Marte (PIA24443 y PIA25219) · A la izquierda, el pequeño Ingenuity bajando despacito debajo de Perseverance hasta tocar la tierra; a la derecha, foto tomada desde el aire por el propio Ingenuity donde se ven el paracaídas y los «hilitos» que lo bajaron del cielo."
       },
       {
         type: "text",
-        content: "En el año 2003 envié mi última señal de radio desde más de 12.000 millones de kilómetros de distancia. Hoy sigo viajando en silencio hacia la estrella gigante Aldebarán, en la constelación de Tauro —muy cerquita de las estrellas Pléyades del relato Wichí—, llevando para siempre el recuerdo de la Tierra hacia el cielo."
+        content: "En Marte el aire es tan finito que muchos creían imposible volar allí. Yo estaba pensado para subir al cielo apenas 5 veces. Pero mis cuatro hélices ultralivianas giraron con tanta fuerza que logré convertirme en el primer helicóptero de la historia en volar en otro planeta."
+      },
+      {
+        type: "text",
+        content: "Durante casi tres años subí al cielo 72 veces. Desde allá arriba miraba el camino y ayudaba a mi compañero Perseverance en la tierra, avisándole dónde había rocas peligrosas y por dónde avanzar seguro."
+      },
+      {
+        type: "illustration",
+        imageSrc: "public/fotos_reales/NASA_Ingenuity_Hero_Vuelo.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Ingenuity_Hero_Vuelo.jpg",
+        caption: "📷 Fotografía oficial de la NASA (science.nasa.gov · PIA24581) · El helicóptero Ingenuity sobre el suelo de Marte con sus hélices listas para elevarse hacia el cielo."
+      },
+      {
+        type: "text",
+        content: "Pero en enero de 2024, cuando bajaba despacito en mi vuelo número 72, las puntas de mis hélices tocaron una duna de arena y se rompieron. Fue igual que cuando cortaron los hilos de chaguar: en ese instante se cortó el hilo que me permitía subir al cielo, y ya no pude volver a volar."
+      },
+      {
+        type: "illustration",
+        imageSrc: "public/fotos_reales/NASA_Ingenuity_Final_Arena.jpg",
+        imageFallbackSrc: "fotos_reales/NASA_Ingenuity_Final_Arena.jpg",
+        caption: "📷 Fotografía real tomada por el propio Ingenuity tras su último vuelo (NASA / JPL · PIA26243) · Sobre la arena de Marte se ve la sombra de su hélice rota cuando ya no pudo volver a subir al cielo."
+      },
+      {
+        type: "text",
+        content: "Aunque ya no puedo elevarme, no me apagué. Aquí me quedé en esta tierra para compartir mi sabiduría, acompañando a mi amigo Perseverance y guardando datos del clima marciano para los exploradores del futuro."
+      },
+      {
+        type: "text",
+        content: "Y cada noche, cuando las estrellas se encienden sobre el desierto rojo, miro hacia arriba buscando ese puntito brillante que es la Tierra y recuerdo con emoción de dónde vengo."
       }
     ]
   }
