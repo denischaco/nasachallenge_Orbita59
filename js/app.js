@@ -77,6 +77,7 @@
     dom.modalAudioTitle = document.getElementById("modal-audio-title");
     dom.modalAudioSub = document.getElementById("modal-audio-sub");
     dom.modalNativeAudio = document.getElementById("modal-native-audio");
+    dom.btnAudioBoost = document.getElementById("btn-audio-boost");
     dom.modalMissionBox = document.getElementById("modal-mission-box");
     dom.modalMissionLink = document.getElementById("modal-mission-link");
     dom.modalMissionLabel = document.getElementById("modal-mission-label");
@@ -504,6 +505,55 @@
   /* --------------------------------------------------------------------------
      3. STORY MODAL POPUP (SCROLLABLE ILLUSTRATED STORIES + SAME-LEVEL SIBLING)
      -------------------------------------------------------------------------- */
+  let audioCtx = null;
+  let audioGainNode = null;
+  const BOOST_LEVELS = [1.6, 2.2, 1.0];
+  let currentBoostIndex = 0;
+
+  function ensureWebAudioBooster() {
+    if (!dom.modalNativeAudio) return;
+    try {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        audioCtx = new AudioContextClass();
+        const source = audioCtx.createMediaElementSource(dom.modalNativeAudio);
+        const compressor = audioCtx.createDynamicsCompressor();
+        compressor.threshold.value = -20;
+        compressor.knee.value = 18;
+        compressor.ratio.value = 4;
+        compressor.attack.value = 0.005;
+        compressor.release.value = 0.2;
+
+        audioGainNode = audioCtx.createGain();
+        audioGainNode.gain.value = BOOST_LEVELS[currentBoostIndex];
+
+        source.connect(compressor);
+        compressor.connect(audioGainNode);
+        audioGainNode.connect(audioCtx.destination);
+      }
+      if (audioCtx.state === "suspended") {
+        audioCtx.resume();
+      }
+    } catch (err) {
+      // Fallback gracefully to native audio element output
+    }
+  }
+
+  function cycleAudioBoost() {
+    currentBoostIndex = (currentBoostIndex + 1) % BOOST_LEVELS.length;
+    const gainValue = BOOST_LEVELS[currentBoostIndex];
+    ensureWebAudioBooster();
+    if (audioGainNode && audioCtx) {
+      audioGainNode.gain.setValueAtTime(gainValue, audioCtx.currentTime);
+    }
+    if (dom.btnAudioBoost) {
+      const pct = Math.round(gainValue * 100);
+      dom.btnAudioBoost.innerHTML = `<span>⚡ Boost Voz: ${pct}%</span>`;
+      dom.btnAudioBoost.classList.toggle("is-active", gainValue > 1.0);
+    }
+  }
+
   function stopModalAudio() {
     if (dom.modalNativeAudio) {
       try {
@@ -989,6 +1039,14 @@
     });
 
     // Modal controls
+    if (dom.modalNativeAudio) {
+      dom.modalNativeAudio.addEventListener("play", () => {
+        ensureWebAudioBooster();
+      });
+    }
+    if (dom.btnAudioBoost) {
+      dom.btnAudioBoost.addEventListener("click", cycleAudioBoost);
+    }
     if (dom.modalCloseBtn) {
       dom.modalCloseBtn.addEventListener("click", closeStoryModal);
     }

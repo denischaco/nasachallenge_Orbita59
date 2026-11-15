@@ -846,8 +846,14 @@
         <!-- Bonus Audio Player (Wichí Native Language Narration) -->
         <div id="modal-audio-box" class="modal-native-audio-card" hidden>
           <div class="modal-audio-header">
-            <span id="modal-audio-title" class="modal-audio-kicker">🔊 Bonus: Escuchar narración en lengua nativa Wichí</span>
-            <span id="modal-audio-sub" class="modal-audio-subtitle">Relato oral original · El Impenetrable, Chaco</span>
+            <div class="modal-audio-titles">
+              <span id="modal-audio-title" class="modal-audio-kicker">🔊 Bonus: Escuchar narración en lengua nativa Wichí</span>
+              <span id="modal-audio-sub" class="modal-audio-subtitle">Audio masterizado (+17.6 dB) · El Impenetrable, Chaco</span>
+            </div>
+            <button id="btn-audio-boost" type="button" class="modal-audio-boost-btn is-active"
+              title="Alternar nivel de amplificación adicional de voz (100% / 160% / 220%)">
+              <span>⚡ Boost Voz: 160%</span>
+            </button>
           </div>
           <audio id="modal-native-audio" class="modal-native-audio-element" controls preload="metadata">
             Tu navegador no soporta la reproducción de audio.

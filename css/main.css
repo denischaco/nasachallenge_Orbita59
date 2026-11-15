@@ -1870,9 +1870,40 @@ body.is-climbing .climber-avatar-img {
 
 .modal-audio-header {
   display: flex;
-  flex-direction: column;
-  gap: 0.18rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
   margin-bottom: 0.65rem;
+}
+
+.modal-audio-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.16rem;
+}
+
+.modal-audio-boost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.68rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  border: 1px solid var(--wichi-ocre);
+  background: rgba(201, 122, 43, 0.16);
+  color: var(--wichi-chaguar-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-audio-boost-btn.is-active,
+.modal-audio-boost-btn:hover {
+  background: var(--wichi-ocre);
+  color: var(--wichi-tinte-negro);
+  box-shadow: 0 0 12px rgba(201, 122, 43, 0.45);
 }
 
 .modal-audio-kicker {
