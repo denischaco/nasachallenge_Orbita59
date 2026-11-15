@@ -1528,6 +1528,28 @@ body.is-climbing .climber-avatar-img {
   flex-direction: column;
 }
 
+.credits-open-list li.credit-person-with-photo {
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.72rem;
+}
+
+.credit-member-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 2px solid var(--wichi-ocre);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.75), 0 0 10px rgba(201, 122, 43, 0.35);
+}
+
+.credit-person-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
 .credit-role-or-name {
   font-weight: 700;
   font-size: 0.83rem;
