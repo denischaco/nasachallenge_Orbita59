@@ -73,6 +73,13 @@
     dom.modalBackdrop = document.getElementById("story-modal");
     dom.modalDialog = document.getElementById("story-modal-dialog");
     dom.modalStoryScroll = document.getElementById("modal-story-scroll");
+    dom.modalAudioBox = document.getElementById("modal-audio-box");
+    dom.modalAudioTitle = document.getElementById("modal-audio-title");
+    dom.modalAudioSub = document.getElementById("modal-audio-sub");
+    dom.modalNativeAudio = document.getElementById("modal-native-audio");
+    dom.modalMissionBox = document.getElementById("modal-mission-box");
+    dom.modalMissionLink = document.getElementById("modal-mission-link");
+    dom.modalMissionLabel = document.getElementById("modal-mission-label");
     dom.modalCloseBtn = document.getElementById("modal-close-btn");
     dom.modalCloseFooterBtn = document.getElementById("modal-close-footer-btn");
     dom.modalNextStoryBtn = document.getElementById("modal-next-story-btn");
@@ -497,32 +504,51 @@
   /* --------------------------------------------------------------------------
      3. STORY MODAL POPUP (SCROLLABLE ILLUSTRATED STORIES + SAME-LEVEL SIBLING)
      -------------------------------------------------------------------------- */
+  function stopModalAudio() {
+    if (dom.modalNativeAudio) {
+      try {
+        dom.modalNativeAudio.pause();
+        dom.modalNativeAudio.currentTime = 0;
+      } catch (err) {
+        // Ignore audio reset errors
+      }
+    }
+  }
+
   function renderStoryIllustrationSVG(artId, mode) {
     if (mode === "wichi") {
-      if (artId === "wichi-yuchan-water") {
-        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del Gran Yuchán resguardando los peces y el agua primordial">
+      if (artId === "wichi-yuchan-dorado" || artId === "wichi-yuchan-water") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del enorme Yuchán resguardando el agua y al dorado sagrado de cola colorada">
           <rect width="640" height="220" fill="#1A1512"/>
           <rect x="0" y="0" width="640" height="14" fill="url(#yicaPattern)"/>
           <rect x="0" y="206" width="640" height="14" fill="url(#yicaPattern)"/>
-          <ellipse cx="320" cy="110" rx="82" ry="74" fill="#2A2019" stroke="#C97A2B" stroke-width="4"/>
-          <ellipse cx="320" cy="110" rx="58" ry="52" fill="#162319" stroke="#339136" stroke-width="2.5"/>
-          <path d="M286,98 Q320,78 350,98 Q320,118 286,98 Z" fill="#F48138"/>
-          <polygon points="280,98 264,87 264,109" fill="#F48138"/>
-          <path d="M352,126 Q320,108 292,126 Q320,144 352,126 Z" fill="#E2D3BA"/>
-          <polygon points="358,126 374,115 374,137" fill="#E2D3BA"/>
-          <path d="M110,175 Q210,145 250,165 M390,165 Q430,145 530,175" stroke="#C97A2B" stroke-width="3.5" fill="none"/>
-          <text x="320" y="30" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">LLACH'E · LA VASIJA VIVIENTE DEL YUCHÁN</text>
+          <ellipse cx="320" cy="112" rx="86" ry="74" fill="#2A2019" stroke="#C97A2B" stroke-width="4"/>
+          <ellipse cx="320" cy="112" rx="62" ry="52" fill="#13251B" stroke="#339136" stroke-width="2.5"/>
+          <!-- El Dorado Sagrado con cola brillante y colorada -->
+          <path d="M278,100 Q318,76 356,100 Q318,124 278,100 Z" fill="#F48138" stroke="#F3EBDD" stroke-width="1.5"/>
+          <polygon points="274,100 252,85 256,100 252,115" fill="#E03C1F" stroke="#F48138" stroke-width="1.2"/>
+          <circle cx="342" cy="98" r="2.8" fill="#1A1512"/>
+          <!-- Otros peces nadando en el interior -->
+          <path d="M352,132 Q324,116 296,132 Q324,148 352,132 Z" fill="#E2D3BA"/>
+          <polygon points="356,132 372,122 372,142" fill="#E2D3BA"/>
+          <path d="M90,176 Q190,152 240,168 M400,168 Q450,152 550,176" stroke="#C97A2B" stroke-width="3.5" fill="none"/>
+          <text x="320" y="30" text-anchor="middle" fill="#F3EBDD" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.8">EL YUCHÁN Y EL DORADO SAGRADO DE COLA COLORADA</text>
         </svg>`;
       }
-      if (artId === "wichi-pilcomayo-river") {
-        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del nacimiento de los ríos Pilcomayo y Bermejo">
+      if (artId === "wichi-tokwaj-rios" || artId === "wichi-pilcomayo-river") {
+        return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de la flecha de Tokwaj y el Yuchán liberando los ríos y lagunas">
           <rect width="640" height="220" fill="#1E1713"/>
-          <path d="M0,135 Q160,95 320,135 T640,130" stroke="#C97A2B" stroke-width="18" fill="none" opacity="0.45"/>
-          <path d="M0,150 Q160,110 320,150 T640,145" stroke="#F3EBDD" stroke-width="4" fill="none" stroke-dasharray="10 6"/>
-          <path d="M0,170 Q160,130 320,170 T640,165" stroke="#339136" stroke-width="3.5" fill="none"/>
-          <polygon points="320,32 358,84 320,136 282,84" fill="#2A2019" stroke="#C97A2B" stroke-width="3"/>
-          <polygon points="320,50 342,84 320,118 298,84" fill="none" stroke="#E2D3BA" stroke-width="2"/>
-          <text x="320" y="198" text-anchor="middle" fill="#E2D3BA" font-family="Sansita, sans-serif" font-size="13" letter-spacing="2">TEWOK · EL CAUCE QUE NUTRE EL MONTE</text>
+          <!-- Flecha de Tokwaj -->
+          <line x1="120" y1="42" x2="292" y2="96" stroke="#F3EBDD" stroke-width="3.5"/>
+          <polygon points="298,98 282,86 286,102" fill="#E03C1F"/>
+          <!-- Ríos, lagunas y arroyos brotando en todas direcciones -->
+          <path d="M320,104 Q190,115 20,155" stroke="#2E96F5" stroke-width="12" fill="none" opacity="0.65"/>
+          <path d="M320,104 Q450,115 620,155" stroke="#2E96F5" stroke-width="12" fill="none" opacity="0.65"/>
+          <path d="M0,145 Q160,105 320,145 T640,140" stroke="#C97A2B" stroke-width="14" fill="none" opacity="0.45"/>
+          <path d="M0,162 Q160,122 320,162 T640,155" stroke="#F3EBDD" stroke-width="3.5" fill="none" stroke-dasharray="10 6"/>
+          <path d="M0,178 Q160,138 320,178 T640,172" stroke="#339136" stroke-width="3.5" fill="none"/>
+          <polygon points="320,38 356,88 320,138 284,88" fill="#2A2019" stroke="#F48138" stroke-width="3"/>
+          <text x="320" y="200" text-anchor="middle" fill="#E2D3BA" font-family="Sansita, sans-serif" font-size="13" letter-spacing="1.8">TOKWAJ Y EL ESTALLIDO QUE FORMÓ LOS RÍOS Y LAGUNAS</text>
         </svg>`;
       }
       if (artId === "wichi-ember-guardian") {
@@ -572,77 +598,107 @@
       </svg>`;
     }
 
-    // Mode === "espacial" (NASA Space Apps Challenge palette)
-    if (artId === "space-apollo-bootprint") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Registro visual NASA Apolo 11 en el Mar de la Tranquilidad">
+    // Mode === "espacial" (3 Selected Official NASA Missions)
+    if (artId === "space-rovers-water") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rovers Spirit y Opportunity siguiendo las huellas del agua en Marte">
         <rect width="640" height="220" fill="#07173F"/>
-        <path d="M0,165 Q320,130 640,165 L640,220 L0,220 Z" fill="#151622" stroke="#2E96F5" stroke-width="2"/>
-        <polygon points="320,54 358,125 282,125" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
-        <line x1="282" y1="125" x2="255" y2="158" stroke="#E7F434" stroke-width="3"/>
-        <line x1="358" y1="125" x2="385" y2="158" stroke="#E7F434" stroke-width="3"/>
-        <circle cx="490" cy="68" r="24" fill="#2E96F5" stroke="#339136" stroke-width="4"/>
-        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">APOLLO 11 · EAGLE LANDING · TRANQUILLITATIS</text>
+        <path d="M0,155 Q180,120 340,152 T640,145 L640,220 L0,220 Z" fill="#2A1A17" stroke="#F48138" stroke-width="2"/>
+        <!-- Cauce antiguo de agua marciana -->
+        <path d="M70,178 Q240,138 380,172 T590,168" stroke="#2E96F5" stroke-width="6" stroke-dasharray="10 5" fill="none"/>
+        <!-- Rover Opportunity silueta -->
+        <rect x="285" y="102" width="70" height="26" rx="4" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
+        <line x1="335" y1="102" x2="345" y2="62" stroke="#E7F434" stroke-width="3"/>
+        <rect x="333" y="52" width="24" height="12" rx="2" fill="#E7F434"/>
+        <circle cx="292" cy="142" r="10" fill="#151622" stroke="#E7F434" stroke-width="2.5"/>
+        <circle cx="320" cy="144" r="10" fill="#151622" stroke="#E7F434" stroke-width="2.5"/>
+        <circle cx="348" cy="142" r="10" fill="#151622" stroke="#E7F434" stroke-width="2.5"/>
+        <!-- Hematite blueberries -->
+        <circle cx="205" cy="166" r="5" fill="#2E96F5"/><circle cx="222" cy="174" r="4.5" fill="#2E96F5"/>
+        <circle cx="435" cy="168" r="5" fill="#2E96F5"/><circle cx="454" cy="162" r="4" fill="#2E96F5"/>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">MARS EXPLORATION ROVERS · SPIRIT &amp; OPPORTUNITY · FOLLOW THE WATER</text>
       </svg>`;
     }
-    if (artId === "space-earthrise-oasis") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="La Tierra vista desde el horizonte lunar">
+    if (artId === "space-opportunity-tracks") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Huellas de Opportunity en Meridiani Planum y el cráter Endeavour">
         <rect width="640" height="220" fill="#050D24"/>
-        <circle cx="320" cy="98" r="52" fill="#1B2B85" stroke="#2E96F5" stroke-width="3"/>
-        <path d="M292,78 Q318,65 340,88 T315,126 Z" fill="#339136"/>
-        <circle cx="320" cy="98" r="58" fill="none" stroke="#E7F434" stroke-width="1.5" stroke-dasharray="5 5"/>
-        <path d="M0,178 Q320,148 640,178" stroke="#857F74" stroke-width="4" fill="none"/>
-        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">EARTHRISE OASIS · LUNAR ORBIT TELEMETRY</text>
+        <path d="M0,130 Q320,95 640,130 L640,220 L0,220 Z" fill="#1F1518" stroke="#C97A2B" stroke-width="2"/>
+        <path d="M120,215 Q240,155 305,112" stroke="#E7F434" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
+        <path d="M165,215 Q275,155 335,112" stroke="#E7F434" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
+        <circle cx="490" cy="64" r="22" fill="rgba(46,150,245,0.25)" stroke="#2E96F5" stroke-width="2.5"/>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">MER-B OPPORTUNITY · 45.16 KM ODYSSEY · ANCIENT SHORELINES</text>
       </svg>`;
     }
-    if (artId === "space-saocom-radar") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Telemetría radar banda L SAOCOM sobre El Impenetrable">
+    if (artId === "space-insight-seis") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Módulo InSight y sismómetro SEIS sobre la corteza de Marte">
         <rect width="640" height="220" fill="#07173F"/>
-        <g stroke="rgba(46,150,245,0.22)" stroke-width="1">
-          <line x1="0" y1="55" x2="640" y2="55"/><line x1="0" y1="110" x2="640" y2="110"/><line x1="0" y1="165" x2="640" y2="165"/>
-          <line x1="160" y1="0" x2="160" y2="220"/><line x1="320" y1="0" x2="320" y2="220"/><line x1="480" y1="0" x2="480" y2="220"/>
-        </g>
-        <polygon points="320,42 175,185 465,185" fill="rgba(231,244,52,0.12)" stroke="#E7F434" stroke-width="2" stroke-dasharray="6 4"/>
-        <rect x="292" y="24" width="56" height="22" rx="4" fill="#1B2B85" stroke="#E7F434" stroke-width="2"/>
-        <rect x="230" y="28" width="54" height="14" fill="#2E96F5"/><rect x="356" y="28" width="54" height="14" fill="#2E96F5"/>
-        <path d="M160,185 Q250,155 320,178 T490,175" stroke="#339136" stroke-width="5" fill="none"/>
-        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">SAR L-BAND · 1.275 GHz · ALT 619 KM</text>
+        <line x1="0" y1="150" x2="640" y2="150" stroke="#F48138" stroke-width="3"/>
+        <!-- Lander body & solar arrays -->
+        <rect x="275" y="96" width="76" height="28" rx="4" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
+        <circle cx="220" cy="110" r="32" fill="rgba(46,150,245,0.22)" stroke="#2E96F5" stroke-width="2"/>
+        <circle cx="406" cy="110" r="32" fill="rgba(46,150,245,0.22)" stroke="#2E96F5" stroke-width="2"/>
+        <!-- Robotic arm & SEIS dome -->
+        <polyline points="335,96 390,68 455,134" stroke="#E7F434" stroke-width="3" fill="none"/>
+        <path d="M435,150 Q455,120 475,150 Z" fill="#E7F434"/>
+        <!-- Seismic waves below ground -->
+        <path d="M415,168 Q455,192 495,168" stroke="#F48138" stroke-width="2.5" fill="none"/>
+        <path d="M395,180 Q455,212 515,180" stroke="#E7F434" stroke-width="2" stroke-dasharray="5 4" fill="none"/>
+        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">NASA INSIGHT · SEIS SEISMOMETER · 1,319 MARSQUAKES DETECTED</text>
       </svg>`;
     }
-    if (artId === "space-chaco-moisture") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa de humedad de suelo del Gran Chaco">
+    if (artId === "space-insight-core") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interior profundo y núcleo líquido caliente detectado por InSight">
         <rect width="640" height="220" fill="#091533"/>
-        <circle cx="320" cy="110" r="76" fill="none" stroke="#2E96F5" stroke-width="2"/>
-        <circle cx="320" cy="110" r="52" fill="rgba(51,145,54,0.22)" stroke="#339136" stroke-width="2"/>
-        <circle cx="320" cy="110" r="24" fill="rgba(231,244,52,0.28)" stroke="#E7F434" stroke-width="2"/>
-        <path d="M80,155 L170,115 L250,132 L320,78 L410,98 L510,64 L575,85" stroke="#E7F434" stroke-width="3" fill="none"/>
-        <text x="24" y="32" fill="#2E96F5" font-family="JetBrains Mono, monospace" font-size="11">CHACO SOIL MOISTURE INDEX · SYNC OK</text>
+        <circle cx="320" cy="116" r="78" fill="#2A1A17" stroke="#C97A2B" stroke-width="3"/>
+        <circle cx="320" cy="116" r="54" fill="#5A2713" stroke="#F48138" stroke-width="2.5"/>
+        <circle cx="320" cy="116" r="30" fill="#E7F434" stroke="#FFFFFF" stroke-width="2"/>
+        <path d="M110,116 L240,116 M400,116 L530,116" stroke="#2E96F5" stroke-width="2" stroke-dasharray="6 4"/>
+        <text x="24" y="32" fill="#2E96F5" font-family="JetBrains Mono, monospace" font-size="11">PLANETARY INTERIOR · LIQUID CORE HEAT &amp; SEISMIC HEARTBEAT</text>
       </svg>`;
     }
-    if (artId === "space-golden-record") {
-      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="El Disco de Oro de las sondas Voyager">
+    if (artId === "space-pioneer-plaque") {
+      return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="La Placa Dorada de Pioneer 10 con el mapa de púlsares y las figuras humanas">
         <rect width="640" height="220" fill="#050D24"/>
-        <circle cx="320" cy="112" r="74" fill="rgba(231,244,52,0.14)" stroke="#E7F434" stroke-width="3.5"/>
-        <circle cx="320" cy="112" r="52" fill="none" stroke="#F48138" stroke-width="1.8" stroke-dasharray="8 4"/>
-        <circle cx="320" cy="112" r="18" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
-        <g stroke="#2E96F5" stroke-width="1.8">
-          <line x1="170" y1="112" x2="228" y2="112"/><line x1="412" y1="112" x2="470" y2="112"/>
-          <line x1="215" y1="55" x2="255" y2="82"/><line x1="385" y1="142" x2="425" y2="168"/>
+        <rect x="170" y="42" width="300" height="148" rx="8" fill="rgba(231,244,52,0.12)" stroke="#E7F434" stroke-width="3"/>
+        <!-- Pulsar starburst on left -->
+        <circle cx="245" cy="116" r="5" fill="#E7F434"/>
+        <g stroke="#E7F434" stroke-width="1.8">
+          <line x1="245" y1="116" x2="195" y2="68"/><line x1="245" y1="116" x2="190" y2="116"/>
+          <line x1="245" y1="116" x2="202" y2="162"/><line x1="245" y1="116" x2="295" y2="72"/>
+          <line x1="245" y1="116" x2="298" y2="158"/><line x1="245" y1="116" x2="245" y2="58"/>
         </g>
-        <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">VOYAGER GOLDEN RECORD · PULSAR MAP &amp; SOUNDS OF EARTH</text>
+        <!-- Two human figures silhouette on right -->
+        <circle cx="372" cy="78" r="8" fill="none" stroke="#E7F434" stroke-width="2.2"/>
+        <line x1="372" y1="86" x2="372" y2="132" stroke="#E7F434" stroke-width="2.2"/>
+        <polyline points="356,108 372,94 392,76" stroke="#E7F434" stroke-width="2.2" fill="none"/>
+        <line x1="372" y1="132" x2="362" y2="166" stroke="#E7F434" stroke-width="2.2"/>
+        <line x1="372" y1="132" x2="382" y2="166" stroke="#E7F434" stroke-width="2.2"/>
+        <circle cx="416" cy="84" r="7.5" fill="none" stroke="#E7F434" stroke-width="2.2"/>
+        <line x1="416" y1="92" x2="416" y2="134" stroke="#E7F434" stroke-width="2.2"/>
+        <line x1="416" y1="134" x2="408" y2="166" stroke="#E7F434" stroke-width="2.2"/>
+        <line x1="416" y1="134" x2="424" y2="166" stroke="#E7F434" stroke-width="2.2"/>
+        <text x="24" y="28" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">PIONEER 10 GOLDEN PLAQUE · HUMAN GREETING &amp; PULSAR MAP</text>
       </svg>`;
     }
-    return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Voyager 1 navegando en el espacio interestelar">
+    return `<svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pioneer 10 navegando hacia Aldebarán y las Pléyades">
       <rect width="640" height="220" fill="#07173F"/>
-      <ellipse cx="320" cy="110" rx="190" ry="62" fill="rgba(46,150,245,0.18)" stroke="#2E96F5" stroke-width="2"/>
-      <ellipse cx="320" cy="110" rx="110" ry="36" fill="rgba(244,129,56,0.22)" stroke="#F48138" stroke-width="2"/>
-      <circle cx="320" cy="110" r="10" fill="#E7F434"/>
-      <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">HELIOPAUSE CROSSING · 24B KM · ORBITA 59</text>
+      <path d="M70,170 Q280,105 550,58" stroke="#2E96F5" stroke-width="3" stroke-dasharray="8 5" fill="none"/>
+      <circle cx="550" cy="58" r="14" fill="#F48138" stroke="#E7F434" stroke-width="2.5"/>
+      <!-- Pleiades cluster nearby -->
+      <g fill="#E7F434">
+        <circle cx="470" cy="48" r="3.5"/><circle cx="485" cy="42" r="4"/><circle cx="496" cy="52" r="3"/>
+        <circle cx="478" cy="60" r="3.5"/><circle cx="508" cy="44" r="3"/>
+      </g>
+      <polygon points="240,126 278,106 278,146" fill="#1B2B85" stroke="#E7F434" stroke-width="2.5"/>
+      <text x="24" y="32" fill="#E7F434" font-family="JetBrains Mono, monospace" font-size="11">PIONEER 10 INTERSTELLAR TRAJECTORY · TAURUS &amp; PLEIADES</text>
     </svg>`;
   }
 
   function openStoryModal(storyId) {
     const story = window.ORBITAR_STORIES && window.ORBITAR_STORIES[storyId];
     if (!story || !dom.modalBackdrop) return;
+
+    // Stop any playing audio from previous story before switching
+    stopModalAudio();
 
     // Lock background scroll position at the exact tree altitude where modal opened
     if (!state.isModalOpen) {
@@ -667,6 +723,46 @@
     dom.modalTitle.textContent = story.title;
     dom.modalProtagonist.textContent = story.protagonist;
     dom.modalQuote.textContent = story.quote;
+
+    // Bonus Audio Player (e.g. Wichí Level 1 native-language narration cuento.mp4)
+    if (dom.modalAudioBox && dom.modalNativeAudio) {
+      if (story.audioSrc) {
+        dom.modalAudioBox.hidden = false;
+        if (dom.modalAudioTitle) {
+          dom.modalAudioTitle.textContent =
+            story.audioTitle || "🔊 Escuchar narración en lengua nativa Wichí";
+        }
+        if (dom.modalAudioSub) {
+          dom.modalAudioSub.textContent =
+            story.audioSubtitle || "Audio original del relato";
+        }
+        const fallback = story.audioFallbackSrc || "audio/cuento.mp4";
+        dom.modalNativeAudio.innerHTML = `
+          <source src="${story.audioSrc}" type="audio/mp4">
+          <source src="${fallback}" type="audio/mp4">
+          <source src="${story.audioSrc}" type="video/mp4">
+          <source src="${fallback}" type="video/mp4">
+        `;
+        dom.modalNativeAudio.load();
+      } else {
+        dom.modalAudioBox.hidden = true;
+        dom.modalNativeAudio.innerHTML = "";
+      }
+    }
+
+    // Official NASA Mission Link (Space Mode)
+    if (dom.modalMissionBox && dom.modalMissionLink) {
+      if (story.missionUrl) {
+        dom.modalMissionBox.hidden = false;
+        dom.modalMissionLink.href = story.missionUrl;
+        if (dom.modalMissionLabel) {
+          dom.modalMissionLabel.textContent =
+            story.missionLabel || "Ver misión oficial en science.nasa.gov";
+        }
+      } else {
+        dom.modalMissionBox.hidden = true;
+      }
+    }
 
     // Update the same-level sibling button label (Wichí -> Space or Space -> Wichí)
     if (dom.modalNextStoryLabel && story.siblingButtonLabel) {
@@ -731,6 +827,7 @@
 
   function closeStoryModal() {
     if (!dom.modalBackdrop) return;
+    stopModalAudio();
     state.isModalOpen = false;
     dom.modalBackdrop.classList.remove("is-open");
     dom.modalBackdrop.setAttribute("aria-hidden", "true");

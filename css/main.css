@@ -1854,6 +1854,79 @@ body.is-climbing .climber-avatar-img {
   color: var(--space-neon-yellow);
 }
 
+/* Native Language Audio Player Card (Wichí Mode Bonus) */
+.modal-native-audio-card {
+  margin-bottom: var(--space-3);
+  padding: 0.9rem 1.05rem;
+  border-radius: 6px;
+  background: linear-gradient(145deg, rgba(42, 32, 25, 0.94), rgba(26, 21, 18, 0.98));
+  border: 1.5px solid var(--wichi-ocre);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 18px rgba(201, 122, 43, 0.22);
+}
+
+.modal-native-audio-card[hidden] {
+  display: none !important;
+}
+
+.modal-audio-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  margin-bottom: 0.65rem;
+}
+
+.modal-audio-kicker {
+  font-family: var(--font-wichi-title);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--wichi-chaguar-light);
+  letter-spacing: 0.02em;
+}
+
+.modal-audio-subtitle {
+  font-size: 0.76rem;
+  color: var(--wichi-ocre);
+  font-weight: 600;
+}
+
+.modal-native-audio-element {
+  width: 100%;
+  height: 40px;
+  border-radius: 999px;
+  outline: none;
+  accent-color: var(--wichi-ocre);
+}
+
+/* Official NASA Mission Link Box (Space Mode) */
+.modal-mission-box {
+  margin-bottom: var(--space-3);
+}
+
+.modal-mission-box[hidden] {
+  display: none !important;
+}
+
+.modal-nasa-mission-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.42rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(46, 150, 245, 0.14);
+  border: 1px solid rgba(231, 244, 52, 0.65);
+  color: var(--space-neon-yellow);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.modal-nasa-mission-link:hover {
+  background: var(--space-neon-yellow);
+  color: #07173F;
+}
+
 .modal-quote-box {
   padding: 0.9rem 1.2rem;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;

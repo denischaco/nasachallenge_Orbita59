@@ -2,48 +2,59 @@
  * ORBITA 59 — Narrative Database (3 Levels × 2 Modes = 6 Interactive Stories)
  * Each story belongs to either:
  * - "wichi": Cultura Wichí de El Impenetrable, Chaco
- * - "espacial": NASA International Space Apps Challenge
- * Includes illustrated visual plates (SVG scenes + optional photo URLs) and same-level sibling links.
+ * - "espacial": NASA International Space Apps Challenge (3 selected NASA Missions paired with the Wichí stories)
+ * Includes native-language audio support for Wichí Level 1 and illustrated visual plates.
  */
 
 window.ORBITAR_STORIES = {
+  /* ==========================================================================
+     NIVEL 1: EL ORIGEN DE LAS AGUAS (YUCHÁN ↔ SPIRIT & OPPORTUNITY)
+     ========================================================================== */
   "wichi-1": {
     id: "wichi-1",
     siblingId: "espacial-1",
-    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 1 ★",
+    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 1 (Spirit y Opportunity) ★",
     level: 1,
-    levelLabel: "Nivel 1 · Raíces y Horizonte",
+    levelLabel: "Nivel 1 · El Origen de las Aguas",
     mode: "wichi",
     modeTitle: "Modo WICHÍ · Mito de la Tierra",
-    title: "El Gran Yuchán y el Agua Primordial",
-    protagonist: "Relato Ancestral Wichí · El Árbol Madre (Llach'e) · El Impenetrable, Chaco",
-    quote: "«En el vientre del árbol botella dormían todos los ríos y todos los peces del mundo, esperando fluir para dar vida al monte.»",
+    title: "🌳 La Leyenda del Yuchán — El origen de las aguas",
+    protagonist: "Relato Ancestral Wichí · Chiláj, Tokwaj y el Árbol Madre (Yuchán) · El Impenetrable, Chaco",
+    audioSrc: "public/audio/cuento.mp4",
+    audioFallbackSrc: "audio/cuento.mp4",
+    audioTitle: "🔊 Bonus: Escuchar narración en lengua nativa Wichí",
+    audioSubtitle: "Audio original del relato «La Leyenda del Yuchán — El origen de las aguas»",
+    quote: "«Había una regla sagrada: podían pescar cualquier pez, menos el dorado. Era considerado el pez sagrado, el más grande y hermoso de todos, y estaba prohibido tocarlo.»",
     blocks: [
       {
         type: "text",
-        content: "Cuentan los ancianos wichí que, en el principio de los tiempos, la tierra del Gran Chaco era árida y silenciosa. Toda el agua del universo estaba guardada dentro del tronco abultado del gran Yuchán —el palo borracho sagrado—, cuyas raíces profundas abrazaban el corazón oscuro de la tierra."
+        content: "Hace muchísimo tiempo, el Chaco era una tierra seca, sin ríos ni lagunas. Toda el agua del mundo estaba guardada adentro de un enorme Yuchán (palo borracho). Y no solo agua: también había peces nadando en su interior."
       },
       {
         type: "illustration",
-        artId: "wichi-yuchan-water",
-        caption: "Ilustración I · El vientre del Gran Yuchán (Llach'e) resguardando los cardúmenes y las aguas primordiales en las raíces del monte chaqueño."
+        artId: "wichi-yuchan-dorado",
+        caption: "Ilustración I · El enorme Yuchán en medio del Chaco seco, guardando en su interior toda el agua del mundo y al dorado sagrado de cola brillante y colorada."
       },
       {
         type: "text",
-        content: "Dentro de su corteza espinosa nadaban el dorado, el surubí y el sábalo. Nadie pasaba sed si pedía con respeto unas gotas a sus ramas bajas.Las mujeres tejían sus yicas con fibra de chaguar junto a la sombra fresca del gran árbol, escuchando el murmullo del agua interior."
+        content: "La gente podía acercarse, abrir una pequeña abertura que tenía el árbol y sacar agua y pescar lo justo para comer. Pero había una regla sagrada: podían pescar cualquier pez, menos el dorado. Era considerado el pez sagrado, el más grande y hermoso de todos, y estaba prohibido tocarlo."
       },
       {
         type: "text",
-        content: "Pero un día Tokwjaj, inquieto y desmesurado, quiso atrapar para sí al pez más grande de las profundidades y clavó su lanza en el vientre del árbol madre."
+        content: "Chiláj, el protector de los peces, le había advertido a todos que respetaran esa regla. Pero un día, un hombre llamado Tokwaj decidió no hacer caso. Vio al dorado, con su cola brillante y colorada, y quiso atraparlo."
       },
       {
         type: "illustration",
-        artId: "wichi-pilcomayo-river",
-        caption: "Ilustración II · El nacimiento de los ríos Pilcomayo y Bermejo brotando desde las raíces hacia la llanura de El Impenetrable."
+        artId: "wichi-tokwaj-rios",
+        caption: "Ilustración II · La flecha de Tokwaj hiere al dorado y el Yuchán estalla liberando los ríos, las lagunas y los arroyos del mundo."
       },
       {
         type: "text",
-        content: "De la herida del Yuchán brotó un torrente luminoso que corrió por la tierra seca, dibujando los meandros del río Pilcomayo y del Bermejo. Así las raíces del árbol cósmico se convirtieron en los ríos que hoy alimentan la vida, recordándonos que quien cuida la raíz cuida el agua del mundo."
+        content: "Cuando lo hirió con su flecha, el Yuchán empezó a sacudirse con fuerza y reventó. Toda el agua que tenía adentro salió disparada por todas partes, formando los ríos, las lagunas y los arroyos que hoy conocemos en el mundo."
+      },
+      {
+        type: "text",
+        content: "Por eso se dice que antes de ese día no había ríos, y que el Yuchán fue quien los guardó y luego los soltó."
       }
     ]
   },
@@ -51,51 +62,60 @@ window.ORBITAR_STORIES = {
   "espacial-1": {
     id: "espacial-1",
     siblingId: "wichi-1",
-    siblingButtonLabel: "← Ir al relato WICHÍ del Nivel 1",
+    siblingButtonLabel: "← Ir a La Leyenda del Yuchán (Nivel 1)",
     level: 1,
-    levelLabel: "Nivel 1 · Raíces y Horizonte",
+    levelLabel: "Nivel 1 · El Origen de las Aguas",
     mode: "espacial",
     modeTitle: "Modo ESPACIAL · Estrella Alfa",
-    title: "El Primer Paso en el Mar de la Tranquilidad",
-    protagonist: "Protagonista: Neil Armstrong · Comandante de la Misión Apolo 11 (NASA)",
-    quote: "«Cuando levanté mi pulgar frente a la ventana del Eagle, pude cubrir toda la Tierra: cada río, cada árbol y cada ser humano que jamás existió.»",
+    title: "Spirit y Opportunity — Los Buscadores de los Ríos Perdidos",
+    protagonist: "Protagonista: Rover Opportunity (MER-B) · Misión Mars Exploration Rovers (NASA)",
+    missionUrl: "https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/",
+    missionLabel: "Misión Oficial NASA: Mars Exploration Rovers (Spirit & Opportunity)",
+    quote: "«Así como el Yuchán soltó las aguas que formaron los ríos del Chaco, mi hermano Spirit y yo recorrimos un planeta seco para demostrar que Marte también tuvo ríos, lagunas y mares antiguos.»",
     blocks: [
       {
         type: "text",
-        content: "Soy Neil Armstrong. Cuando el motor de descenso del módulo lunar Eagle se apagó sobre el Mar de la Tranquilidad, el silencio que nos rodeó fue más profundo que cualquier silencio en la Tierra. Nos quedaban apenas segundos de combustible, pero estábamos posados sobre otro mundo."
+        content: "Me llamo Opportunity, y junto a mi gemelo Spirit aterrizamos en Marte en enero de 2004. Cuando abrí mis cámaras panorámicas por primera vez en Meridiani Planum, vi una llanura rojiza, silenciosa y completamente seca: un desierto sin ríos ni lagunas, muy parecido al Chaco antiguo antes de que el gran Yuchán abriera sus aguas."
       },
       {
         type: "illustration",
-        artId: "space-apollo-bootprint",
-        caption: "Registro Visual NASA · Descenso del Módulo Lunar Eagle y la primera huella sobre el regolito del Mar de la Tranquilidad (20 de julio de 1969)."
+        artId: "space-rovers-water",
+        caption: "Registro Visual NASA MER · Los rovers gemelos Spirit y Opportunity explorando antiguos cauces secos y esférulas de hematita formadas por el agua en Marte."
       },
       {
         type: "text",
-        content: "Al bajar por los nueve peldaños de la escalerilla y apoyar mi bota sobre el regolito lunar, sentí que el polvo fino era como carbón mineral. Miré hacia el horizonte curvado y negro, sin atmósfera que difuminara la luz del Sol."
+        content: "Los científicos de la NASA nos enviaron con un mandato claro: «Seguir el agua». Al acercar mi brazo robótico a las rocas estratificadas del cráter Eagle, descubrí miles de pequeñas esferas minerales brillantes a las que llamaron «arándanos» de hematita. Aquellas esferas sólo podían haberse formado dentro del agua líquida."
+      },
+      {
+        type: "text",
+        content: "Mientras mi hermano Spirit exploraba antiguas fuentes termales al otro lado del planeta en el cráter Gusev, yo seguí rodando durante casi quince años a lo largo de antiguos bordes de lagunas y arroyos marcianos, hallando vetas de yeso donde el agua alguna vez corrió libremente por la superficie."
       },
       {
         type: "illustration",
-        artId: "space-earthrise-oasis",
-        caption: "Telemetría Orbital · La Tierra suspendida como una esfera azul y verde sobre el horizonte lunar."
+        artId: "space-opportunity-tracks",
+        caption: "Telemetría NASA · Más de 45 kilómetros de huellas sobre las antiguas riberas del Valle de la Perseverancia en el cráter Endeavour."
       },
       {
         type: "text",
-        content: "Pero lo que transformó mi vida no fue mirar el suelo gris de la Luna, sino alzar la vista hacia arriba: allí flotaba la Tierra, un oasis verde y azul increíblemente frágil suspendido en la oscuridad. Comprendí entonces que no habíamos viajado para escapar de nuestro hogar, sino para descubrir cuánto debemos proteger nuestras raíces."
+        content: "Antes de que una gran tormenta de polvo apagara mis paneles solares en 2018, logré enviar mi último mensaje a la Tierra. Mi viaje probó que los mundos guardan la memoria de sus aguas en la piedra, recordándonos que cada río y cada laguna viva de nuestra Tierra es un tesoro sagrado que debemos proteger."
       }
     ]
   },
 
+  /* ==========================================================================
+     NIVEL 2: EL LATIDO Y EL CALOR DEL INTERIOR (FUEGO DEL MONTE ↔ INSIGHT)
+     ========================================================================== */
   "wichi-2": {
     id: "wichi-2",
     siblingId: "espacial-2",
-    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 2 ★",
+    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 2 (Misión InSight) ★",
     level: 2,
-    levelLabel: "Nivel 2 · Tronco Sagrado y Órbita",
+    levelLabel: "Nivel 2 · El Latido Interior y el Tronco",
     mode: "wichi",
     modeTitle: "Modo WICHÍ · Mito de la Tierra",
     title: "El Guardián de la Brasa y el Fuego del Monte",
     protagonist: "Relato Ancestral Wichí · Vetas de Palo Santo y Quebracho · El Impenetrable",
-    quote: "«El fuego no cayó del cielo para destruir: se escondió en el corazón del palo santo y del mistol para abrazar las noches de invierno.»",
+    quote: "«El fuego no cayó del cielo para destruir: se escondió en el corazón profundo del palo santo y de la tierra para abrazar las noches de invierno.»",
     blocks: [
       {
         type: "text",
@@ -104,7 +124,7 @@ window.ORBITAR_STORIES = {
       {
         type: "illustration",
         artId: "wichi-ember-guardian",
-        caption: "Ilustración I · La chispa sagrada transportada a través de las sendas nocturnas del monte."
+        caption: "Ilustración I · La chispa sagrada transportada a través de las sendas nocturnas del monte chaqueño."
       },
       {
         type: "text",
@@ -117,7 +137,7 @@ window.ORBITAR_STORIES = {
       },
       {
         type: "text",
-        content: "Para que la lluvia nunca pudiera apagarla, depositaron la chispa sagrada dentro de la fibra de los árboles del Chaco. Desde aquel día, el fuego habita dormido dentro de la madera: basta frotar dos ramas secas con paciencia para que el árbol devuelva su luz cálida y reúna a la comunidad en ronda para contar historias."
+        content: "Para que la lluvia nunca pudiera apagarla, depositaron la chispa sagrada dentro de la fibra de los árboles del Chaco y en el abrigo de la tierra. Desde aquel día, el fuego habita dormido dentro de la madera: basta frotar dos ramas secas con paciencia para que el árbol devuelva su luz cálida y reúna a la comunidad en ronda para contar historias."
       }
     ]
   },
@@ -127,42 +147,47 @@ window.ORBITAR_STORIES = {
     siblingId: "wichi-2",
     siblingButtonLabel: "← Ir al relato WICHÍ del Nivel 2",
     level: 2,
-    levelLabel: "Nivel 2 · Tronco Sagrado y Órbita",
+    levelLabel: "Nivel 2 · El Latido Interior y el Tronco",
     mode: "espacial",
     modeTitle: "Modo ESPACIAL · Estrella Beta",
-    title: "Ojos de Radar sobre el Gran Chaco",
-    protagonist: "Protagonista: Dra. Laura Frulla · Investigadora Principal Misión SAOCOM (CONAE / NASA)",
-    quote: "«Desde 620 kilómetros de altura, nuestros pulsos de radar atraviesan las nubes y las copas de los árboles para escuchar la sed de la tierra.»",
+    title: "InSight — El Oído que Escuchó el Corazón de un Planeta",
+    protagonist: "Protagonista: Módulo Geofísico InSight · Laboratorio de Propulsión a Chorro (NASA)",
+    missionUrl: "https://science.nasa.gov/mission/insight/",
+    missionLabel: "Misión Oficial NASA: InSight Mars Lander",
+    quote: "«Apoyé mi estetoscopio sobre la piel fría de otro mundo y escuché más de mil latidos profundos: la brasa viva que aún arde en el núcleo del planeta.»",
     blocks: [
       {
         type: "text",
-        content: "Soy Laura Frulla, científica de la misión satelital argentina SAOCOM. Durante años soñamos con lanzar al espacio un instrumento capaz de ver lo que los ojos humanos no pueden: el agua escondida debajo de la superficie terrestre."
+        content: "Soy InSight. A diferencia de otros exploradores espaciales, no fui enviado a Marte con ruedas para recorrer cañones, sino para quedarme quieto en la llanura de Elysium Planitia y hacer algo que nadie había logrado antes: escuchar lo que late debajo de la tierra."
       },
       {
         type: "illustration",
-        artId: "space-saocom-radar",
-        caption: "Telemetría SAR Banda L · Despliegue de la antena radar de 35 m² en órbita polar a 620 km de altitud."
+        artId: "space-insight-seis",
+        caption: "Telemetría NASA InSight · El brazo robótico depositando el sismómetro SEIS y la sonda de flujo de calor sobre la superficie marciana."
       },
       {
         type: "text",
-        content: "Cuando la enorme antena radar de 35 metros cuadrados se desplegó en órbita polar, contuvimos la respiración en el centro de control en Córdoba. Minutos después llegaron los primeros ecos desde el espacio: nuestras ondas en banda L atravesaban el follaje de los bosques y medían con precisión milimétrica la humedad en las raíces del suelo."
+        content: "Con mi brazo robótico apoyé suavemente sobre el suelo un sismómetro ultrasensible llamado SEIS, cubriéndolo con un escudo contra el viento, y desplegué una sonda térmica para medir el calor que emana del interior. En el silencio de la noche marciana, comencé a sentir pequeños temblores: los primeros «martemotos» registrados en la historia."
       },
       {
         type: "illustration",
-        artId: "space-chaco-moisture",
-        caption: "Mapa de Humedad de Suelo · Lectura orbital sobre la cuenca chaqueña y los bosques nativos."
+        artId: "space-insight-core",
+        caption: "Radiografía Planetaria · Ondas sísmicas revelando la corteza, el manto y la brasa líquida del núcleo profundo de Marte."
       },
       {
         type: "text",
-        content: "Saber que un satélite diseñado por nuestras manos orbita entre las estrellas para cuidar las cosechas, anticipar inundaciones y proteger los bosques nativos del norte argentino me enseñó que la ciencia espacial más avanzada es, en esencia, un acto de amor por nuestra tierra."
+        content: "Durante cuatro años registré más de 1.300 latidos sísmicos. Gracias a esas vibraciones descubrimos que, al igual que el fuego guardado dentro del palo santo en el relato Wichí, en lo más profundo de Marte todavía arde un gran núcleo líquido caliente. Escuchar el corazón de otro mundo nos enseñó cómo nacieron y cómo respiran por dentro los planetas rocosos como nuestra Tierra."
       }
     ]
   },
 
+  /* ==========================================================================
+     NIVEL 3: LA COPA CELESTE Y EL MENSAJE AL COSMOS (CHELCHUPÉ ↔ PIONEER 10)
+     ========================================================================== */
   "wichi-3": {
     id: "wichi-3",
     siblingId: "espacial-3",
-    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 3 ★",
+    siblingButtonLabel: "Ir al relato ESPACIAL del Nivel 3 (Misión Pioneer 10) ★",
     level: 3,
     levelLabel: "Nivel 3 · Copa Celeste y Espacio Profundo",
     mode: "wichi",
@@ -204,31 +229,33 @@ window.ORBITAR_STORIES = {
     levelLabel: "Nivel 3 · Copa Celeste y Espacio Profundo",
     mode: "espacial",
     modeTitle: "Modo ESPACIAL · Estrella Gamma",
-    title: "El Disco de Oro en el Océano Interestelar",
-    protagonist: "Protagonistas: Carl Sagan y Ann Druyan · Misión Voyager 1 (NASA)",
-    quote: "«Grabamos en un disco dorado el sonido del viento entre los árboles, el canto de las aves y el latido de un corazón humano para que viajen mil millones de años.»",
+    title: "Pioneer 10 — La Placa Dorada hacia las Constelaciones",
+    protagonist: "Protagonista: Sonda Interestelar Pioneer 10 · Misión Pioneer (NASA Ames)",
+    missionUrl: "https://science.nasa.gov/mission/pioneer-10/",
+    missionLabel: "Misión Oficial NASA: Pioneer 10",
+    quote: "«Llevo grabada en oro la figura de un hombre y una mujer alzando la mano en señal de saludo, tendiendo un nuevo hilo entre la Tierra y los habitantes de las estrellas.»",
     blocks: [
       {
         type: "text",
-        content: "Hablamos como Carl Sagan y Ann Druyan. Cuando la NASA nos pidió crear un mensaje a bordo de las sondas Voyager 1 y 2 —destinadas a abandonar para siempre el Sistema Solar—, nos preguntamos cómo resumir el espíritu de todo un planeta en un disco de cobre bañado en oro."
+        content: "Soy Pioneer 10. Despegué en marzo de 1972 con la misión de aventurarme donde ninguna nave humana había llegado jamás: fui la primera en atravesar el turbulento cinturón de asteroides y la primera en mirar de cerca las tormentas gigantes de Júpiter."
       },
       {
         type: "illustration",
-        artId: "space-golden-record",
-        caption: "Archivo NASA JPL · El Disco de Oro de Voyager con diagramas de navegación pulsar y ondas sonoras de la Tierra."
+        artId: "space-pioneer-plaque",
+        caption: "Archivo NASA Ames · La Placa de Pioneer 10 anodizada en oro con el saludo humano y el mapa de púlsares de nuestro Sol."
       },
       {
         type: "text",
-        content: "Decidimos no enviar boletines de guerra ni fronteras políticas. Grabamos saludos en 55 idiomas, el murmullo de la lluvia cayendo sobre las hojas verdes, el trueno, el canto de los grillos nocturnos, la música de nuestras culturas y las ondas cerebrales y cardíacas de una persona enamorada."
+        content: "Antes de partir, Carl Sagan, Frank Drake y Linda Salzman colocaron sobre mi estructura una placa de aluminio anodizado en oro. En ella grabaron las siluetas de una mujer y un hombre de la Tierra con la mano levantada en gesto de paz, junto a un mapa estelar tejido con las señales de catorce púlsares de nuestra galaxia para indicar dónde se encuentra nuestro hogar."
       },
       {
         type: "illustration",
-        artId: "space-voyager-interstellar",
-        caption: "Espacio Interestelar · Voyager 1 navegando más allá de la heliosfera a 24.000 millones de kilómetros."
+        artId: "space-pioneer-aldebaran",
+        caption: "Trayectoria Interestelar · Pioneer 10 navegando hacia la estrella Aldebarán en la constelación de Tauro, muy cerca de las Pléyades."
       },
       {
         type: "text",
-        content: "Hoy, a más de 24.000 millones de kilómetros de distancia, más allá de la heliosfera, Voyager 1 sigue navegando en la oscuridad interestelar. Es una semilla desprendida de la copa de nuestro árbol terrestre, llevando la memoria de los bosques y de la humanidad hacia las estrellas por toda la eternidad."
+        content: "Tras cruzar la órbita de Neptuno y enviar mi último susurro de radio desde más de 12.000 millones de kilómetros, sigo navegando en silencio hacia la estrella roja Aldebarán, en la misma región del cielo donde brillan las Pléyades del relato Wichí. Soy un mensaje eterno desprendido de la copa del árbol terrestre para volver a unir la Tierra con las estrellas."
       }
     ]
   }
