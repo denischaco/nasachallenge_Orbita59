@@ -341,6 +341,8 @@ window.ORBITAR_STORIES = {
     title: "✨ Mi historia — ¿Te conté alguna vez que yo vivía en las estrellas...?",
     protagonist: "Relato en primera persona · Adaptación de Xiomara · Narración en lengua Wichí: Simeón Gustavo",
     adaptationNote: "📌 Nota pedagógica (Adaptación de Xiomara): Relato en primera persona adaptado respetando la idiosincrasia del pueblo Wichí y configurado para las edades de los estudiantes (13 años · 1.° año del Ciclo Básico · Escuela N.° 59 de El Impenetrable). ¡Importante!: La leyenda narrada en el audio es la versión original en la lengua Wichí originaria histórica que la comunidad aún mantiene viva, aportada por Simeón Gustavo (Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya).",
+    audioSrc: "public/audio/cuento3.mp3",
+    audioFallbackSrc: "audio/cuento3.mp3",
     audioTitle: "🔊 Escuchar la leyenda original en lengua Wichí originaria",
     audioSubtitle: "Narrada en la lengua Wichí originaria histórica que aún mantienen · Voz aportada por Simeón Gustavo, Alumno del Profesorado de TIC en la escuela en Misión Nueva Pompeya.",
     quote: "«Aquí nos quedamos para compartir nuestra sabiduría y acompañarnos mutuamente. Y aunque aquí soy muy feliz no puedo evitar recordar con lágrimas en los ojos de donde vengo.»",
